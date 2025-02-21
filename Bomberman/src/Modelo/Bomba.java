@@ -1,5 +1,7 @@
 package Modelo;
 
-public abstract class Bomba {
+import java.util.Observable;
+
+public abstract class Bomba extends BloqueBomba{
 
 }

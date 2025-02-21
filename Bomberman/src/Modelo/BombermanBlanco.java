@@ -1,5 +1,8 @@
 package Modelo;
 
-public class BombermanBlanco extends Personaje {
-
+public class BombermanBlanco{
+	//Igual la clase no es necesaria
+	public BombermanBlanco() {
+		
+	}
 }

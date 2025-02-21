@@ -1,5 +1,8 @@
 package Modelo;
 
-public abstract class Bloque {
+import java.util.Observable;
 
+public abstract class Bloque extends Observable{
+	
+	protected Bloque() {}
 }

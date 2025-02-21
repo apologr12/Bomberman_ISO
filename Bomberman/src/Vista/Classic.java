@@ -5,8 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Classic extends JFrame {
+public class Classic extends JFrame implements Observer{
 
 	private JPanel contentPane;
 
@@ -37,5 +39,11 @@ public class Classic extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
