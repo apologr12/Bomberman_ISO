@@ -53,11 +53,15 @@ public class Tablero extends Observable {
 		}													
 	}
 	public boolean puedoMoverme(int x, int y) {
-		//TODO hay que mirar el outofbounds
-		if (tablero[x][y] instanceof BloqueVacio) {
-			return true;
-		}
-		else {
+		
+		if(x>=0 && x<=17 && y>=0 && x<=11) {
+			if (tablero[x][y] instanceof BloqueVacio) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}else {
 			return false;
 		}
 	}

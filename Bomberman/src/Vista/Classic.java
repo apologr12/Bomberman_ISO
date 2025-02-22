@@ -92,7 +92,7 @@ public class Classic extends JFrame implements Observer {
 			}
 			else if (numeroEntrada == 1) {
 				this.labels[y][x].setOpaque(true);
-				this.labels[y][x].setBackground(Color.LIGHT_GRAY);
+				this.labels[y][x].setBackground(Color.GREEN);
 			}
 			else if (numeroEntrada == 2) {
 				this.labels[y][x].setOpaque(true);

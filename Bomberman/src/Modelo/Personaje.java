@@ -18,18 +18,32 @@ public class Personaje extends Observable{
 	public static Personaje getPersonaje() {
 		return miPersonaje;
 	}
-	public void movimientoD() {
+	public void movimientoR() {
 		if (Tablero.getTablero().puedoMoverme(x,y+1)){
 			y=y+1;
 			mostrarPersonaje();
-			System.out.println("Ha llegado");
+			System.out.println("Derecha");
 		}
 	}
-	public void movimientoI() {
+	public void movimientoL() {
 		if (Tablero.getTablero().puedoMoverme(x,y-1)){
 			y=y-1;
 			mostrarPersonaje();
-			System.out.println("Ha llegado");
+			System.out.println("Izquierda");
+		}
+	}
+	public void movimientoU() {
+		if (Tablero.getTablero().puedoMoverme(x-1,y)){
+			x=x-1;
+			mostrarPersonaje();
+			System.out.println("Arriba");
+		}
+	}
+	public void movimientoD() {
+		if (Tablero.getTablero().puedoMoverme(x+1,y)){
+			x=x+1;
+			mostrarPersonaje();
+			System.out.println("Abajo");
 		}
 	}
 	public void mostrarPersonaje() {

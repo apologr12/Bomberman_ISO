@@ -22,10 +22,19 @@ public class Controlador implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if(keyCode==KeyEvent.VK_RIGHT) {
-			Personaje.getPersonaje().movimientoD();
+			Personaje.getPersonaje().movimientoR();
 		}
 		else if(keyCode==KeyEvent.VK_LEFT) {
-			Personaje.getPersonaje().movimientoI();
+			Personaje.getPersonaje().movimientoL();
+		}
+		else if(keyCode==KeyEvent.VK_UP) {
+			Personaje.getPersonaje().movimientoU();
+		}
+		else if(keyCode==KeyEvent.VK_DOWN) {
+			Personaje.getPersonaje().movimientoD();
+		} 
+		else if(keyCode==KeyEvent.VK_X) {
+			System.out.println("Bomba");
 		}
 	}
 
