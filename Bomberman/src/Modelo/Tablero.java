@@ -54,7 +54,7 @@ public class Tablero extends Observable {
 	}
 	public boolean puedoMoverme(int x, int y) {
 		
-		if(x>=0 && x<=17 && y>=0 && x<=11) {
+		if(x>=0 && x<=17 && y>=0 && y<=11) {
 			if (tablero[x][y] instanceof BloqueVacio) {
 				return true;
 			}
@@ -65,5 +65,23 @@ public class Tablero extends Observable {
 			return false;
 		}
 	}
+	
+	public void ponerBomba(int fila, int col) {
+	    if (this.tablero[fila][col] instanceof BloqueVacio) {
+	        // de momento le damos un rangoEx de 1 pero en un futuro en base a el int que nos indica el personaje tendremos que darle mas rangoEx.
+	        BloqueBomba bomba = new BloqueBomba(1);
+	        this.tablero[fila][col] = bomba;
+	        setChanged();
+	        notifyObservers(new Object[] { 3, fila, col }); 
+
+	    }
+	    
+	}
+	public boolean hayBombaEn(int fila, int col) {
+	    // comprobar si en la matriz hay un BloqueBomba
+	    return (this.tablero[fila][col] instanceof BloqueBomba);
+	}
+
+
 
 }

@@ -50,4 +50,12 @@ public class Personaje extends Observable{
 		setChanged();
 		notifyObservers(new Object[] {x,y});	
 	}
+	public void plantarBomba() {
+	    if (maxBombas > 0) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
+	        Tablero.getTablero().ponerBomba(x, y);
+	        System.out.println("Bomba");
+	        maxBombas--;
+	    }
+	}
+
 }

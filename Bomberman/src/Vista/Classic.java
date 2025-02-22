@@ -98,13 +98,23 @@ public class Classic extends JFrame implements Observer {
 				this.labels[y][x].setOpaque(true);
 				this.labels[y][x].setBackground(Color.BLACK);
 			}
+			else if (numeroEntrada == 3) {
+			    // Bomba
+			    labels[y][x].setOpaque(true);
+			    labels[y][x].setBackground(Color.ORANGE);
+				}
 		} else if (array.length==2) {		
 			int y = (int) array[0];
 			int x = (int) array[1];
 			
-			labels[p1][p2].setOpaque(true);
-			labels[p1][p2].setBackground(Color.WHITE);
+			// si hay bomba se deja el color de bomba.
+			if (Tablero.getTablero().hayBombaEn(p1, p2)) {
+			    labels[p1][p2].setBackground(Color.ORANGE);  // bomba
+			} else {
+			    labels[p1][p2].setBackground(Color.WHITE);   // vacío
+			}
 			
+			// pintamos el jugador
 			labels[y][x].setOpaque(true);
 			labels[y][x].setBackground(Color.RED);
 			

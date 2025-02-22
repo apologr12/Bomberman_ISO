@@ -34,7 +34,7 @@ public class Controlador implements KeyListener {
 			Personaje.getPersonaje().movimientoD();
 		} 
 		else if(keyCode==KeyEvent.VK_X) {
-			System.out.println("Bomba");
+			Personaje.getPersonaje().plantarBomba();
 		}
 	}
 
