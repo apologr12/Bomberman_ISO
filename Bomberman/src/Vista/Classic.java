@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.Controlador;
+import Modelo.Personaje;
 import Modelo.Tablero;
 
 import java.awt.GridLayout;
@@ -22,6 +23,7 @@ public class Classic extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JLabel[][] labels;
+	private int p1,p2;
 
 	/**
 	 * Launch the application.
@@ -33,6 +35,7 @@ public class Classic extends JFrame implements Observer {
 					Classic frame = new Classic();
 					frame.setVisible(true);
 					Tablero.getTablero().crearTablero();
+					Personaje.getPersonaje().mostrarPersonaje();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,15 +50,21 @@ public class Classic extends JFrame implements Observer {
 		setTitle("Classic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);								//Crea el panel principal sobre el que van a estar los distintos JLabel
+		
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
-		contentPane.addKeyListener(Controlador.getControlador());	//Anade la detección de pulsación de teclas
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
+		
+	    addKeyListener(Controlador.getControlador());  // Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
+	    setFocusable(true); 						// Hacer que el JFrame reciba eventos de teclado
+	    requestFocus();
+		
 		
 		Tablero.getTablero().addObserver(this);						//Anadimos el tablero como observable de la vista
+		Personaje.getPersonaje().addObserver(this);					//Anadimos el personaje como observable de la vista
 		
 		this.labels = new JLabel[11][17];							//Bucle que crea la matriz de JLabels de la vista
 		for (int i = 0; i < 11; i++) {
@@ -71,21 +80,37 @@ public class Classic extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Object[] array = (Object[]) arg;
-		int numeroEntrada = (int) array[0];
-		int y = (int) array[1];
-		int x = (int) array[2];
-		//System.out.println(numeroEntrada); //Debugging
 		
-		if (numeroEntrada == 0) {
-			this.labels[y][x].setOpaque(true);
+		if(array.length == 3) {				//Para diferenciar el update del teclado y el del personaje
+			int numeroEntrada = (int) array[0];
+			int y = (int) array[1];
+			int x = (int) array[2];
+			//System.out.println(numeroEntrada); //Debugging
+		
+			if (numeroEntrada == 0) {
+				this.labels[y][x].setOpaque(true);
+			}
+			else if (numeroEntrada == 1) {
+				this.labels[y][x].setOpaque(true);
+				this.labels[y][x].setBackground(Color.LIGHT_GRAY);
+			}
+			else if (numeroEntrada == 2) {
+				this.labels[y][x].setOpaque(true);
+				this.labels[y][x].setBackground(Color.BLACK);
+			}
+		} else if (array.length==2) {		
+			int y = (int) array[0];
+			int x = (int) array[1];
+			
+			labels[p1][p2].setOpaque(true);
+			labels[p1][p2].setBackground(Color.WHITE);
+			
+			labels[y][x].setOpaque(true);
+			labels[y][x].setBackground(Color.RED);
+			
+			p1=y;
+			p2=x;			
 		}
-		else if (numeroEntrada == 1) {
-			this.labels[y][x].setOpaque(true);
-			this.labels[y][x].setBackground(Color.LIGHT_GRAY);
-		}
-		else if (numeroEntrada == 2) {
-			this.labels[y][x].setOpaque(true);
-			this.labels[y][x].setBackground(Color.BLACK);
-		}
+		
 	}
 }
