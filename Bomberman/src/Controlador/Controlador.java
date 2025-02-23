@@ -21,19 +21,19 @@ public class Controlador implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		if(keyCode==KeyEvent.VK_RIGHT) {
+		if (keyCode == KeyEvent.VK_RIGHT) {
 			Personaje.getPersonaje().movimientoR();
 		}
-		else if(keyCode==KeyEvent.VK_LEFT) {
+		else if(keyCode == KeyEvent.VK_LEFT) {
 			Personaje.getPersonaje().movimientoL();
 		}
-		else if(keyCode==KeyEvent.VK_UP) {
+		else if(keyCode == KeyEvent.VK_UP) {
 			Personaje.getPersonaje().movimientoU();
 		}
-		else if(keyCode==KeyEvent.VK_DOWN) {
+		else if(keyCode == KeyEvent.VK_DOWN) {
 			Personaje.getPersonaje().movimientoD();
 		} 
-		else if(keyCode==KeyEvent.VK_X) {
+		else if(keyCode == KeyEvent.VK_X) {
 			Personaje.getPersonaje().plantarBomba();
 		}
 	}

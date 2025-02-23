@@ -46,6 +46,7 @@ public class Classic extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public Classic() {
 		setTitle("Classic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,8 +59,8 @@ public class Classic extends JFrame implements Observer {
 
 		setContentPane(contentPane);
 		
-	    addKeyListener(Controlador.getControlador());  // Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
-	    setFocusable(true); 						// Hacer que el JFrame reciba eventos de teclado
+	    this.addKeyListener(Controlador.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
+	    setFocusable(true); 										// Hacer que el JFrame reciba eventos de teclado
 	    requestFocus();
 		
 		
@@ -81,28 +82,28 @@ public class Classic extends JFrame implements Observer {
 		// TODO Auto-generated method stub
 		Object[] array = (Object[]) arg;
 		
-		if(array.length == 3) {				//Para diferenciar el update del teclado y el del personaje
+		if(array.length == 3) {									//El apano este habria que solucionarlo llamando a distintos metodos privados en esta clase
 			int numeroEntrada = (int) array[0];
 			int y = (int) array[1];
 			int x = (int) array[2];
 			//System.out.println(numeroEntrada); //Debugging
 		
-			if (numeroEntrada == 0) {
+			if (numeroEntrada == 0) {							//Bloque vacio
 				this.labels[y][x].setOpaque(true);
 			}
-			else if (numeroEntrada == 1) {
+			else if (numeroEntrada == 1) {						//Bloque blando
 				this.labels[y][x].setOpaque(true);
 				this.labels[y][x].setBackground(Color.GREEN);
 			}
-			else if (numeroEntrada == 2) {
+			else if (numeroEntrada == 2) {						//Bloque duro
 				this.labels[y][x].setOpaque(true);
 				this.labels[y][x].setBackground(Color.BLACK);
 			}
-			else if (numeroEntrada == 3) {
-			    // Bomba
-			    labels[y][x].setOpaque(true);
-			    labels[y][x].setBackground(Color.ORANGE);
+			else if (numeroEntrada == 3) {						//Bomba
+			    this.labels[y][x].setOpaque(true);
+			    this.labels[y][x].setBackground(Color.ORANGE);
 				}
+			
 		} else if (array.length==2) {		
 			int y = (int) array[0];
 			int x = (int) array[1];
