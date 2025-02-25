@@ -21,7 +21,8 @@ public class Tablero extends Observable {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void crearTablero() {										//Este metodo sera llamado cuando se pulse el boton para iniciar partida
+	public void crearTablero() {	
+		//Este metodo sera llamado cuando se pulse el boton para iniciar partida
 		Random random = new Random();									//Actualmente es llamado desde main para las pruebas
 		for (int i = 0; i < 11; i++) {													//Generacion del tablero de forma aleatoria
 			for (int j = 0; j < 17; j++) {
@@ -45,16 +46,17 @@ public class Tablero extends Observable {
 				else if (numero == 2) {
 					this.tablero[i][j] = new BloqueDuro();
 				}
-				//System.out.println(numero);
+				//System.out.print(i + "" + j + " "); Debugging
 				setChanged();
-				notifyObservers(new Object[] {numero, i, j});							//Notifica a la vista para que ponga el tipo de bloque correspondiente
+				notifyObservers(new Object[] {2, numero, i, j});							//Notifica a la vista para que ponga el tipo de bloque correspondiente
 																						//en la interfaz
 			}
+			System.out.println("");
 		}													
 	}
 	public boolean puedoMoverme(int x, int y) {
 		
-		if (x >= 0 && x <= 17 && y >= 0 && y <= 11) {		//Dentro del tablero
+		if (y >= 0 && y <= 17 && x >= 0 && x <= 11) {		//Dentro del tablero
 			if (tablero[x][y] instanceof BloqueVacio) {									//No se por que funciona bien si en java el primer corchete es la coordenada Y
 				return true;															//y el segundo corchete representa la coordenada X
 			}
@@ -70,7 +72,7 @@ public class Tablero extends Observable {
 	public void ponerBomba(int fila, int col) {
 	    if (this.tablero[fila][col] instanceof BloqueVacio) {						//No entiendo la necesidad de comprobar el 'instanceof' aqui
 	        // de momento le damos un rangoEx de 1 pero en un futuro en base a el int que nos indica el personaje tendremos que darle mas rangoEx.
-	        BloqueBomba bomba = new BloqueBomba(1);
+	        BloqueBomba bomba = new BloqueBomba(1, fila, col);
 	        this.tablero[fila][col] = bomba;
 	        setChanged();
 	        notifyObservers(new Object[] { 3, fila, col }); 
@@ -81,6 +83,17 @@ public class Tablero extends Observable {
 	public boolean hayBombaEn(int fila, int col) {
 	    // comprobar si en la matriz hay un BloqueBomba
 	    return (this.tablero[fila][col] instanceof BloqueBomba);
+	}
+	
+	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {
+		if (pTipo == 1) {														//Bomba basica (area 1)
+			if (this.tablero[pY][pX+1] instanceof BloqueBlando) {
+				this.tablero[pY][pX+1] = new BloqueVacio();
+				setChanged();
+		        notifyObservers(new Object[] {3, pY, pX + 1}); 
+			}
+			
+		}
 	}
 
 

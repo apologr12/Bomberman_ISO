@@ -60,9 +60,33 @@ public class Personaje extends Observable{
 	    }
 	}
 	
+	public void explosionBomba(int pX, int pY, int pTipo) {
+		if (pX == this.x && pY == this.y) {
+			this.estaVivo = false;
+		}
+		else if (pTipo == 1) {								//Bomba basica (tipo 1)
+			if (pX + 1 == this.x && pY == this.y) {
+				this.estaVivo = false;
+			}
+			else if (pX - 1 == this.x && pY == this.y) {
+				this.estaVivo = false;
+			}
+			else if (pY + 1 == this.y && pX == this.x) {
+				this.estaVivo = false;
+			}
+			else if (pY - 1 == this.y && pX == this.x) {
+				this.estaVivo = false;
+			}
+		}
+		else if (pTipo == 2) {
+			//TODO Tener en cuenta que si el personaje esta al  otro lado de un bloque duro la bomba no le mata
+		}
+		Tablero.getTablero().compExplosion(this.estaVivo, pX, pY, pTipo);
+	}
+	
 	public void mostrarPersonaje() {						//Public temporalmente para poder llamarlo desde el main?
 		setChanged();
-		notifyObservers(new Object[] {x, y});	
+		notifyObservers(new Object[] {1, x, y});	
 	}
 
 

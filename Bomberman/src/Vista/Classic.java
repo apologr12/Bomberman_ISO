@@ -47,7 +47,7 @@ public class Classic extends JFrame implements Observer {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("deprecation")
-	public Classic() {
+	public Classic() {												//CONSEGUIR QUE EL CONTROLADOR SEA QUIEN LLAME AL MODELO Y NO LA VISTA
 		setTitle("Classic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);								//Crea el panel principal sobre el que van a estar los distintos JLabel
@@ -81,8 +81,10 @@ public class Classic extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Object[] array = (Object[]) arg;
+		int quienLlama = (int) array[0];
 		
-		if(array.length == 3) {									//El apano este habria que solucionarlo llamando a distintos metodos privados en esta clase
+		
+		if (quienLlama == 2) {									//El apano este habria que solucionarlo llamando a distintos metodos privados en esta clase
 			int numeroEntrada = (int) array[0];
 			int y = (int) array[1];
 			int x = (int) array[2];
@@ -104,7 +106,7 @@ public class Classic extends JFrame implements Observer {
 			    this.labels[y][x].setBackground(Color.ORANGE);
 				}
 			
-		} else if (array.length==2) {		
+		} else if (quienLlama == 1) {		
 			int y = (int) array[0];
 			int x = (int) array[1];
 			
