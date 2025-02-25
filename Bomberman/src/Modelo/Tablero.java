@@ -56,8 +56,8 @@ public class Tablero extends Observable {
 	}
 	public boolean puedoMoverme(int x, int y) {
 		
-		if (y >= 0 && y <= 17 && x >= 0 && x <= 11) {		//Dentro del tablero
-			if (tablero[x][y] instanceof BloqueVacio) {									//No se por que funciona bien si en java el primer corchete es la coordenada Y
+		if (x >= 0 && x < 17 && y >= 0 && y < 11) {		//Dentro del tablero (aqui el problema era que se ponia <=17)
+			if (tablero[y][x] instanceof BloqueVacio) {									//No se por que funciona bien si en java el primer corchete es la coordenada Y
 				return true;															//y el segundo corchete representa la coordenada X
 			}
 			else {											//No es bloque vacio
@@ -72,10 +72,10 @@ public class Tablero extends Observable {
 	public void ponerBomba(int fila, int col) {
 	    if (this.tablero[fila][col] instanceof BloqueVacio) {						//No entiendo la necesidad de comprobar el 'instanceof' aqui
 	        // de momento le damos un rangoEx de 1 pero en un futuro en base a el int que nos indica el personaje tendremos que darle mas rangoEx.
-	        BloqueBomba bomba = new BloqueBomba(1, fila, col);
+	        BloqueBomba bomba = new BloqueBomba(1, col, fila);
 	        this.tablero[fila][col] = bomba;
 	        setChanged();
-	        notifyObservers(new Object[] { 3, fila, col }); 
+	        notifyObservers(new Object[] { 1, col, fila }); 
 
 	    }
 	    

@@ -21,32 +21,32 @@ public class Personaje extends Observable{
 	}
 	
 	public void movimientoR() {								//Es necesario realmente dividir el movimiento del personaje en 4 metodos
-		if (Tablero.getTablero().puedoMoverme(x, y+1)){		//o se puede meter todo en uno directamente?
-			y = y+1;
+		if (Tablero.getTablero().puedoMoverme(x+1, y)){		//o se puede meter todo en uno directamente?
+			x++;
 			mostrarPersonaje();
 			System.out.println("Derecha");
 		}
 	}
 	
 	public void movimientoL() {
-		if (Tablero.getTablero().puedoMoverme(x, y-1)){
-			y = y-1;
+		if (Tablero.getTablero().puedoMoverme(x-1, y)){
+			x--;
 			mostrarPersonaje();
 			System.out.println("Izquierda");
 		}
 	}
 	
 	public void movimientoU() {
-		if (Tablero.getTablero().puedoMoverme(x-1, y)){
-			x = x-1;
+		if (Tablero.getTablero().puedoMoverme(x, y-1)){
+			y--;
 			mostrarPersonaje();
 			System.out.println("Arriba");
 		}
 	}
 	
 	public void movimientoD() {
-		if (Tablero.getTablero().puedoMoverme(x+1, y)){
-			x = x+1;
+		if (Tablero.getTablero().puedoMoverme(x, y+1)){
+			y++;
 			mostrarPersonaje();
 			System.out.println("Abajo");
 		}
@@ -54,7 +54,7 @@ public class Personaje extends Observable{
 	
 	public void plantarBomba() {
 	    if (numBombas > 0) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        Tablero.getTablero().ponerBomba(x, y);
+	        Tablero.getTablero().ponerBomba(y, x);
 	        System.out.println("Bomba");
 	        numBombas--;
 	    }

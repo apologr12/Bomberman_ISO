@@ -85,9 +85,9 @@ public class Classic extends JFrame implements Observer {
 		
 		
 		if (quienLlama == 2) {									//El apano este habria que solucionarlo llamando a distintos metodos privados en esta clase
-			int numeroEntrada = (int) array[0];
-			int y = (int) array[1];
-			int x = (int) array[2];
+			int numeroEntrada = (int) array[1];					//Esto daba error porque se le metia el primer elemento del array
+			int y = (int) array[2];
+			int x = (int) array[3];
 			//System.out.println(numeroEntrada); //Debugging
 		
 			if (numeroEntrada == 0) {							//Bloque vacio
@@ -107,7 +107,7 @@ public class Classic extends JFrame implements Observer {
 				}
 			
 		} else if (quienLlama == 1) {		
-			int y = (int) array[0];
+			int y = (int) array[2];
 			int x = (int) array[1];
 			
 			// si hay bomba se deja el color de bomba.
