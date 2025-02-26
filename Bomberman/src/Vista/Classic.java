@@ -91,10 +91,13 @@ public class Classic extends JFrame implements Observer {
 			this.moverPersonaje(array);
 		}
 		else if (quienLlama == 4) {
-			this.dejarDeMostrarPersonaje(array);
+			this.ponerPanelBlanco(array);
 		}
 		else if (quienLlama == 5) {
 			this.ponerPanelBlanco(array);
+		}
+		else if (quienLlama == 6) {
+			this.mostrarExplosion(array);
 		}
 	}
 	
@@ -144,7 +147,7 @@ public class Classic extends JFrame implements Observer {
 	}
 	
 	private void ponerPanelBlanco(Object[] array) { //TENEMOS POR DUPLICADO ESTE METODO. HABRIA QUE QUITAR UNO DE LOS 2
-		int y = (int) array[2];
+		int y = (int) array[2];						// NOS QUEDAMOS CON ESTE EN VEZ DE dejarDeMostrarPersonaje
 		int x = (int) array[1];
 		
 		//this.labels[y][x].setBackground(Color.WHITE);
@@ -164,11 +167,13 @@ public class Classic extends JFrame implements Observer {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("blackfront1.png")));
 	}
 	
-	private void dejarDeMostrarPersonaje(Object[] array) {
+	private void mostrarExplosion(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("blast.gif")));
 		this.labels[y][x].setOpaque(true);
 		this.labels[y][x].setBackground(Color.WHITE);
-		this.labels[y][x].setIcon(null);
+
 	}
+	
 }

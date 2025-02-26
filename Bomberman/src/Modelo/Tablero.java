@@ -86,31 +86,36 @@ public class Tablero extends Observable {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {		//Revisa los bloques adyacentes y enemigos adyacentes para ver cuales																		//pueden borrarse y cuales no																
-		if (pTipo == 1) {											
-			if (pX < 16 && this.tablero[pY][pX+1] instanceof BloqueBlando) {	//Bomba basica (area 1). Se revisa que la comprobacion se haga dentro del
-				this.tablero[pY][pX+1] = new BloqueVacio();						//limite del tablero
-				setChanged();
-		        notifyObservers(new Object[] {5, pX + 1, pY}); 
-			}
-			if (pX > 0 && this.tablero[pY][pX-1] instanceof BloqueBlando) {
-				this.tablero[pY][pX-1] = new BloqueVacio();
-				setChanged();
-		        notifyObservers(new Object[] {5, pX - 1, pY}); 
-			}
-			if (pY < 10 && this.tablero[pY+1][pX] instanceof BloqueBlando) {
-				this.tablero[pY+1][pX] = new BloqueVacio();
-				setChanged();
-		        notifyObservers(new Object[] {5, pX, pY + 1}); 
-			}
-			if (pY > 0 && this.tablero[pY-1][pX] instanceof BloqueBlando) {
-				this.tablero[pY-1][pX] = new BloqueVacio();
-				setChanged();
-		        notifyObservers(new Object[] {5, pX, pY - 1}); 
-			}
-			setChanged();
-			notifyObservers(new Object[] {5, pX, pY});
-			this.tablero[pY][pX] = new BloqueVacio();
-		}
+	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {
+		if (pTipo == 1) {												// Si no es BloqueDuro es o blando,vacio o enemigo en un futuro
+	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro)) {
+	        	explotarCelda(pY, pX);
+	        	}
+	        
+	        if (pX < 16 && !(this.tablero[pY][pX + 1] instanceof BloqueDuro)) {
+	        	explotarCelda(pY, pX + 1);
+	        	}
+	        
+	        if (pX > 0 && !(this.tablero[pY][pX - 1] instanceof BloqueDuro)) {
+	        	explotarCelda(pY, pX - 1);
+	        	}
+
+	        if (pY < 10 && !(this.tablero[pY + 1][pX] instanceof BloqueDuro)) {
+	        	explotarCelda(pY + 1, pX);
+	            }
+	        
+	        if (pY > 0 && !(this.tablero[pY - 1][pX] instanceof BloqueDuro)) {
+	        	explotarCelda(pY-1,  pX);
+	            }
+	        } // if (pTipo == 1)
+	    }
+	private void explotarCelda(int pY, int pX) {
+	    this.tablero[pY][pX] = new BloqueVacio(); // EN UN FUTURO AÑADIR BLOQUE EXPLOSION
+	    // Notificar a la vista que muestre explosión
+	    setChanged();
+	    notifyObservers(new Object[] {6, pX, pY});
+        // INICIAR TIMER PARA MOSTRARLA DURANTE 2 SEGUNDOS?
+    	// EN UN FUTURO COLOCAR EL BLOQUE VACIO QUITANDO EL BLOQUE EXPLOSION
 	}
+
 }
