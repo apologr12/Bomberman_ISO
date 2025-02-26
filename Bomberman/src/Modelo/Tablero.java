@@ -56,11 +56,13 @@ public class Tablero extends Observable {
 	}
 	public boolean puedoMoverme(int x, int y) {
 		
-		if (x >= 0 && x < 17 && y >= 0 && y < 11) {		//Dentro del tablero (aqui el problema era que se ponia <=17)
-			if (tablero[y][x] instanceof BloqueVacio) {									//No se por que funciona bien si en java el primer corchete es la coordenada Y
-				return true;															//y el segundo corchete representa la coordenada X
+		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
+			if (tablero[y][x] instanceof BloqueVacio) {	
+				return true;					
 			}
-			else {											//No es bloque vacio
+			else if(tablero[y][x] instanceof BloqueExplosion){						//Futura muerte
+				return false;
+			} else { 																//Bloque solido no se puede traspasar
 				return false;
 			}
 		} 
@@ -87,7 +89,7 @@ public class Tablero extends Observable {
 	
 	@SuppressWarnings("deprecation")
 	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {
-		if (pTipo == 1) {												// Si no es BloqueDuro es o blando,vacio o enemigo en un futuro
+		if (pTipo == 1) {												// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
 	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro)) {
 	        	explotarCelda(pY, pX);
 	        	}
@@ -110,12 +112,17 @@ public class Tablero extends Observable {
 	        } // if (pTipo == 1)
 	    }
 	private void explotarCelda(int pY, int pX) {
-	    this.tablero[pY][pX] = new BloqueVacio(); // EN UN FUTURO AÑADIR BLOQUE EXPLOSION
+	    this.tablero[pY][pX] = new BloqueExplosion(pX,pY); // Comprobar si estan las coordenadas bien
 	    // Notificar a la vista que muestre explosión
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY});
         // INICIAR TIMER PARA MOSTRARLA DURANTE 2 SEGUNDOS?
     	// EN UN FUTURO COLOCAR EL BLOQUE VACIO QUITANDO EL BLOQUE EXPLOSION
+	}
+	public void postExplosion(int pY,int pX) {
+		this.tablero[pY][pX] = new BloqueVacio(); // Comprobar si estan las coordenadas bien
+	    setChanged();
+	    notifyObservers(new Object[] {4, pX, pY});
 	}
 
 }

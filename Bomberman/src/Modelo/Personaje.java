@@ -20,13 +20,16 @@ public class Personaje extends Observable{
 		return miPersonaje;
 	}
 	
-	public void movimientoR() {								//Es necesario realmente dividir el movimiento del personaje en 4 metodos
-		if (Tablero.getTablero().puedoMoverme(x+1, y)) {		//o se puede meter todo en uno directamente?
+	public void movimientoR() {
+		if (Tablero.getTablero().puedoMoverme(x+1, y)) {
 			if (!Tablero.getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
+			else if(Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonajePeroBomba();
+			}
 			x++;
-			mostrarPersonaje();
+			mostrarPersonajeRight();
 			System.out.println("Derecha");
 		}
 	}
@@ -35,9 +38,12 @@ public class Personaje extends Observable{
 		if (Tablero.getTablero().puedoMoverme(x-1, y)) {
 			if (!Tablero.getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
+			} 
+			else if(Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonajePeroBomba();
 			}
 			x--;
-			mostrarPersonaje();
+			mostrarPersonajeLeft();
 			System.out.println("Izquierda");
 		}
 	}
@@ -47,9 +53,12 @@ public class Personaje extends Observable{
 		if (Tablero.getTablero().puedoMoverme(x, y-1)) {
 			if (!Tablero.getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
-			}						//Esta llamada a mostrar personaje se hace para despintar la posicion actual
+			}
+			else if(Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonajePeroBomba();
+			}												//Esta llamada a mostrar personaje se hace para despintar la posicion actual
 			y--;											//para que luego se pinte la nueva.
-			mostrarPersonaje();								//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
+			mostrarPersonajeUp();							//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
 			System.out.println("Arriba");
 		}
 	}
@@ -58,6 +67,8 @@ public class Personaje extends Observable{
 		if (Tablero.getTablero().puedoMoverme(x, y+1)) {
 			if (!Tablero.getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
+			} else if(Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonajePeroBomba();
 			}
 			y++;
 			mostrarPersonaje();
@@ -108,6 +119,20 @@ public class Personaje extends Observable{
 		setChanged();
 		notifyObservers(new Object[] {4, x, y});
 	}
-
-
+	private void dejarDeMostrarPersonajePeroBomba() {
+		setChanged();
+		notifyObservers(new Object[] {7, x, y});
+	}
+	private void mostrarPersonajeUp() {						//Ns si un metodo para cada movimiento es correcto (Se puede cambiar)
+		setChanged();
+		notifyObservers(new Object[] {8, x, y});	
+	}
+	private void mostrarPersonajeLeft() {
+		setChanged();
+		notifyObservers(new Object[] {9, x, y});	
+	}
+	private void mostrarPersonajeRight() {
+		setChanged();
+		notifyObservers(new Object[] {10, x, y});	
+	}
 }

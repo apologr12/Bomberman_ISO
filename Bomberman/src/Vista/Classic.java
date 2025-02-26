@@ -81,7 +81,7 @@ public class Classic extends JFrame implements Observer {
 		int quienLlama = (int) array[0];
 		
 		
-		if (quienLlama == 2) {									//El apano este habria que solucionarlo llamando a distintos metodos privados en esta clase
+		if (quienLlama == 2) {
 			this.crearTablero(array);
 		} 
 		else if (quienLlama == 1) {
@@ -99,8 +99,20 @@ public class Classic extends JFrame implements Observer {
 		else if (quienLlama == 6) {
 			this.mostrarExplosion(array);
 		}
+		else if (quienLlama == 7) {
+			this.ponerPanelBomba(array);
+		}
+		else if (quienLlama == 8) {
+			this.moverPersonajeUp(array);
+		}
+		else if (quienLlama == 9) {
+			this.moverPersonajeLeft(array);
+		}
+		else if (quienLlama == 10) {
+			this.moverPersonajeRight(array);
+		}
 	}
-	
+
 	private void crearTablero(Object[] array) {
 		int numeroEntrada = (int) array[1];					//Esto daba error porque se le metia el primer elemento del array
 		int y = (int) array[2];
@@ -141,13 +153,13 @@ public class Classic extends JFrame implements Observer {
 		//Creo que esta comprobacion realmente no es necesaria porque ya se comprueba en el tablero
 		//Ademas, no podemos acceder al tablero desde la vista sin pasar por el controlador.
 		//Creo que basta unicamente con actualizar su color y ya.
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("bomb1.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitewithbomb1.png")));
 		this.labels[y][x].setBackground(Color.WHITE);
 		//this.labels[y][x].setBackground(Color.ORANGE);
 	}
 	
-	private void ponerPanelBlanco(Object[] array) { //TENEMOS POR DUPLICADO ESTE METODO. HABRIA QUE QUITAR UNO DE LOS 2
-		int y = (int) array[2];						// NOS QUEDAMOS CON ESTE EN VEZ DE dejarDeMostrarPersonaje
+	private void ponerPanelBlanco(Object[] array) { 
+		int y = (int) array[2];
 		int x = (int) array[1];
 		
 		//this.labels[y][x].setBackground(Color.WHITE);
@@ -160,11 +172,11 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-		//Pintamos el jugador
+			//Pintamos el jugador
 			this.labels[y][x].setOpaque(true);
 			//this.labels[y][x].setBackground(Color.RED);
 			this.labels[y][x].setBackground(Color.WHITE);
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("blackfront1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitefront1.png")));
 	}
 	
 	private void mostrarExplosion(Object[] array) {
@@ -174,6 +186,39 @@ public class Classic extends JFrame implements Observer {
 		this.labels[y][x].setOpaque(true);
 		this.labels[y][x].setBackground(Color.WHITE);
 
+	} 	
+	private void ponerPanelBomba(Object[] array) { //Despues de que se mueva el personaje aparezca la bomba
+		int y = (int) array[2];
+		int x = (int) array[1];
+		
+		this.labels[y][x].setOpaque(true);
+		this.labels[y][x].setBackground(Color.WHITE);
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("bomb1.png")));
 	}
-	
+	private void moverPersonajeUp(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+
+			this.labels[y][x].setOpaque(true);
+			this.labels[y][x].setBackground(Color.WHITE);
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup2.png")));
+		
+	}
+	private void moverPersonajeLeft(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+
+			this.labels[y][x].setOpaque(true);
+			this.labels[y][x].setBackground(Color.WHITE);
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft2.png")));
+	}
+	private void moverPersonajeRight(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+
+			this.labels[y][x].setOpaque(true);
+			this.labels[y][x].setBackground(Color.WHITE);
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright2.png")));
+		
+	}
 }
