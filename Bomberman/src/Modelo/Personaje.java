@@ -21,7 +21,10 @@ public class Personaje extends Observable{
 	}
 	
 	public void movimientoR() {								//Es necesario realmente dividir el movimiento del personaje en 4 metodos
-		if (Tablero.getTablero().puedoMoverme(x+1, y)){		//o se puede meter todo en uno directamente?
+		if (Tablero.getTablero().puedoMoverme(x+1, y)) {		//o se puede meter todo en uno directamente?
+			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonaje();
+			}
 			x++;
 			mostrarPersonaje();
 			System.out.println("Derecha");
@@ -29,7 +32,10 @@ public class Personaje extends Observable{
 	}
 	
 	public void movimientoL() {
-		if (Tablero.getTablero().puedoMoverme(x-1, y)){
+		if (Tablero.getTablero().puedoMoverme(x-1, y)) {
+			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonaje();
+			}
 			x--;
 			mostrarPersonaje();
 			System.out.println("Izquierda");
@@ -37,15 +43,22 @@ public class Personaje extends Observable{
 	}
 	
 	public void movimientoU() {
-		if (Tablero.getTablero().puedoMoverme(x, y-1)){
-			y--;
-			mostrarPersonaje();
+		
+		if (Tablero.getTablero().puedoMoverme(x, y-1)) {
+			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonaje();
+			}						//Esta llamada a mostrar personaje se hace para despintar la posicion actual
+			y--;											//para que luego se pinte la nueva.
+			mostrarPersonaje();								//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
 			System.out.println("Arriba");
 		}
 	}
 	
 	public void movimientoD() {
-		if (Tablero.getTablero().puedoMoverme(x, y+1)){
+		if (Tablero.getTablero().puedoMoverme(x, y+1)) {
+			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonaje();
+			}
 			y++;
 			mostrarPersonaje();
 			System.out.println("Abajo");
@@ -56,11 +69,12 @@ public class Personaje extends Observable{
 	    if (numBombas > 0) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
 	        Tablero.getTablero().ponerBomba(y, x);
 	        System.out.println("Bomba");
-	        numBombas--;
+	        this.numBombas--;
 	    }
 	}
 	
 	public void explosionBomba(int pX, int pY, int pTipo) {
+		this.numBombas++;
 		if (pX == this.x && pY == this.y) {
 			this.estaVivo = false;
 		}
@@ -82,11 +96,17 @@ public class Personaje extends Observable{
 			//TODO Tener en cuenta que si el personaje esta al  otro lado de un bloque duro la bomba no le mata
 		}
 		Tablero.getTablero().compExplosion(this.estaVivo, pX, pY, pTipo);
+		
 	}
 	
 	public void mostrarPersonaje() {						//Public temporalmente para poder llamarlo desde el main?
 		setChanged();
-		notifyObservers(new Object[] {1, x, y});	
+		notifyObservers(new Object[] {3, x, y});	
+	}
+	
+	private void dejarDeMostrarPersonaje() {
+		setChanged();
+		notifyObservers(new Object[] {4, x, y});
 	}
 
 

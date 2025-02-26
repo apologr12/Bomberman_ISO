@@ -69,9 +69,9 @@ public class Tablero extends Observable {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void ponerBomba(int fila, int col) {
-	    if (this.tablero[fila][col] instanceof BloqueVacio) {						//No entiendo la necesidad de comprobar el 'instanceof' aqui
-	        // de momento le damos un rangoEx de 1 pero en un futuro en base a el int que nos indica el personaje tendremos que darle mas rangoEx.
+	    if (this.tablero[fila][col] instanceof BloqueVacio) {						//Se pone una bomba si no hay ya una bomba puesta
 	        BloqueBomba bomba = new BloqueBomba(1, col, fila);
 	        this.tablero[fila][col] = bomba;
 	        setChanged();
@@ -85,17 +85,32 @@ public class Tablero extends Observable {
 	    return (this.tablero[fila][col] instanceof BloqueBomba);
 	}
 	
-	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {
-		if (pTipo == 1) {														//Bomba basica (area 1)
-			if (this.tablero[pY][pX+1] instanceof BloqueBlando) {
-				this.tablero[pY][pX+1] = new BloqueVacio();
+	@SuppressWarnings("deprecation")
+	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {		//Revisa los bloques adyacentes y enemigos adyacentes para ver cuales																		//pueden borrarse y cuales no																
+		if (pTipo == 1) {											
+			if (pX < 16 && this.tablero[pY][pX+1] instanceof BloqueBlando) {	//Bomba basica (area 1). Se revisa que la comprobacion se haga dentro del
+				this.tablero[pY][pX+1] = new BloqueVacio();						//limite del tablero
 				setChanged();
-		        notifyObservers(new Object[] {3, pY, pX + 1}); 
+		        notifyObservers(new Object[] {5, pX + 1, pY}); 
 			}
-			
+			if (pX > 0 && this.tablero[pY][pX-1] instanceof BloqueBlando) {
+				this.tablero[pY][pX-1] = new BloqueVacio();
+				setChanged();
+		        notifyObservers(new Object[] {5, pX - 1, pY}); 
+			}
+			if (pY < 10 && this.tablero[pY+1][pX] instanceof BloqueBlando) {
+				this.tablero[pY+1][pX] = new BloqueVacio();
+				setChanged();
+		        notifyObservers(new Object[] {5, pX, pY + 1}); 
+			}
+			if (pY > 0 && this.tablero[pY-1][pX] instanceof BloqueBlando) {
+				this.tablero[pY-1][pX] = new BloqueVacio();
+				setChanged();
+		        notifyObservers(new Object[] {5, pX, pY - 1}); 
+			}
+			setChanged();
+			notifyObservers(new Object[] {5, pX, pY});
+			this.tablero[pY][pX] = new BloqueVacio();
 		}
 	}
-
-
-
 }
