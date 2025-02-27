@@ -3,8 +3,6 @@ package Modelo;
 import java.util.Observable;
 import java.util.Random;
 
-import javax.swing.JLabel;
-
 public class Tablero extends Observable {
 	
 	private static Tablero miTablero = new Tablero();
@@ -90,23 +88,23 @@ public class Tablero extends Observable {
 	@SuppressWarnings("deprecation")
 	public void compExplosion(boolean pEstaVivo, int pX, int pY, int pTipo) {
 		if (pTipo == 1) {												// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
-	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro)) {
+	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro) && !(this.tablero[pY][pX + 1] instanceof BloqueBomba)) {
 	        	explotarCelda(pY, pX);
 	        	}
 	        
-	        if (pX < 16 && !(this.tablero[pY][pX + 1] instanceof BloqueDuro)) {
+	        if (pX < 16 && !(this.tablero[pY][pX + 1] instanceof BloqueDuro) && !(this.tablero[pY][pX + 1] instanceof BloqueBomba)) {
 	        	explotarCelda(pY, pX + 1);
 	        	}
 	        
-	        if (pX > 0 && !(this.tablero[pY][pX - 1] instanceof BloqueDuro)) {
+	        if (pX > 0 && !(this.tablero[pY][pX - 1] instanceof BloqueDuro) && !(this.tablero[pY][pX - 1] instanceof BloqueBomba)) {
 	        	explotarCelda(pY, pX - 1);
 	        	}
 
-	        if (pY < 10 && !(this.tablero[pY + 1][pX] instanceof BloqueDuro)) {
+	        if (pY < 10 && !(this.tablero[pY + 1][pX] instanceof BloqueDuro) && !(this.tablero[pY + 1][pX] instanceof BloqueBomba)) {
 	        	explotarCelda(pY + 1, pX);
 	            }
 	        
-	        if (pY > 0 && !(this.tablero[pY - 1][pX] instanceof BloqueDuro)) {
+	        if (pY > 0 && !(this.tablero[pY - 1][pX] instanceof BloqueDuro) && !(this.tablero[pY - 1][pX] instanceof BloqueBomba)) {
 	        	explotarCelda(pY-1,  pX);
 	            }
 	        } // if (pTipo == 1)
@@ -121,6 +119,7 @@ public class Tablero extends Observable {
 	}
 	public void postExplosion(int pY,int pX) {
 		this.tablero[pY][pX] = new BloqueVacio(); // Comprobar si estan las coordenadas bien
+		
 	    setChanged();
 	    notifyObservers(new Object[] {4, pX, pY});
 	}

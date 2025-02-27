@@ -92,6 +92,7 @@ public class Classic extends JFrame implements Observer {
 		}
 		else if (quienLlama == 4) {
 			this.ponerPanelBlanco(array);
+			System.out.println("Bien"); //Debugging
 		}
 		else if (quienLlama == 5) {
 			this.ponerPanelBlanco(array);
