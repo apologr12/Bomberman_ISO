@@ -3,6 +3,7 @@ package Controlador;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Modelo.GestorPersonajes;
 import Modelo.Personaje;
 
 public class Controlador implements KeyListener {
@@ -22,19 +23,19 @@ public class Controlador implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (keyCode == KeyEvent.VK_RIGHT) {
-			Personaje.getPersonaje().movimientoR();
+			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoR();
 		}
 		else if(keyCode == KeyEvent.VK_LEFT) {
-			Personaje.getPersonaje().movimientoL();
+			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoL();
 		}
 		else if(keyCode == KeyEvent.VK_UP) {
-			Personaje.getPersonaje().movimientoU();
+			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoU();
 		}
 		else if(keyCode == KeyEvent.VK_DOWN) {
-			Personaje.getPersonaje().movimientoD();
+			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoD();
 		} 
 		else if(keyCode == KeyEvent.VK_X) {
-			Personaje.getPersonaje().plantarBomba();
+			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().plantarBomba();
 		}
 	}
 

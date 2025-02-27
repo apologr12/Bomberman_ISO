@@ -3,43 +3,35 @@ package Modelo;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
-public class Personaje extends Observable{
-	public static Personaje miPersonaje = new Personaje();
-	private int numBombas;
-	private boolean estaVivo;
+public abstract class Personaje extends Observable {
 	private int x, y;
+	private int numBombas;
 	
-	private Personaje() {
-		numBombas = 10;
-		estaVivo = true;
-		x = 0;
-		y = 0;
-		
-	}
-	public static Personaje getPersonaje() {
-		return miPersonaje;
+	protected Personaje(int pX, int pY, int pBombas) {
+		this.x = pX;
+		this.y = pY;
+		this.numBombas = pBombas;
 	}
 	
-	public void movimientoR() {
-		if (Tablero.getTablero().puedoMoverme(x+1, y)) {
-			if (!Tablero.getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonaje();
-			}
-			else if(Tablero.getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonajePeroBomba();
-			}
-			x++;
-			mostrarPersonajeRight();
-			System.out.println("Derecha");
-		}
-	}
+	protected abstract void dejarDeMostrarPersonaje();					//TODOS ESTOS METODOS ABSTRACTOS SON METODOS QUE SE LLAMAN DESDE LOS SUPER
+																		//QUE EN FUNCION DE LA INSTANCIA DESDE LA QUE SE LLAMAN (LOS SUPERS) TIENEN QUE HACER UNA
+	protected abstract void dejarDeMostrarPersonajePeroBomba();			//COSA U OTRA
+	
+	protected abstract void mostrarPersonajeUp();
+	
+	protected abstract void mostrarPersonajeLeft();
+	
+	protected abstract void mostrarPersonajeRight();
+	
+	protected abstract void mostrarPersonaje(); 
+	
 	
 	public void movimientoL() {
-		if (Tablero.getTablero().puedoMoverme(x-1, y)) {
-			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x-1, y)) {
+			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} 
-			else if(Tablero.getTablero().hayBombaEn(y, x)) {
+			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}
 			x--;
@@ -48,13 +40,27 @@ public class Personaje extends Observable{
 		}
 	}
 	
-	public void movimientoU() {
-		
-		if (Tablero.getTablero().puedoMoverme(x, y-1)) {
-			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+	public void movimientoR() {
+		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x+1, y)) {
+			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
-			else if(Tablero.getTablero().hayBombaEn(y, x)) {
+			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonajePeroBomba();
+			}
+			x++;
+			mostrarPersonajeRight();
+			System.out.println("Derecha");
+		}
+	}
+	
+	public void movimientoU() {
+		
+		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x, y-1)) {
+			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+				dejarDeMostrarPersonaje();
+			}
+			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}												//Esta llamada a mostrar personaje se hace para despintar la posicion actual
 			y--;											//para que luego se pinte la nueva.
@@ -64,10 +70,10 @@ public class Personaje extends Observable{
 	}
 	
 	public void movimientoD() {
-		if (Tablero.getTablero().puedoMoverme(x, y+1)) {
-			if (!Tablero.getTablero().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x, y+1)) {
+			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
-			} else if(Tablero.getTablero().hayBombaEn(y, x)) {
+			} else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}
 			y++;
@@ -76,63 +82,46 @@ public class Personaje extends Observable{
 		}
 	}
 	
-	public void plantarBomba() {
-	    if (numBombas > 0) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        Tablero.getTablero().ponerBomba(y, x);
-	        System.out.println("Bomba");
-	        this.numBombas--;
-	    }
+	protected int getX() {
+		return this.x;
 	}
 	
-	public void explosionBomba(int pX, int pY, int pTipo) {
+	protected int getY() {
+		return this.y;
+	}
+	
+	protected boolean coincideX(int pX) {
+		if (this.x == pX) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	protected boolean coincideY(int pY) {
+		if (this.y == pY ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	protected boolean quedanBombas() {
+		if (this.numBombas > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	protected void sumarBomba() {
 		this.numBombas++;
-		if (pX == this.x && pY == this.y) {
-			this.estaVivo = false;
-		}
-		else if (pTipo == 1) {								//Bomba basica (tipo 1)
-			if (pX + 1 == this.x && pY == this.y) {
-				this.estaVivo = false;
-			}
-			else if (pX - 1 == this.x && pY == this.y) {
-				this.estaVivo = false;
-			}
-			else if (pY + 1 == this.y && pX == this.x) {
-				this.estaVivo = false;
-			}
-			else if (pY - 1 == this.y && pX == this.x) {
-				this.estaVivo = false;
-			}
-		}
-		else if (pTipo == 2) {
-			//TODO Tener en cuenta que si el personaje esta al  otro lado de un bloque duro la bomba no le mata
-		}
-		Tablero.getTablero().compExplosion(this.estaVivo, pX, pY, pTipo);
-		
 	}
 	
-	public void mostrarPersonaje() {						//Public temporalmente para poder llamarlo desde el main?
-		setChanged();
-		notifyObservers(new Object[] {3, x, y});	
-	}
-	
-	private void dejarDeMostrarPersonaje() {
-		setChanged();
-		notifyObservers(new Object[] {4, x, y});
-	}
-	private void dejarDeMostrarPersonajePeroBomba() {
-		setChanged();
-		notifyObservers(new Object[] {7, x, y});
-	}
-	private void mostrarPersonajeUp() {						//Ns si un metodo para cada movimiento es correcto (Se puede cambiar)
-		setChanged();
-		notifyObservers(new Object[] {8, x, y});	
-	}
-	private void mostrarPersonajeLeft() {
-		setChanged();
-		notifyObservers(new Object[] {9, x, y});	
-	}
-	private void mostrarPersonajeRight() {
-		setChanged();
-		notifyObservers(new Object[] {10, x, y});	
+	protected void restarBomba() {
+		this.numBombas--;
 	}
 }

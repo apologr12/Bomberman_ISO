@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.Controlador;
+import Modelo.GestorPersonajes;
+import Modelo.GestorTableros;
 import Modelo.Personaje;
 import Modelo.Tablero;
 
@@ -32,8 +34,8 @@ public class Classic extends JFrame implements Observer {
 					Classic frame = new Classic();
 					frame.setSize(720, 480);
 					frame.setVisible(true);
-					Tablero.getTablero().crearTablero();
-					Personaje.getPersonaje().mostrarPersonaje();
+					GestorTableros.getGestorTableros().crearTableroClasico();
+					GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().mostrarPersonaje();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,8 +63,8 @@ public class Classic extends JFrame implements Observer {
 	    requestFocus();
 		
 		
-		Tablero.getTablero().addObserver(this);						//Anadimos el tablero como observable de la vista
-		Personaje.getPersonaje().addObserver(this);					//Anadimos el personaje como observable de la vista
+		GestorTableros.getGestorTableros().getTableroClasico().addObserver(this);		//ANADIMOS ASI EL OBSERVER O SE LO PASAMOS A UN METODO DEL GESTOR?
+		GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().addObserver(this);					//Anadimos el personaje como observable de la vista
 		
 		this.labels = new JLabel[11][17];							//Bucle que crea la matriz de JLabels de la vista
 		for (int i = 0; i < 11; i++) {
