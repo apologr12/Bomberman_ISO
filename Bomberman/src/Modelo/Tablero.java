@@ -50,8 +50,8 @@ public abstract class Tablero extends Observable {
 	    return (this.tablero[fila][col] instanceof BloqueBomba);
 	}
 	
-	protected void compExplosion(int pX, int pY, int pTipo) {
-		if (pTipo == 1) {												// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
+	protected void compExplosionSimple(int pX, int pY) {
+			// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
 	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro) && !(this.tablero[pY][pX + 1] instanceof BloqueBomba)) {
 	        	explotarCelda(pY, pX);
 	        	}
@@ -71,7 +71,6 @@ public abstract class Tablero extends Observable {
 	        if (pY > 0 && !(this.tablero[pY - 1][pX] instanceof BloqueDuro) && !(this.tablero[pY - 1][pX] instanceof BloqueBomba)) {
 	        	explotarCelda(pY-1,  pX);
 	            }
-	        } // if (pTipo == 1)
 	 }
 	
 	protected void explotarCelda(int pY, int pX) {

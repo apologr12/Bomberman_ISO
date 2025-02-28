@@ -23,4 +23,29 @@ public abstract class BloqueBomba extends Bloque {
 		timer = new Timer(); 
 		timer.scheduleAtFixedRate(timerTask, 0, 1000); //Empieza a contar el timer
 	}
+
+    protected void actualizarCont() {
+		cont--;
+		if (cont == 0) {
+			System.out.println("BOOM"); //Cuando llega a cero explotaría y se tendria que cambiar a un bloque vacio o explosion
+			timer.cancel(); //Se apaga el timer
+			explotarBomba();
+		}
+		System.out.println(cont);  //Muestra como va el contador
+		//De momento no se que meter en el notifyObservers sigo sin entender bien como funciona
+		//Si el tipo de bloque no se cambia no se puede reiniciar el timer si se pone otra bomba en el mismo bloque
+		//setChanged();
+		//notifyObservers(new Object[] {});
+	
+    }
+    
+    protected abstract void explotarBomba();
+    
+    protected int getX() {
+        return x;
+    }
+    
+    protected int getY() {
+        return y;
+    }
 }

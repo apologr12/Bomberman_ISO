@@ -4,10 +4,18 @@ import java.util.Random;
 
 public class TableroClasico extends Tablero {
 	
+	private static TableroClasico instancia;
+	
 	private TableroClasico() {
-		super(11, 17);
+		super(17, 11);
 	}
 	
+	public static TableroClasico getInstancia() {
+        if (instancia == null) {
+            instancia = new TableroClasico();
+        }
+        return instancia;
+    }
 	
 	@SuppressWarnings("deprecation")
 	public void crearTablero() {	

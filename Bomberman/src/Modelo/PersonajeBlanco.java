@@ -23,12 +23,12 @@ public class PersonajeBlanco extends Personaje {
 	    }
 	}
 	
-	public void explosionBomba(int pX, int pY, int pTipo) {
+	public void explosionBombaSimple(int pX, int pY) {
 		super.sumarBomba();
 		if (super.coincideX(pX) && super.coincideY(pY)) {
 			System.exit(1);
 		}
-		else if (pTipo == 1) {								//Bomba basica (tipo 1)
+		else {
 			if (super.coincideX(pX + 1) && super.coincideY(pY)) {
 				System.exit(1);
 			}
@@ -42,43 +42,41 @@ public class PersonajeBlanco extends Personaje {
 				System.exit(1);
 			}
 		}
-		else if (pTipo == 2) {
-			//TODO Tener en cuenta que si el personaje esta al  otro lado de un bloque duro la bomba no le mata
-		}
-		GestorTableros.getGestorTableros().getTableroClasico().compExplosion(pX, pY, pTipo);
+
+		GestorTableros.getGestorTableros().getTableroClasico().compExplosionSimple(pX, pY);
 		
 	}
 	
 	@Override
 	public void mostrarPersonaje() {						//TODAS ESTAS NOTIFICACIONES A LA VISTA NO SE COMO HACERLA PARA REUTILIZAR EL METODO PARA LOS 2 PERSONAJES
 		setChanged();
-		notifyObservers(new Object[] {3, x, y});	
+		notifyObservers(new Object[] {3, getX(), getY()});	
 	}
 	
 	@Override
 	public void dejarDeMostrarPersonaje() {
 		setChanged();
-		notifyObservers(new Object[] {4, x, y});
+		notifyObservers(new Object[] {4, getX(), getY()});
 	}
 	@Override
 	public void dejarDeMostrarPersonajePeroBomba() {
 		setChanged();
-		notifyObservers(new Object[] {7, x, y});
+		notifyObservers(new Object[] {7, getX(), getY()});
 	}
 	@Override
 	public void mostrarPersonajeUp() {						
 		setChanged();
-		notifyObservers(new Object[] {8, x, y});	
+		notifyObservers(new Object[] {8, getX(), getY()});	
 	}
 	@Override
 	public void mostrarPersonajeLeft() {
 		setChanged();
-		notifyObservers(new Object[] {9, x, y});	
+		notifyObservers(new Object[] {9, getX(), getY()});	
 	}
 	@Override
 	public void mostrarPersonajeRight() {
 		setChanged();
-		notifyObservers(new Object[] {10, x, y});	
+		notifyObservers(new Object[] {10, getX(), getY()});	
 	}
 
 }
