@@ -53,10 +53,29 @@ public class Classic extends JFrame implements Observer {
 		
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
+	    contentPane.setOpaque(false); // Permite que se vea el fondo
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
 
-		setContentPane(contentPane);
+		// Crear un JPanel personalizado para el fondo y no tengo ni idea de como funciona pero establece la foto como background
+		JPanel backgroundPanel = new JPanel() {
+		    @Override
+		    protected void paintComponent(java.awt.Graphics g) {
+		        super.paintComponent(g);
+		        ImageIcon background = new ImageIcon(getClass().getResource("back.png"));
+		        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+		    }
+		};
+
+		backgroundPanel.setLayout(new GridLayout(1, 1)); // Evita modificar la estructura interna
+	    
+	    backgroundPanel.add(contentPane);// Añadir contentPane dentro de backgroundPanel
+
+	    setContentPane(backgroundPanel);  // Establecer backgroundPanel como el contenedor principal
+	    
+	    
+	    
+
 		
 	    this.addKeyListener(Controlador.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
 	    setFocusable(true); 										// Hacer que el JFrame reciba eventos de teclado
@@ -82,7 +101,6 @@ public class Classic extends JFrame implements Observer {
 		Object[] array = (Object[]) arg;
 		int quienLlama = (int) array[0];
 		
-		
 		if (quienLlama == 2) {
 			this.crearTablero(array);
 		} 
@@ -96,7 +114,7 @@ public class Classic extends JFrame implements Observer {
 			this.ponerPanelBlanco(array);
 			System.out.println("Bien"); //Debugging
 		}
-		else if (quienLlama == 5) {
+		else if (quienLlama == 5) { //Por que se llama dos veces al mismo metodo?
 			this.ponerPanelBlanco(array);
 		}
 		else if (quienLlama == 6) {
@@ -123,11 +141,9 @@ public class Classic extends JFrame implements Observer {
 		//System.out.println(numeroEntrada); //Debugging
 	
 		if (numeroEntrada == 0) {							//Bloque vacio
-			this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setBackground(Color.WHITE);
 		}
 		else if (numeroEntrada == 1) {						//Bloque blando
-			this.labels[y][x].setOpaque(true);
 			//this.labels[y][x].setBackground(Color.GREEN);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("soft4.png")));
 		}
@@ -135,30 +151,14 @@ public class Classic extends JFrame implements Observer {
 			//this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("hard5.png")));
 		}
-		//else if (numeroEntrada == 3) {						//Cual es el sentido de este else if de bomba?
-		    //this.labels[y][x].setOpaque(true);
-		    //this.labels[y][x].setBackground(Color.ORANGE);
-		//}
 	}
 	
 	private void ponerBomba(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		
-		// si hay bomba se deja el color de bomba.
-		//if (Tablero.getTablero().hayBombaEn(p1, p2)) {
-		  //labels[p1][p2].setBackground(Color.ORANGE);  // bomba
-		//} 
-		//else {
-		    //labels[p1][p2].setBackground(Color.WHITE);   // vacio
-		//}
-		
-		//Creo que esta comprobacion realmente no es necesaria porque ya se comprueba en el tablero
-		//Ademas, no podemos acceder al tablero desde la vista sin pasar por el controlador.
-		//Creo que basta unicamente con actualizar su color y ya.
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitewithbomb1.png")));
 		this.labels[y][x].setBackground(Color.WHITE);
-		//this.labels[y][x].setBackground(Color.ORANGE);
 	}
 	
 	private void ponerPanelBlanco(Object[] array) { 
@@ -167,8 +167,6 @@ public class Classic extends JFrame implements Observer {
 		
 		//this.labels[y][x].setBackground(Color.WHITE);
 		this.labels[y][x].setIcon(null);
-		this.labels[y][x].setBackground(Color.WHITE);
-		this.labels[y][x].setIcon(null);
 	}
 	
 	private void moverPersonaje(Object[] array) {
@@ -176,7 +174,6 @@ public class Classic extends JFrame implements Observer {
 		int x = (int) array[1];
 
 			//Pintamos el jugador
-			this.labels[y][x].setOpaque(true);
 			//this.labels[y][x].setBackground(Color.RED);
 			this.labels[y][x].setBackground(Color.WHITE);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitefront1.png")));
@@ -186,7 +183,6 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("blast.gif")));
-		this.labels[y][x].setOpaque(true);
 		this.labels[y][x].setBackground(Color.WHITE);
 
 	} 	
@@ -194,7 +190,6 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		
-		this.labels[y][x].setOpaque(true);
 		this.labels[y][x].setBackground(Color.WHITE);
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("bomb1.png")));
 	}
@@ -202,7 +197,6 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setBackground(Color.WHITE);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup2.png")));
 		
@@ -211,7 +205,6 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setBackground(Color.WHITE);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft2.png")));
 	}
@@ -219,7 +212,6 @@ public class Classic extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setBackground(Color.WHITE);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright2.png")));
 		

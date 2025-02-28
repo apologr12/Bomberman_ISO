@@ -35,7 +35,8 @@ public abstract class Tablero extends Observable {
 			if (this.tablero[y][x] instanceof BloqueVacio) {	
 				return true;					
 			}
-			else if (this.tablero[y][x] instanceof BloqueBomba) {						//Futura muerte
+			else if (this.tablero[y][x] instanceof BloqueExplosion) {						//Futura muerte
+				System.exit(1);
 				return false;
 			} 
 			else { 																//Bloque solido no se puede traspasar
@@ -54,7 +55,7 @@ public abstract class Tablero extends Observable {
 	
 	protected void compExplosionSimple(int pX, int pY) {
 			// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
-	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro) && !(this.tablero[pY][pX + 1] instanceof BloqueBomba)) {
+	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro)) {
 	        	explotarCelda(pY, pX);
 	        	}
 	        
@@ -80,8 +81,6 @@ public abstract class Tablero extends Observable {
 	    // Notificar a la vista que muestre explosión
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY});
-        // INICIAR TIMER PARA MOSTRARLA DURANTE 2 SEGUNDOS?
-    	// EN UN FUTURO COLOCAR EL BLOQUE VACIO QUITANDO EL BLOQUE EXPLOSION
 	}
 	
 	protected abstract void ponerBomba(int fila, int col);

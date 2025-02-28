@@ -10,8 +10,7 @@ public class PersonajeBlanco extends Personaje {
 	
 	public void plantarBomba() {
 	    if (super.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        GestorTableros.getGestorTableros().getTablero().ponerBloqueBombaSimple(super.getY(), super.getX());
-	        System.out.println("Bomba");
+	        GestorTableros.getGestorTableros().getTablero().ponerBomba(super.getY(), super.getX());
 	        super.restarBomba();
 	    }
 	}
