@@ -23,15 +23,19 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void mostrarPersonajeRight();
 	
-	protected abstract void mostrarPersonaje(); 
+	public abstract void mostrarPersonaje(); //Temporalmente public para poder llamar desde el Main de la Vista
+	
+	public abstract void plantarBomba();
+	
+	public abstract void explosionBomba(int pX, int pY); //Este metodo se llama desde el BloqueBombaSimple o Ultra y es para indicarle al personaje que ha explotado
 	
 	
 	public void movimientoL() {
-		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x-1, y)) {
-			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x-1, y)) {
+			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} 
-			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}
 			x--;
@@ -41,11 +45,11 @@ public abstract class Personaje extends Observable {
 	}
 	
 	public void movimientoR() {
-		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x+1, y)) {
-			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x+1, y)) {
+			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
-			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}
 			x++;
@@ -56,11 +60,11 @@ public abstract class Personaje extends Observable {
 	
 	public void movimientoU() {
 		
-		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x, y-1)) {
-			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x, y-1)) {
+			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
-			else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}												//Esta llamada a mostrar personaje se hace para despintar la posicion actual
 			y--;											//para que luego se pinte la nueva.
@@ -70,10 +74,10 @@ public abstract class Personaje extends Observable {
 	}
 	
 	public void movimientoD() {
-		if (GestorTableros.getGestorTableros().getTableroClasico().puedoMoverme(x, y+1)) {
-			if (!GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x, y+1)) {
+			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
-			} else if(GestorTableros.getGestorTableros().getTableroClasico().hayBombaEn(y, x)) {
+			} else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonajePeroBomba();
 			}
 			y++;

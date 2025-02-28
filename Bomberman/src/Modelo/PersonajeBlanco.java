@@ -2,28 +2,21 @@ package Modelo;
 
 @SuppressWarnings("deprecation")
 public class PersonajeBlanco extends Personaje {
-	public static PersonajeBlanco miPersonaje = new PersonajeBlanco();
-
 	
-	private PersonajeBlanco() {
+	public PersonajeBlanco() {
 		super(0, 0, 10);
 		
 	}
-	public static PersonajeBlanco getPersonaje() {
-		return miPersonaje;
-	}
-	
-
 	
 	public void plantarBomba() {
 	    if (super.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        GestorTableros.getGestorTableros().getTableroClasico().ponerBloqueBombaSimple(super.getX(), super.getY());
+	        GestorTableros.getGestorTableros().getTablero().ponerBloqueBombaSimple(super.getY(), super.getX());
 	        System.out.println("Bomba");
 	        super.restarBomba();
 	    }
 	}
 	
-	public void explosionBombaSimple(int pX, int pY) {
+	public void explosionBomba(int pX, int pY) {
 		super.sumarBomba();
 		if (super.coincideX(pX) && super.coincideY(pY)) {
 			System.exit(1);
@@ -43,7 +36,7 @@ public class PersonajeBlanco extends Personaje {
 			}
 		}
 
-		GestorTableros.getGestorTableros().getTableroClasico().compExplosionSimple(pX, pY);
+		GestorTableros.getGestorTableros().getTablero().compExplosionSimple(pX, pY);
 		
 	}
 	

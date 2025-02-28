@@ -4,18 +4,11 @@ import java.util.Random;
 
 public class TableroClasico extends Tablero {
 	
-	private static TableroClasico instancia;
 	
-	private TableroClasico() {
+	public TableroClasico() {
 		super(17, 11);
 	}
 	
-	public static TableroClasico getInstancia() {
-        if (instancia == null) {
-            instancia = new TableroClasico();
-        }
-        return instancia;
-    }
 	
 	@SuppressWarnings("deprecation")
 	public void crearTablero() {	
@@ -46,7 +39,7 @@ public class TableroClasico extends Tablero {
 				//System.out.print(i + "" + j + " "); Debugging
 				setChanged();
 				notifyObservers(new Object[] {2, numero, i, j});							//Notifica a la vista para que ponga el tipo de bloque correspondiente
-																						//en la interfaz
+				System.out.println("Prueba");																//en la interfaz
 			}
 			System.out.println("");
 		}													

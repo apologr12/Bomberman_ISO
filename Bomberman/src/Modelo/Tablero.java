@@ -6,6 +6,8 @@ import java.util.Observable;
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
 	
+	public abstract void crearTablero();
+	
 	protected Tablero(int tamanoX, int tamanoY) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
 	}

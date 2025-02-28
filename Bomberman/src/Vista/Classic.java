@@ -63,7 +63,7 @@ public class Classic extends JFrame implements Observer {
 	    requestFocus();
 		
 		
-		GestorTableros.getGestorTableros().getTableroClasico().addObserver(this);		//ANADIMOS ASI EL OBSERVER O SE LO PASAMOS A UN METODO DEL GESTOR?
+		GestorTableros.getGestorTableros().getTablero().addObserver(this);		//ANADIMOS ASI EL OBSERVER O SE LO PASAMOS A UN METODO DEL GESTOR?
 		GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().addObserver(this);					//Anadimos el personaje como observable de la vista
 		
 		this.labels = new JLabel[11][17];							//Bucle que crea la matriz de JLabels de la vista

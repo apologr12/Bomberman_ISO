@@ -10,7 +10,7 @@ public abstract class BloqueBomba extends Bloque {
 	private int cont = 4; //Timer con un cont=4 que dura tres segundos, si se pone cont=3 el timer solo dura 2 segundos.
 	private Timer timer = null;
 	
-	protected BloqueBomba(int pX, int pY) {
+	protected BloqueBomba(int pY, int pX) {
 		this.x = pX;
 		this.y = pY;
 		//Cada segundo se ejectuta actualizarCont para actualizar el contador del semaforo

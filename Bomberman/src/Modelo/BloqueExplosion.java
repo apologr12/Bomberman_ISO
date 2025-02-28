@@ -27,7 +27,7 @@ public class BloqueExplosion extends Bloque{
 			cont--;
 			if (cont == 0) {
 				timer.cancel(); //Se apaga el timer
-				GestorTableros.getGestorTableros().getTableroClasico().postExplosion(y, x);
+				GestorTableros.getGestorTableros().getTablero().postExplosion(y, x);
 			}
 			//System.out.println(cont);  //Muestra como va el contador
 	    }
