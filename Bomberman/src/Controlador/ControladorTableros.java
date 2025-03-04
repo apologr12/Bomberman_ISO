@@ -6,16 +6,16 @@ import java.awt.event.KeyListener;
 import Modelo.GestorPersonajes;
 import Modelo.Personaje;
 
-public class Controlador implements KeyListener {
+public class ControladorTableros implements KeyListener {
 	
-	public static Controlador miControlador = new Controlador();
+	public static ControladorTableros miControlador = new ControladorTableros();
 	
 	
-	private Controlador(){
+	private ControladorTableros(){
 		
 	}
 	
-	public static Controlador getControlador() {
+	public static ControladorTableros getControlador() {
 		return miControlador;
 	}
 	

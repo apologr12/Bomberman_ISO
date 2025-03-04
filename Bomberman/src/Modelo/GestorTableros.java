@@ -18,7 +18,7 @@ public class GestorTableros {
 		return this.tablero;					//(hay que preguntarle a Ander)
 	}
 	
-	public void crearTableroClasico() {
+	public void crearTablero() {
 	    this.tablero.crearTablero();
 	}
 
