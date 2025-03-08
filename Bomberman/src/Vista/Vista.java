@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -105,37 +106,96 @@ public abstract class Vista extends JFrame implements Observer {
 
 			//Pintamos el jugador
 			//this.labels[y][x].setBackground(Color.WHITE);
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitefront1.png")));
+		Random random = new Random();
+		int numAleat = random.nextInt(4) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown1.png")));
+		}
+		else if (numAleat == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown2.png")));
+		}
+		else if (numAleat == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown3.png")));
+		}
+		else if (numAleat == 4) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown4.png")));
+		}
 	}
 	
 	private void moverPersonajeUp(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setBackground(Color.WHITE);
+		Random random = new Random();
+		int numAleat = random.nextInt(5) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup1.png")));
+		}
+		else if (numAleat == 2) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup2.png")));
+		}
+		else if (numAleat == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup3.png")));
+		}
+		else if (numAleat == 4) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup4.png")));
+		}
+		else if (numAleat == 5) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup5.png")));
+		}
+		
 		
 	}
 	private void moverPersonajeLeft(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setBackground(Color.WHITE);
+		Random random = new Random();
+		int numAleat = random.nextInt(5) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft1.png")));
+		}
+		else if (numAleat == 2) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft2.png")));
+		}
+		else if (numAleat == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft3.png")));
+		}
+		else if (numAleat == 4) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft4.png")));
+		}
+		else if (numAleat == 5) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft5.png")));
+		}
 	}
 	private void moverPersonajeRight(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
 
-			this.labels[y][x].setBackground(Color.WHITE);
+		Random random = new Random();
+		int numAleat = random.nextInt(5) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright1.png")));
+		}
+		else if (numAleat == 2) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright2.png")));
+		}
+		else if (numAleat == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright3.png")));
+		}
+		else if (numAleat == 4) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright4.png")));
+		}
+		else if (numAleat == 5) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright5.png")));
+		}
 		
 	}
 	
 	private void mostrarExplosion(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("blast.gif")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("miniBlast1.gif")));
 		//this.labels[y][x].setBackground(Color.WHITE);
 
 	} 
