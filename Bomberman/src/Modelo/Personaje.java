@@ -15,7 +15,7 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void dejarDeMostrarPersonaje();					//TODOS ESTOS METODOS ABSTRACTOS SON METODOS QUE SE LLAMAN DESDE LOS SUPER
 																		//QUE EN FUNCION DE LA INSTANCIA DESDE LA QUE SE LLAMAN (LOS SUPERS) TIENEN QUE HACER UNA
-	protected abstract void dejarDeMostrarPersonajePeroBomba();			//COSA U OTRA
+	protected abstract void mostrarBomba();			//COSA U OTRA
 	
 	protected abstract void mostrarPersonajeUp();
 	
@@ -36,7 +36,7 @@ public abstract class Personaje extends Observable {
 				dejarDeMostrarPersonaje();
 			} 
 			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonajePeroBomba();
+				mostrarBomba();																//Dejamos de mostrar el personaje con la bomba, pero dejamos la bomba solo
 			}
 			x--;
 			mostrarPersonajeLeft();
@@ -50,7 +50,7 @@ public abstract class Personaje extends Observable {
 				dejarDeMostrarPersonaje();
 			}
 			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonajePeroBomba();
+				mostrarBomba();
 			}
 			x++;
 			mostrarPersonajeRight();
@@ -65,7 +65,7 @@ public abstract class Personaje extends Observable {
 				dejarDeMostrarPersonaje();
 			}
 			else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonajePeroBomba();
+				mostrarBomba();
 			}												//Esta llamada a mostrar personaje se hace para despintar la posicion actual
 			y--;											//para que luego se pinte la nueva.
 			mostrarPersonajeUp();							//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
@@ -78,7 +78,7 @@ public abstract class Personaje extends Observable {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
-				dejarDeMostrarPersonajePeroBomba();
+				mostrarBomba();
 			}
 			y++;
 			mostrarPersonaje();

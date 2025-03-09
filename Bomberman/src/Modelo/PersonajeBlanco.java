@@ -51,7 +51,7 @@ public class PersonajeBlanco extends Personaje {
 		notifyObservers(new Object[] {4, getX(), getY()});
 	}
 	@Override
-	public void dejarDeMostrarPersonajePeroBomba() {
+	public void mostrarBomba() {
 		setChanged();
 		notifyObservers(new Object[] {7, getX(), getY()});
 	}

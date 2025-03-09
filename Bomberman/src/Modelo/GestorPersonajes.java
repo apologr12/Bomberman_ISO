@@ -12,15 +12,15 @@ public class GestorPersonajes {
 		return miGestorPersonajes;
 	}
 
-	public Personaje getPersonajeBlanco() { //Esto es lo mismo que lo del gestor de tableros. No me convence nada
+	public Personaje getPersonajeBlanco() {
 		//if (this.bombermanBlanco == null) {
            // this.bombermanBlanco = PersonajeBlanco.getPersonaje();
         //}
-		return this.bombermanBlanco;			  //pero es que si no lo hacemos asi no se que sentido tiene tener un gestor.
-	}											  //No veo otra forma en que se pueda usar sin poner todos los metodos de 'Personaje' aqui.
-												  //Y eso lo unico que haria seria convertir esta clase de nuevo en un personaje multiple.
+		return this.bombermanBlanco;
+	}
+	
 	public void crearPersonajeBlanco() {
-		this.bombermanBlanco = new PersonajeBlanco();  //El personaje se crea aqui temporalmente, es decir, esto en el futuro se quitará
+		this.bombermanBlanco = new PersonajeBlanco();  //El personaje se crea aqui temporalmente, es decir, esto en el futuro se quitara
 													   //y la creacion del personaje se hara con un metodo cuando detecte el boton que ha seleccionado al personaje
 	}
 }
