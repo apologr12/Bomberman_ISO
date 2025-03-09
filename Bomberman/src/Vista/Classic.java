@@ -21,34 +21,13 @@ import java.util.Observer;
 
 @SuppressWarnings("deprecation")
 public class Classic extends Vista {
-
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Classic frame = new Classic();
-					frame.setSize(720, 480);
-					frame.setVisible(true);
-					GestorTableros.getGestorTableros().crearTablero();
-					GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().mostrarPersonaje();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
 	public Classic() {												//CONSEGUIR QUE EL CONTROLADOR SEA QUIEN LLAME AL MODELO Y NO LA VISTA
 		setTitle("Classic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);								//Crea el panel principal sobre el que van a estar los distintos JLabel
+		setBounds(100, 100, 720, 480);								//Crea el panel principal sobre el que van a estar los distintos JLabel
 		
 		super.crearPaneles();
 
