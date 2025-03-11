@@ -4,18 +4,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import Modelo.GestorPersonajes;
-import Modelo.Personaje;
 
-public class ControladorTableros implements KeyListener {
+public class ControladorJuego implements KeyListener {
 	
-	public static ControladorTableros miControlador = new ControladorTableros();
+	public static ControladorJuego miControlador = new ControladorJuego();
 	
 	
-	private ControladorTableros(){
-		
+	private ControladorJuego(){
 	}
 	
-	public static ControladorTableros getControlador() {
+	public static ControladorJuego getControlador() {
 		return miControlador;
 	}
 	

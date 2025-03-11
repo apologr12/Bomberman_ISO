@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controlador.ControladorTableros;
+import Controlador.ControladorJuego;
 import Modelo.GestorPersonajes;
 import Modelo.GestorTableros;
 import Modelo.Personaje;
@@ -51,7 +51,7 @@ public class Classic extends VistaJuego {
 	    
 
 		
-	    this.addKeyListener(ControladorTableros.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
+	    this.addKeyListener(ControladorJuego.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
 	    setFocusable(true); 										// Hacer que el JFrame reciba eventos de teclado
 	    requestFocus();
 		

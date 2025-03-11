@@ -2,16 +2,26 @@ package Vista;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorJuego;
+import Controlador.ControladorMenu;
+import Modelo.GestorPersonajes;
+import Modelo.GestorTableros;
+import Modelo.MenuModelo;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class Menu extends JFrame {
+
+public class Menu extends JFrame implements Observer {
 	private static final long serialVersionUID = -9171935669482541465L;
 	private JPanel panelMenu;
 	private JLabel titulo;
@@ -45,6 +55,9 @@ public class Menu extends JFrame {
 		panelMenu.add(getBoss3());
 		panelMenu.add(getTextoMenu());
 		this.ponerFondo();
+		
+		MenuModelo.getMenu().addObserver(this);
+		this.addKeyListener(ControladorMenu.getControlador());
 		
 	}
 	
@@ -114,10 +127,16 @@ public class Menu extends JFrame {
 	private JLabel getTextoMenu() {
 		if (textoMenu == null) {
 			textoMenu = new JLabel("<HTML>Choose your character!<br>Press spacebar to start!</HTML>");
-			textoMenu.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+			textoMenu.setFont(new Font("Consolas", Font.BOLD, 25));
 			textoMenu.setHorizontalAlignment(SwingConstants.CENTER);
 			textoMenu.setBounds(27, 353, 667, 47);
 		}
 		return textoMenu;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
