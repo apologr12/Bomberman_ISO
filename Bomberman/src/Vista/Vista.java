@@ -12,8 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("deprecation")
 public abstract class Vista extends JFrame implements Observer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5000978209518964435L;
 	private JPanel contentPane;
 	private JLabel[][] labels;
 	
