@@ -8,6 +8,8 @@ public abstract class Tablero extends Observable {
 	
 	public abstract void crearTablero();
 	
+	protected abstract boolean ponerBomba(int fila, int col);
+	
 	protected Tablero(int tamanoX, int tamanoY) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
 	}
@@ -82,8 +84,6 @@ public abstract class Tablero extends Observable {
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY});
 	}
-	
-	protected abstract void ponerBomba(int fila, int col);
 	
 	protected void postExplosion(int pY,int pX) {
 		this.tablero[pY][pX] = new BloqueVacio();
