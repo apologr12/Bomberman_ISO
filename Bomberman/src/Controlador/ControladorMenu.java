@@ -28,6 +28,7 @@ public class ControladorMenu implements KeyListener {
 		} 
 		else if(keyCode == KeyEvent.VK_SPACE) {
 			//TODO Iniciar juego
+			MenuModelo.getMenu().IniciarJuego();
 		}
 	}
 

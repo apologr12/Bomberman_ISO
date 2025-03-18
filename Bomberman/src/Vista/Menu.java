@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Observable;
@@ -97,6 +98,7 @@ public class Menu extends JFrame implements Observer {
 			bombermanNegro = new JLabel("");
 			bombermanNegro.setBounds(537, 205, 58, 107);
 			this.bombermanNegro.setIcon(new ImageIcon(this.getClass().getResource("bomber2.png")));
+			this.bombermanNegro.enable(false);
 		}
 		return bombermanNegro;
 	}
@@ -137,6 +139,38 @@ public class Menu extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		Object[] array = (Object[]) arg;
+		int quienLlama = (int) array[0];
 		
+		if (quienLlama == 1) {
+			this.cambiarPersonaje(array);
+		} 
+		else if (quienLlama == 2) {
+			this.IniciarJuego(array);
+		}
+	}
+	private void cambiarPersonaje(Object[] array) {
+		int personaje = (int) array[1];
+		if (personaje == 1) {
+			System.out.println("1");
+			this.bombermanBlanco.enable(true);
+			this.bombermanNegro.enable(false);
+		} else if (personaje == 2) {
+			System.out.println("2");
+			this.bombermanBlanco.enable(false);
+			this.bombermanNegro.enable(true);
+		}
+		this.repaint();
+	}
+	private void IniciarJuego(Object[] array) {
+		int personaje = (int) array[1];
+		int tablero = (int) array[2];
+		
+		if(tablero == 1) {
+			Classic frame = new Classic();
+			frame.setVisible(true);
+			this.setVisible(false);
+		}
+
 	}
 }

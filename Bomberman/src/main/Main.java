@@ -16,11 +16,6 @@ public class Main {
 					Menu menu = new Menu();
 					menu.setSize(720, 480);
 					menu.setVisible(true);
-					
-					Classic frame = new Classic();
-					frame.setVisible(true);
-					GestorTableros.getGestorTableros().crearTablero();
-					GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().mostrarPersonaje();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
