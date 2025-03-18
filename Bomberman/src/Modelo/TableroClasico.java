@@ -28,13 +28,13 @@ public class TableroClasico extends Tablero {
 				}
 				
 				if (numero == 0) {														//En funcion del numero aleatorio generado, se pone un bloque de un tipo u otro
-					super.ponerBloqueVacio(i, j);
+					super.ponerBloque("Vacio",i, j);
 				}
 				else if (numero == 1) {
-					super.ponerBloqueBlando(i, j);
+					super.ponerBloque("Blando",i, j);
 				}
 				else if (numero == 2) {
-					super.ponerBloqueDuro(i, j);
+					super.ponerBloque("Duro",i, j);
 				}
 				//System.out.print(i + "" + j + " "); Debugging
 				setChanged();
@@ -49,7 +49,7 @@ public class TableroClasico extends Tablero {
 	@SuppressWarnings("deprecation")
 	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
 	    if (super.esBloqueVacio(fila, col)) {						//Se pone una bomba si no hay ya una bomba puesta
-	        super.ponerBloqueBombaSimple(fila, col);
+	        super.ponerBloque("BombaSimple",fila, col);
 	        System.out.println("Bomba");
 	        setChanged();
 	        notifyObservers(new Object[] { 1, col, fila });

@@ -1,5 +1,10 @@
 package Modelo;
 
 public class BloqueVacio extends Bloque {
-
+	public BloqueVacio(int pY, int pX) {
+		super(pY,pX);
+	}
+	public boolean esDestructible() {
+		return true;
+	}
 }

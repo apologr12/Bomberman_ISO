@@ -13,22 +13,10 @@ public abstract class Tablero extends Observable {
 	protected Tablero(int tamanoX, int tamanoY) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
 	}
-	
-	protected void ponerBloqueVacio(int pY, int pX) {
-		this.tablero[pY][pX] = new BloqueVacio();
+	protected void ponerBloque(String pTipo, int pY, int pX) {
+		this.tablero[pY][pX] = GenBloques.getGenBloques().generar(pTipo, pY, pX);
 	}
-	
-	protected void ponerBloqueBlando(int pY, int pX) {
-		this.tablero[pY][pX] = new BloqueBlando();
-	}
-	
-	protected void ponerBloqueDuro(int pY, int pX) {
-		this.tablero[pY][pX] = new BloqueDuro();
-	}
-	
-	protected void ponerBloqueBombaSimple(int pY, int pX) {
-		this.tablero[pY][pX] = new BloqueBombaSimple(pY, pX);
-	}
+
 	
 	
 	protected boolean puedoMoverme(int x, int y) {
@@ -57,36 +45,36 @@ public abstract class Tablero extends Observable {
 	
 	protected void compExplosionSimple(int pX, int pY) {
 			// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
-	    	if (!(this.tablero[pY][pX] instanceof BloqueDuro)) {
-	        	explotarCelda(pY, pX);
-	        	}
+	    	
+		//Se explota la casilla donde estaba la bomba
+	        explotarCelda(pY, pX);
 	        
-	        if (pX < 16 && !(this.tablero[pY][pX + 1] instanceof BloqueDuro) && !(this.tablero[pY][pX + 1] instanceof BloqueBomba)) {
+	        if (pX < 16 && this.tablero[pY][pX + 1].esDestructible()) {
 	        	explotarCelda(pY, pX + 1);
 	        	}
 	        
-	        if (pX > 0 && !(this.tablero[pY][pX - 1] instanceof BloqueDuro) && !(this.tablero[pY][pX - 1] instanceof BloqueBomba)) {
+	        if (pX > 0 && this.tablero[pY][pX - 1].esDestructible()) {
 	        	explotarCelda(pY, pX - 1);
 	        	}
 
-	        if (pY < 10 && !(this.tablero[pY + 1][pX] instanceof BloqueDuro) && !(this.tablero[pY + 1][pX] instanceof BloqueBomba)) {
+	        if (pY < 10 && this.tablero[pY + 1][pX].esDestructible()) {
 	        	explotarCelda(pY + 1, pX);
 	            }
 	        
-	        if (pY > 0 && !(this.tablero[pY - 1][pX] instanceof BloqueDuro) && !(this.tablero[pY - 1][pX] instanceof BloqueBomba)) {
+	        if (pY > 0 && this.tablero[pY - 1][pX].esDestructible()) {
 	        	explotarCelda(pY-1,  pX);
 	            }
 	 }
 	
 	protected void explotarCelda(int pY, int pX) {
-	    this.tablero[pY][pX] = new BloqueExplosion(pX,pY); // Comprobar si estan las coordenadas bien
+	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX); // Comprobar si estan las coordenadas bien
 	    // Notificar a la vista que muestre explosión
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY});
 	}
 	
 	protected void postExplosion(int pY,int pX) {
-		this.tablero[pY][pX] = new BloqueVacio();
+		this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX);
 		
 	    setChanged();
 	    notifyObservers(new Object[] {4, pX, pY});

@@ -4,15 +4,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class BloqueBomba extends Bloque {
-	private int x;
-	private int y;
 	
 	private int cont = 4; //Timer con un cont=4 que dura tres segundos, si se pone cont=3 el timer solo dura 2 segundos.
 	private Timer timer = null;
 	
 	protected BloqueBomba(int pY, int pX) {
-		this.x = pX;
-		this.y = pY;
+		super(pY,pX);
 		//Cada segundo se ejectuta actualizarCont para actualizar el contador del semaforo
 		TimerTask timerTask = new TimerTask() {
 			@Override
@@ -40,12 +37,8 @@ public abstract class BloqueBomba extends Bloque {
     }
     
     protected abstract void explotarBomba();
+    public boolean esDestructible() {
+		return false;
+	}
     
-    protected int getX() {
-        return x;
-    }
-    
-    protected int getY() {
-        return y;
-    }
 }

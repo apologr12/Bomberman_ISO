@@ -7,12 +7,9 @@ public class BloqueExplosion extends Bloque{
 	
 		private int cont = 3; //Timer con un cont=3 que dura dos segundos.
 		private Timer timer = null;
-		private int x;
-		private int y;
 
-	    public BloqueExplosion(int pX, int pY) {
-	    	this.x = pX;
-	    	this.y = pY;												//Asignacion temporal de coordenadas
+	    public BloqueExplosion(int pY, int pX) {
+	    	super(pY,pX);												//Asignacion temporal de coordenadas
 			TimerTask timerTask = new TimerTask() {
 				@Override
 				public void run() {
@@ -27,11 +24,13 @@ public class BloqueExplosion extends Bloque{
 			cont--;
 			if (cont == 0) {
 				timer.cancel(); //Se apaga el timer
-				GestorTableros.getGestorTableros().getTablero().postExplosion(y, x);
+				GestorTableros.getGestorTableros().getTablero().postExplosion(super.getY(), super.getX());
 			}
 			//System.out.println(cont);  //Muestra como va el contador
 	    }
 			
-
+	    public boolean esDestructible() {
+			return true;
+		}
 
 }
