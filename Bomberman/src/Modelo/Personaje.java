@@ -15,7 +15,7 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void dejarDeMostrarPersonaje();					//TODOS ESTOS METODOS ABSTRACTOS SON METODOS QUE SE LLAMAN DESDE LOS SUPER
 																		//QUE EN FUNCION DE LA INSTANCIA DESDE LA QUE SE LLAMAN (LOS SUPERS) TIENEN QUE HACER UNA
-	protected abstract void mostrarBomba();			//COSA U OTRA
+	protected abstract void mostrarBomba();								//COSA U OTRA
 	
 	protected abstract void mostrarPersonajeUp();
 	
@@ -23,9 +23,16 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void mostrarPersonajeRight();
 	
-	public abstract void mostrarPersonaje(); //Temporalmente public para poder llamar desde el Main de la Vista
+	protected abstract void mostrarPersonaje();
 	
-	public abstract void plantarBomba();
+	public void plantarBomba() {
+	    if (this.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
+	        boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().ponerBomba(this.y, this.x);
+	        if (seHaPodido) {
+	        	this.restarBomba();
+	        }
+	    }
+	}
 	
 	public abstract void explosionBomba(int pX, int pY); //Este metodo se llama desde el BloqueBombaSimple o Ultra y es para indicarle al personaje que ha explotado
 	

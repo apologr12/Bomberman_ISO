@@ -8,14 +8,7 @@ public class PersonajeBlanco extends Personaje {
 		
 	}
 	
-	public void plantarBomba() {
-	    if (super.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().ponerBomba(super.getY(), super.getX());
-	        if (seHaPodido) {
-	        	super.restarBomba();
-	        }
-	    }
-	}
+	
 	
 	public void explosionBomba(int pX, int pY) {
 		super.sumarBomba();
@@ -42,7 +35,7 @@ public class PersonajeBlanco extends Personaje {
 	}
 	
 	@Override
-	public void mostrarPersonaje() {						//TODAS ESTAS NOTIFICACIONES A LA VISTA NO SE COMO HACERLA PARA REUTILIZAR EL METODO PARA LOS 2 PERSONAJES
+	public void mostrarPersonaje() {
 		setChanged();
 		notifyObservers(new Object[] {3, getX(), getY()});	
 	}

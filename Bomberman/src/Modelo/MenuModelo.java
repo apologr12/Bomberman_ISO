@@ -49,6 +49,6 @@ public class MenuModelo extends Observable {
 		 setChanged();
 		 notifyObservers(new Object[] {2,tipoPersonajeSelec,tipoMapaSelec});
 		 GestorTableros.getGestorTableros().crearTablero();
-		 GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().mostrarPersonaje();
+		 GestorPersonajes.getGestorPersonajes().getPersonaje().mostrarPersonaje();
 	}
 }

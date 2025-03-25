@@ -14,4 +14,16 @@ public abstract class Bloque extends Observable{
 	protected int getY() {return y;}
 	
 	public abstract boolean esDestructible();
+	
+	public boolean eresBomba() {
+		return false;
+	}
+	
+	public boolean puedoMoverme() {
+		return true;
+	}
+	
+	public boolean eresExplosion() {
+		return false;
+	}
 }

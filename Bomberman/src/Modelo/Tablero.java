@@ -22,13 +22,13 @@ public abstract class Tablero extends Observable {
 	protected boolean puedoMoverme(int x, int y) {
 		
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
-			if (this.tablero[y][x] instanceof BloqueVacio) {	
-				return true;					
-			}
-			else if (this.tablero[y][x] instanceof BloqueExplosion) {						//Futura muerte
+			if (this.tablero[y][x].eresExplosion()) { //Futura muerte
 				System.exit(1);
 				return false;
-			} 
+			}
+			else if (this.tablero[y][x].puedoMoverme()) {	
+				return true;					
+			}
 			else { 																//Bloque solido no se puede traspasar
 				return false;
 			}
@@ -40,7 +40,7 @@ public abstract class Tablero extends Observable {
 	
 	protected boolean hayBombaEn(int fila, int col) {
 	    // comprobar si en la matriz hay un BloqueBomba
-	    return (this.tablero[fila][col] instanceof BloqueBomba);
+	    return (this.tablero[fila][col].eresBomba());
 	}
 	
 	protected void compExplosionSimple(int pX, int pY) {
@@ -67,7 +67,7 @@ public abstract class Tablero extends Observable {
 	 }
 	
 	protected void explotarCelda(int pY, int pX) {
-	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX); // Comprobar si estan las coordenadas bien
+	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
 	    // Notificar a la vista que muestre explosión
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY});

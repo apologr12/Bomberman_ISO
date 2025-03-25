@@ -7,4 +7,9 @@ public class BloqueDuro extends Bloque{
 	public boolean esDestructible() {
 		return false;
 	}
+	
+	@Override
+	public boolean puedoMoverme() {
+    	return false;
+    }
 }

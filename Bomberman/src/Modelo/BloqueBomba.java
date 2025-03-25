@@ -29,16 +29,23 @@ public abstract class BloqueBomba extends Bloque {
 			explotarBomba();
 		}
 		System.out.println(cont);  //Muestra como va el contador
-		//De momento no se que meter en el notifyObservers sigo sin entender bien como funciona
-		//Si el tipo de bloque no se cambia no se puede reiniciar el timer si se pone otra bomba en el mismo bloque
-		//setChanged();
-		//notifyObservers(new Object[] {});
 	
     }
     
     protected abstract void explotarBomba();
+    
     public boolean esDestructible() {
 		return false;
 	}
+    
+    @Override
+    public boolean eresBomba() {
+    	return true;
+    }
+    
+    @Override
+    public boolean puedoMoverme() {
+    	return false;
+    }
     
 }

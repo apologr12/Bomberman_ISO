@@ -12,10 +12,7 @@ public class GestorPersonajes {
 		return miGestorPersonajes;
 	}
 
-	public Personaje getPersonajeBlanco() {
-		//if (this.bombermanBlanco == null) {
-           // this.bombermanBlanco = PersonajeBlanco.getPersonaje();
-        //}
+	public Personaje getPersonaje() {
 		return this.bombermanBlanco;
 	}
 	

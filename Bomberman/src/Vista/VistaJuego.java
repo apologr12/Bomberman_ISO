@@ -12,10 +12,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controlador.ControladorJuego;
+import Modelo.GestorPersonajes;
+import Modelo.GestorTableros;
+
+@SuppressWarnings("deprecation")
 public abstract class VistaJuego extends JFrame implements Observer {
 	private static final long serialVersionUID = -5000978209518964435L;
 	private JPanel contentPane;
 	private JLabel[][] labels;
+	
+	protected VistaJuego() {
+	    this.addKeyListener(ControladorJuego.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel
+		GestorTableros.getGestorTableros().getTablero().addObserver(this);
+		GestorPersonajes.getGestorPersonajes().getPersonaje().addObserver(this);
+	}
 	
 	protected JLabel[][] getLabels() {
 		return this.labels;
@@ -24,8 +35,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void ponerPanelBlanco(Object[] array) { 
 		int y = (int) array[2];
 		int x = (int) array[1];
-		
-		//this.labels[y][x].setBackground(Color.WHITE);
 		this.labels[y][x].setIcon(null);
 	}
 	
@@ -42,20 +51,17 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	}
 	
 	protected void crearTablero(Object[] array) {
-		int numeroEntrada = (int) array[1];					//Esto daba error porque se le metia el primer elemento del array
+		int numeroEntrada = (int) array[1];
 		int y = (int) array[2];
 		int x = (int) array[3];
 		//System.out.println(numeroEntrada); //Debugging
 	
 		if (numeroEntrada == 0) {							//Bloque vacio
-			//this.labels[y][x].setBackground(Color.WHITE);
 		}
 		else if (numeroEntrada == 1) {						//Bloque blando
-			//this.labels[y][x].setBackground(Color.GREEN);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("soft4.png")));
 		}
 		else if (numeroEntrada == 2) {						//Bloque duro
-			//this.labels[y][x].setOpaque(true);
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("hard5.png")));
 		}
 	}
@@ -66,12 +72,12 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		Object[] array = (Object[]) arg;
 		int quienLlama = (int) array[0];
 		
-		if (quienLlama == 2) {
+		if (quienLlama == 1) {
+			this.ponerBombaPersonaje(array);
+		}
+		else if (quienLlama == 2) {
 			this.crearTablero(array);
 		} 
-		else if (quienLlama == 1) {
-			this.ponerBombaPersonaje(array);	
-		}
 		else if (quienLlama == 3) {
 			this.moverPersonaje(array);
 		}
@@ -79,7 +85,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.ponerPanelBlanco(array);
 			System.out.println("Bien"); //Debugging
 		}
-		else if (quienLlama == 5) { //Por que se llama dos veces al mismo metodo?
+		else if (quienLlama == 5) {
 			this.ponerPanelBlanco(array);
 		}
 		else if (quienLlama == 6) {
@@ -105,7 +111,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int x = (int) array[1];
 
 			//Pintamos el jugador
-			//this.labels[y][x].setBackground(Color.WHITE);
 		Random random = new Random();
 		int numAleat = random.nextInt(4) + 1;
 		if (numAleat == 1) {
@@ -196,8 +201,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("miniBlast1.gif")));
-		//this.labels[y][x].setBackground(Color.WHITE);
-
 	} 
 	
 	private void ponerBombaPersonaje(Object[] array) {
@@ -219,7 +222,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				this.labels[i][j] = new JLabel();
-				//this.labels[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
 				this.contentPane.add(this.labels[i][j]);
 			}
 		}

@@ -24,7 +24,7 @@ public class Classic extends VistaJuego {
 	/**
 	 * Create the frame.
 	 */
-	public Classic() {												//CONSEGUIR QUE EL CONTROLADOR SEA QUIEN LLAME AL MODELO Y NO LA VISTA
+	public Classic() {
 		setTitle("Classic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 720, 480);								//Crea el panel principal sobre el que van a estar los distintos JLabel
@@ -51,13 +51,11 @@ public class Classic extends VistaJuego {
 	    
 
 		
-	    this.addKeyListener(ControladorJuego.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel (ns porque)
 	    setFocusable(true); 										// Hacer que el JFrame reciba eventos de teclado
 	    requestFocus();
 		
 		
-		GestorTableros.getGestorTableros().getTablero().addObserver(this);		//ANADIMOS ASI EL OBSERVER O SE LO PASAMOS A UN METODO DEL GESTOR?
-		GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().addObserver(this);					//Anadimos el personaje como observable de la vista
+
 		
 		super.crearTablero();
 	}

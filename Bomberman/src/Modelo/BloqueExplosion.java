@@ -9,7 +9,7 @@ public class BloqueExplosion extends Bloque{
 		private Timer timer = null;
 
 	    public BloqueExplosion(int pY, int pX) {
-	    	super(pY,pX);												//Asignacion temporal de coordenadas
+	    	super(pY,pX);
 			TimerTask timerTask = new TimerTask() {
 				@Override
 				public void run() {
@@ -32,5 +32,10 @@ public class BloqueExplosion extends Bloque{
 	    public boolean esDestructible() {
 			return true;
 		}
+	    
+	    @Override
+	    public boolean eresExplosion() {
+	    	return true;
+	    }
 
 }

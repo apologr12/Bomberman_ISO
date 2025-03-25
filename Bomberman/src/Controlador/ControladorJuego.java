@@ -21,19 +21,19 @@ public class ControladorJuego implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (keyCode == KeyEvent.VK_RIGHT) {
-			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoR();
+			GestorPersonajes.getGestorPersonajes().getPersonaje().movimientoR();
 		}
 		else if(keyCode == KeyEvent.VK_LEFT) {
-			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoL();
+			GestorPersonajes.getGestorPersonajes().getPersonaje().movimientoL();
 		}
-		else if(keyCode == KeyEvent.VK_UP) {
-			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoU();
+		else if(keyCode == KeyEvent.VK_UP) { 
+			GestorPersonajes.getGestorPersonajes().getPersonaje().movimientoU();
 		}
 		else if(keyCode == KeyEvent.VK_DOWN) {
-			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().movimientoD();
+			GestorPersonajes.getGestorPersonajes().getPersonaje().movimientoD();
 		} 
 		else if(keyCode == KeyEvent.VK_X) {
-			GestorPersonajes.getGestorPersonajes().getPersonajeBlanco().plantarBomba();
+			GestorPersonajes.getGestorPersonajes().getPersonaje().plantarBomba();
 		}
 	}
 

@@ -12,8 +12,8 @@ public class TableroClasico extends Tablero {
 	
 	@SuppressWarnings("deprecation")
 	public void crearTablero() {	
-		//Este metodo sera llamado cuando se pulse el boton para iniciar partida
-		Random random = new Random();									//Actualmente es llamado desde main para las pruebas
+		//Este metodo se llama cuando se pulsa el boton para iniciar partida
+		Random random = new Random();
 		for (int i = 0; i < 11; i++) {													//Generacion del tablero de forma aleatoria
 			for (int j = 0; j < 17; j++) {
 				int numero;
