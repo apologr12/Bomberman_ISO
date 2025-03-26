@@ -2,10 +2,10 @@ package main;
 
 import java.awt.EventQueue;
 
-import Modelo.GestorPersonajes;
-import Modelo.GestorTableros;
-import Vista.Classic;
-import Vista.Menu;
+import modelo.GestorPersonajes;
+import modelo.GestorTableros;
+import vistas.Classic;
+import vistas.Menu;
 
 public class Main {
 
