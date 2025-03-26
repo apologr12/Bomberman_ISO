@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 public class Menu extends JFrame implements Observer {
 	private static final long serialVersionUID = -9171935669482541465L;
 	private JPanel panelMenu;
+	private JPanel fondo;
 	private JLabel titulo;
 	private JLabel bombermanBlanco;
 	private JLabel bombermanNegro;
@@ -29,6 +30,7 @@ public class Menu extends JFrame implements Observer {
 	private JLabel boss4;
 	private JLabel boss3;
 	private JLabel textoMenu;
+	private String pFondo = "stageBack1.png";
 
 	/**
 	 * Create the frame.
@@ -60,18 +62,18 @@ public class Menu extends JFrame implements Observer {
 	}
 	
 	private void ponerFondo() {
-		JPanel backgroundPanel = new JPanel() {
+		fondo = new JPanel() {
 		    @Override
 		    protected void paintComponent(java.awt.Graphics g) {
 		        super.paintComponent(g);
-		        ImageIcon background = new ImageIcon(getClass().getResource("back.png"));
+		        ImageIcon background = new ImageIcon(getClass().getResource(pFondo));
 		        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
 		    }
 		};
 		
-		backgroundPanel.setLayout(new GridLayout(1, 1)); // Evita modificar la estructura interna
-		backgroundPanel.add(panelMenu);
-		setContentPane(backgroundPanel);
+		fondo.setLayout(new GridLayout(1, 1)); // Evita modificar la estructura interna
+		fondo.add(panelMenu);
+		setContentPane(fondo);
 	}
 	private JLabel getTitulo() {
 		if (titulo == null) {
@@ -162,10 +164,6 @@ public class Menu extends JFrame implements Observer {
 		this.repaint();
 	}
 	
-	private void cambiarTablero(Object[] array) {
-		//TODO Aqui falta por hacer todo el tema del cambio del fondo de pantalla que concuerde con el mapa seleccinado
-	}
-	
 	private void IniciarJuego(Object[] array) {
 		int personaje = (int) array[1];
 		int tablero = (int) array[2];
@@ -174,7 +172,29 @@ public class Menu extends JFrame implements Observer {
 			Classic frame = new Classic();
 			frame.setVisible(true);
 			this.setVisible(false);
+		} else 	if (tablero == 2) {
+			Soft frame = new Soft();
+			frame.setVisible(true);
+			this.setVisible(false);
 		}
 
+	}
+	
+	private void cambiarTablero(Object[] array) {
+		int tablero = (int) array[1];
+		if (tablero == 1) {
+			System.out.println("1");
+			this.pFondo = "stageBack1.png";
+			fondo.repaint(); // Redibujar el panel con la nueva imagen
+		} else if (tablero == 2) {
+			System.out.println("2");
+			this.pFondo = "stageBack3.png"; //En orden del enunciado de egela
+			fondo.repaint(); // Redibujar el panel con la nueva imagen
+		}else if (tablero == 3) {
+			System.out.println("3");
+			this.pFondo = "stageBack2.png"; //En orden del enunciado de egela
+			fondo.repaint(); // Redibujar el panel con la nueva imagen
+		}
+		this.repaint();
 	}
 }
