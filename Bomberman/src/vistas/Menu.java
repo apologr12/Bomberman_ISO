@@ -176,7 +176,12 @@ public class Menu extends JFrame implements Observer {
 			Soft frame = new Soft();
 			frame.setVisible(true);
 			this.setVisible(false);
+		} else 	if (tablero == 3) {
+			Empty frame = new Empty();
+			frame.setVisible(true);
+			this.setVisible(false);
 		}
+		
 
 	}
 	

@@ -30,7 +30,7 @@ public class GestorTableros {
 			this.tablero = new TableroSoft();
 		}
 		else if(pTipoTablero == 3) {
-			System.out.println("Tablero 3");
+			this.tablero=new TableroEmpty();
 		}
 		else{
 			System.out.println("No hay mas tableros");
