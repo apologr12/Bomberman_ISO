@@ -46,18 +46,5 @@ public class TableroClasico extends Tablero {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
-	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
-	    if (super.esBloqueVacio(fila, col)) {						//Se pone una bomba si no hay ya una bomba puesta
-	        super.ponerBloque("BombaSimple",fila, col);
-	        System.out.println("Bomba");
-	        setChanged();
-	        notifyObservers(new Object[] { 1, col, fila });
-	        return true;
-	    }
-	    else {
-	    	return false;
-	    }
-	}
 
 }

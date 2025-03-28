@@ -8,7 +8,6 @@ public abstract class Tablero extends Observable {
 	
 	public abstract void crearTablero();
 	
-	protected abstract boolean ponerBomba(int fila, int col);
 	
 	protected Tablero(int tamanoX, int tamanoY) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
@@ -87,5 +86,19 @@ public abstract class Tablero extends Observable {
 		else {
 			return false;
 		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
+	    if (esBloqueVacio(fila, col)) {						//Se pone una bomba si no hay ya una bomba puesta
+	        ponerBloque("BombaSimple",fila, col);
+	        System.out.println("Bomba");
+	        setChanged();
+	        notifyObservers(new Object[] { 1, col, fila });
+	        return true;
+	    }
+	    else {
+	    	return false;
+	    }
 	}
 }
