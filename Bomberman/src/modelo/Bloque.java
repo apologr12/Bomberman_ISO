@@ -26,4 +26,6 @@ public abstract class Bloque extends Observable{
 	public boolean eresExplosion() {
 		return false;
 	}
+	
+	public void pararTimer() {}
 }

@@ -66,6 +66,9 @@ public abstract class Tablero extends Observable {
 	 }
 	
 	protected void explotarCelda(int pY, int pX) {
+		if(this.tablero[pY][pX].eresExplosion()) {
+			this.tablero[pY][pX].pararTimer();
+		}
 	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
 	    // Notificar a la vista que muestre explosión
 	    setChanged();
@@ -79,18 +82,10 @@ public abstract class Tablero extends Observable {
 	    notifyObservers(new Object[] {4, pX, pY});
 	}
 
-	protected boolean esBloqueVacio(int pY, int pX) {
-		if (this.tablero[pY][pX] instanceof BloqueVacio) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	@SuppressWarnings("deprecation")
 	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
-	    if (esBloqueVacio(fila, col)) {						//Se pone una bomba si no hay ya una bomba puesta
+	    if (!this.tablero[fila][col].eresBomba()) {						//Se pone una bomba si no hay ya una bomba puesta
 	        ponerBloque("BombaSimple",fila, col);
 	        System.out.println("Bomba");
 	        setChanged();

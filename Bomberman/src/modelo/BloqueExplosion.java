@@ -37,5 +37,9 @@ public class BloqueExplosion extends Bloque{
 	    public boolean eresExplosion() {
 	    	return true;
 	    }
+	    public void pararTimer() {
+	    	timer.cancel();
+	    	
+	    }
 
 }
