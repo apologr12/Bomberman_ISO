@@ -30,7 +30,7 @@ public class Menu extends JFrame implements Observer {
 	private JLabel boss4;
 	private JLabel boss3;
 	private JLabel textoMenu;
-	private String pFondo = "stageBack1.png";
+	private String pFondo = "imagenes/fondos/stageBack1.png";
 
 	/**
 	 * Create the frame.
@@ -79,7 +79,7 @@ public class Menu extends JFrame implements Observer {
 		if (titulo == null) {
 			titulo = new JLabel("");
 			titulo.setBounds(163, 11, 384, 107);
-			this.titulo.setIcon(new ImageIcon(this.getClass().getResource("title.png")));
+			this.titulo.setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png")));
 			
 		}
 		return titulo;
@@ -88,7 +88,7 @@ public class Menu extends JFrame implements Observer {
 		if (bombermanBlanco == null) {
 			bombermanBlanco = new JLabel();
 			bombermanBlanco.setBounds(98, 218, 60, 82);
-			this.bombermanBlanco.setIcon(new ImageIcon(this.getClass().getResource("bomber1.png")));
+			this.bombermanBlanco.setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/bomber1.png")));
 		}
 		return bombermanBlanco;
 	}
@@ -96,7 +96,7 @@ public class Menu extends JFrame implements Observer {
 		if (bombermanNegro == null) {
 			bombermanNegro = new JLabel("");
 			bombermanNegro.setBounds(537, 205, 58, 107);
-			this.bombermanNegro.setIcon(new ImageIcon(this.getClass().getResource("bomber2.png")));
+			this.bombermanNegro.setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/bomber2.png")));
 			this.bombermanNegro.enable(false);
 		}
 		return bombermanNegro;
@@ -105,7 +105,7 @@ public class Menu extends JFrame implements Observer {
 		if (boss2 == null) {
 			boss2 = new JLabel("");
 			boss2.setBounds(249, 105, 216, 228);
-			this.boss2.setIcon(new ImageIcon(this.getClass().getResource("boss2.png")));
+			this.boss2.setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
 		}
 		return boss2;
 	}
@@ -113,7 +113,7 @@ public class Menu extends JFrame implements Observer {
 		if (boss4 == null) {
 			boss4 = new JLabel("");
 			boss4.setBounds(-12, 324, 84, 180);
-			this.boss4.setIcon(new ImageIcon(this.getClass().getResource("boss4.png")));
+			this.boss4.setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss4.png")));
 		}
 		return boss4;
 	}
@@ -121,7 +121,7 @@ public class Menu extends JFrame implements Observer {
 		if (boss3 == null) {
 			boss3 = new JLabel("");
 			boss3.setBounds(627, 105, 118, 238);
-			this.boss3.setIcon(new ImageIcon(this.getClass().getResource("boss3.png")));
+			this.boss3.setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss3.png")));
 		}
 		return boss3;
 	}
@@ -189,15 +189,15 @@ public class Menu extends JFrame implements Observer {
 		int tablero = (int) array[1];
 		if (tablero == 1) {
 			System.out.println("1");
-			this.pFondo = "stageBack1.png";
+			this.pFondo = "imagenes/fondos/stageBack1.png";
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
 		} else if (tablero == 2) {
 			System.out.println("2");
-			this.pFondo = "stageBack3.png"; //En orden del enunciado de egela
+			this.pFondo = "imagenes/fondos/stageBack3.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
 		}else if (tablero == 3) {
 			System.out.println("3");
-			this.pFondo = "stageBack2.png"; //En orden del enunciado de egela
+			this.pFondo = "imagenes/fondos/stageBack2.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
 		}
 		this.repaint();

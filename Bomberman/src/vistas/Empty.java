@@ -25,14 +25,14 @@ public class Empty extends VistaJuego {
 		    @Override
 		    protected void paintComponent(java.awt.Graphics g) {
 		        super.paintComponent(g);
-		        ImageIcon background = new ImageIcon(getClass().getResource("stageBack2.png"));
+		        ImageIcon background = new ImageIcon(getClass().getResource("imagenes/stageBack2.png"));
 		        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
 		    }
 		};
 
 		backgroundPanel.setLayout(new GridLayout(1, 1)); // Evita modificar la estructura interna
 	    
-	    super.setFondo(backgroundPanel);// Añadir contentPane dentro de backgroundPanel
+	    super.setFondo(backgroundPanel);// Aï¿½adir contentPane dentro de backgroundPanel
 
 	    setContentPane(backgroundPanel);  // Establecer backgroundPanel como el contenedor principal
 	    

@@ -59,10 +59,10 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		if (numeroEntrada == 0) {							//Bloque vacio
 		}
 		else if (numeroEntrada == 1) {						//Bloque blando
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("soft4.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/soft4.png")));
 		}
 		else if (numeroEntrada == 2) {						//Bloque duro
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("hard5.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
 	}
 	
@@ -114,16 +114,16 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		Random random = new Random();
 		int numAleat = random.nextInt(4) + 1;
 		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown1.png")));
 		}
 		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown2.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown2.png")));
 		}
 		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown3.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown3.png")));
 		}
 		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitedown4.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown4.png")));
 		}
 	}
 	
@@ -134,19 +134,19 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
 		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup1.png")));
 		}
 		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup2.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup2.png")));
 		}
 		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup3.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup3.png")));
 		}
 		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup4.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup4.png")));
 		}
 		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteup5.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup5.png")));
 		}
 		
 		
@@ -158,19 +158,19 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
 		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft1.png")));
 		}
 		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft2.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft2.png")));
 		}
 		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft3.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft3.png")));
 		}
 		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft4.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft4.png")));
 		}
 		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteleft5.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft5.png")));
 		}
 	}
 	private void moverPersonajeRight(Object[] array) {
@@ -180,19 +180,19 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
 		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright1.png")));
 		}
 		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright2.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright2.png")));
 		}
 		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright3.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright3.png")));
 		}
 		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright4.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright4.png")));
 		}
 		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whiteright5.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright5.png")));
 		}
 		
 	}
@@ -200,21 +200,21 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void mostrarExplosion(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("miniBlast1.gif")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
 	} 
 	
 	private void ponerBombaPersonaje(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("whitewithbomb1.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitewithbomb1.png")));
 		this.labels[y][x].setBackground(Color.WHITE);
 	}
 	
 	private void ponerPanelBomba(Object[] array) { //Despues de que se mueva el personaje aparezca la bomba
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("bomb1.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb1.png")));
 	}
 	
 	protected void crearTablero() {
