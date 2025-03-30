@@ -10,7 +10,7 @@ public abstract class BloqueEnemigo extends Bloque {
     public BloqueEnemigo(int y, int x) {
         super(y, x);
     }
-    public void iniciarMovimiento() { //Inicia el timer de los enemigos a movimiento por segundo
+    public void iniciarMovimiento() { //Inicia el timer de los enemigos a movimiento cada dos segundos
         TimerTask moverTask = new TimerTask() {
             @Override
             public void run() {
@@ -18,7 +18,7 @@ public abstract class BloqueEnemigo extends Bloque {
             }
         };
         timer = new Timer();
-        timer.scheduleAtFixedRate(moverTask, 0, 1000);
+        timer.scheduleAtFixedRate(moverTask, 0, 2000);
     }
     @Override
     public boolean puedoMoverme() {
