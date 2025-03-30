@@ -61,9 +61,13 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (numeroEntrada == 1) {						//Bloque blando
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/soft4.png")));
 		}
-		else if (numeroEntrada == 2) {						//Bloque duro
+		else if (numeroEntrada == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+		}
+		else if (numeroEntrada == 5) {						//Bloque duro
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
+
 	}
 	
 	@Override
@@ -103,6 +107,11 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 10) {
 			this.moverPersonajeRight(array);
 		}
+		else if (quienLlama == 11) {
+			System.out.println("movimientoenemigo");
+			this.moverEnemigoClassic(array);
+		}
+
 	}
 	
 	
@@ -226,5 +235,12 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			}
 		}
 	}
+
+	private void moverEnemigoClassic(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+	}
+
 
 }

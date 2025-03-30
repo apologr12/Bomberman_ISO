@@ -12,7 +12,16 @@ public abstract class Bloque extends Observable{
 	}
 	protected int getX() {return x;}
 	protected int getY() {return y;}
-	
+
+	protected void setX(int pX) {
+		this.x = pX;
+	}
+
+	protected void setY(int pY) {
+		this.y = pY;
+	}
+
+
 	public abstract boolean esDestructible();
 	
 	public boolean eresBomba() {
@@ -26,6 +35,11 @@ public abstract class Bloque extends Observable{
 	public boolean eresExplosion() {
 		return false;
 	}
-	
+
+	public boolean esEnemigo() {
+		return false;
+	}
+
+
 	public void pararTimer() {}
 }

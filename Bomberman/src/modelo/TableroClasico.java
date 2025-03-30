@@ -21,10 +21,10 @@ public class TableroClasico extends Tablero {
 					numero = 0;															//si o si vacias porque si no se podria quedar bloqueado
 				}
 				else if (i % 2 != 0 && j % 2 != 0) {
-					numero = 2;
+					numero = 5;
 				}
 				else {
-					numero = random.nextInt(2);
+					numero = random.nextInt(3);
 				}
 				
 				if (numero == 0) {														//En funcion del numero aleatorio generado, se pone un bloque de un tipo u otro
@@ -34,6 +34,16 @@ public class TableroClasico extends Tablero {
 					super.ponerBloque("Blando",i, j);
 				}
 				else if (numero == 2) {
+					int probabilidadEnemigo = random.nextInt(101);
+					if (probabilidadEnemigo < 10) {
+						super.ponerEnemigo("EnemigoClassic",i, j);
+					}else {
+						super.ponerBloque("Vacio",i, j); // si no se pone un enemigo poner un bloque vacio sino es null pointer
+						numero = 0; // actualizar correctamente la vista para que se vea el bloque correcto
+					}
+
+				}
+				else if (numero == 5) {
 					super.ponerBloque("Duro",i, j);
 				}
 				//System.out.print(i + "" + j + " "); Debugging
@@ -42,7 +52,8 @@ public class TableroClasico extends Tablero {
 				System.out.println("Prueba");																//en la interfaz
 			}
 			System.out.println("");
-		}													
+		}
+		this.iniciarTimersEnemigos();
 	}
 	
 	
