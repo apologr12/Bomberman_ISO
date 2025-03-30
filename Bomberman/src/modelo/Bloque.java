@@ -2,7 +2,8 @@ package modelo;
 
 import java.util.Observable;
 
-public abstract class Bloque extends Observable{
+@SuppressWarnings("deprecation")
+public abstract class Bloque extends Observable {
 	private int x;
 	private int y;
 	

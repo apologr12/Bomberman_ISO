@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.Observable;
+import java.util.Observer;
 
 @SuppressWarnings("deprecation")
 public abstract class Tablero extends Observable {
@@ -21,11 +22,29 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	protected boolean puedoMoverme(int x, int y) {
+	protected boolean puedoMovermeP(int x, int y) {
 
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
-			if (this.tablero[y][x].eresExplosion() || this.tablero[y][x].esEnemigo()) { //Futura muerte
+			if (this.tablero[y][x].eresExplosion()) { //Futura muerte
 				System.exit(1);
+				return false;
+			}
+			else if (this.tablero[y][x].puedoMoverme()) {
+				return true;
+			}
+			else { 																//Bloque solido no se puede traspasar
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	protected boolean puedoMovermeE(int x, int y) { //Este metodo solo se llama desde los enemigos y les dice si pueden moverse o no
+		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
+			if (this.tablero[y][x].eresExplosion()) {//Aqui se llama a eresExplosion y no solo a puedoMoverme porque el enemigo con su "IA" no puede
+													//moverse a un bloque explosion
 				return false;
 			}
 			else if (this.tablero[y][x].puedoMoverme()) {
@@ -100,20 +119,35 @@ public abstract class Tablero extends Observable {
 	    }
 	}
 
-	protected void iniciarTimersEnemigos() {
-		for (int i = 0; i < this.tablero.length; i++) {
+	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
+		for (int i = 0; i < this.tablero.length; i++) { //Se busca por todo el tablero que casillas son enemigos
 			for (int j = 0; j < this.tablero[0].length; j++) {
 				Bloque bloque = this.tablero[i][j];
-				if (bloque != null && bloque.esEnemigo()) {
+				if (bloque != null && bloque.esEnemigo()) { //Si es enemigo entonces se enciende su timer con "iniciarMovimiento" para que empiecen a moverse
+					
 					((BloqueEnemigo) bloque).iniciarMovimiento();
 				}
 			}
 		}
 	}
+	
+	public void addObserverEnemigos(Observer o) { //El metodo es igual al de arriba, pero como hacen funciones distintas en momentos distintos no podemos juntarlos
+		for (int i = 0; i < this.tablero.length; i++) { //Se busca por todo el tablero que casillas son enemigos
+			for (int j = 0; j < this.tablero[0].length; j++) {
+				Bloque bloque = this.tablero[i][j];
+				if (bloque != null && bloque.esEnemigo()) { //Se anade como observer el observer recibido como parametro
+					bloque.addObserver(o);
+					System.out.println("Me he anadido como observer del enemigo"); //Debugging
+				}
+			}
+		}
+		
+	}
 
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {
 		this.tablero[antiguaY][antiguaX] = GenBloques.getGenBloques().generar("Vacio", antiguaY, antiguaX);
-		this.tablero[nuevaY][nuevaX] = enemigo;
+		this.tablero[nuevaY][nuevaX] = enemigo; //Este objeto que pasas con this no seria mas adecuado que el propio tablero pase la posicion de un sitio a otro
+												//y luego en la posicion antigua se ponga como vacio, en vez de pasarlo como parametro?
 		System.out.println("Moviendo " + nuevaY + " " + nuevaX);
 	}
 

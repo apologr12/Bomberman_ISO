@@ -10,7 +10,7 @@ public abstract class BloqueEnemigo extends Bloque {
     public BloqueEnemigo(int y, int x) {
         super(y, x);
     }
-    public void iniciarMovimiento() {
+    public void iniciarMovimiento() { //Inicia el timer de los enemigos a movimiento por segundo
         TimerTask moverTask = new TimerTask() {
             @Override
             public void run() {

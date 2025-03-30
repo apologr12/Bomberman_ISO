@@ -32,7 +32,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		return this.labels;
 	}
 					
-	private void ponerPanelBlanco(Object[] array) { 
+	private void quitarIcono(Object[] array) { 
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(null);
@@ -45,6 +45,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
 	}
+	
 	
 	protected void setFondo(JPanel pPanel) {
 		pPanel.add(contentPane);
@@ -62,7 +63,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/soft4.png")));
 		}
 		else if (numeroEntrada == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/baloon1.png")));
 		}
 		else if (numeroEntrada == 5) {						//Bloque duro
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
@@ -86,11 +87,11 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.moverPersonaje(array);
 		}
 		else if (quienLlama == 4) {
-			this.ponerPanelBlanco(array);
+			this.quitarIcono(array);
 			System.out.println("Bien"); //Debugging
 		}
 		else if (quienLlama == 5) {
-			this.ponerPanelBlanco(array);
+			this.quitarIcono(array);
 		}
 		else if (quienLlama == 6) {
 			this.mostrarExplosion(array);
@@ -110,6 +111,13 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 11) {
 			System.out.println("movimientoenemigo");
 			this.moverEnemigoClassic(array);
+		}
+		else if (quienLlama == 15) {
+			//TODO REVISAR NOTA DE DUDAS PARA PREGUNTARLE A ANDER SI ROMPE MVC O NO
+			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this); //Se anade aqui como observer para cada enemigo porque primero se tiene
+																					//que generar la vista del tablero, luego generar el tablero con los enemigos
+																					//y luego notificarle a la vista que ya estan los enemigos y que se pueden anadir
+																					//como observers
 		}
 
 	}
@@ -239,7 +247,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void moverEnemigoClassic(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/baloon1.png")));
 	}
 
 

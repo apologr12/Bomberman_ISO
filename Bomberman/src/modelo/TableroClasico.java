@@ -37,7 +37,8 @@ public class TableroClasico extends Tablero {
 					int probabilidadEnemigo = random.nextInt(101);
 					if (probabilidadEnemigo < 10) {
 						super.ponerEnemigo("EnemigoClassic",i, j);
-					}else {
+					} 
+					else {
 						super.ponerBloque("Vacio",i, j); // si no se pone un enemigo poner un bloque vacio sino es null pointer
 						numero = 0; // actualizar correctamente la vista para que se vea el bloque correcto
 					}
@@ -53,7 +54,9 @@ public class TableroClasico extends Tablero {
 			}
 			System.out.println("");
 		}
-		this.iniciarTimersEnemigos();
+		setChanged();
+		notifyObservers(new Object[] {15}); //Notifica a la vista para que se anada como observer en todos los enemigos
+		super.iniciarTimersEnemigos();
 	}
 	
 	

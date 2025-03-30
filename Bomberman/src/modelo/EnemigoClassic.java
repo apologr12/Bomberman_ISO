@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class EnemigoClassic extends BloqueEnemigo {
 
     public EnemigoClassic(int pY, int pX) {
@@ -24,20 +25,23 @@ public class EnemigoClassic extends BloqueEnemigo {
         }
     }
 
-    private void moverArriba() {
+	private void moverArriba() {
         Tablero t = GestorTableros.getGestorTableros().getTablero();
         int nuevaY = getY() - 1;
         int nuevaX = getX();
 
-        if (t.puedoMoverme(nuevaY, nuevaX)) {
+        if (t.puedoMovermeE(nuevaX, nuevaY)) {
             int antiguaY = getY();
             int antiguaX = getX();
 
+            setChanged();
+            notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
-            notifyObservers(new Object[]{11, nuevaX, nuevaY});
+            notifyObservers(new Object[]{11, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
+            
         }
     }
 
@@ -46,15 +50,18 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = getY() + 1;
         int nuevaX = getX();
 
-        if (t.puedoMoverme(nuevaY, nuevaX)) {
+        if (t.puedoMovermeE(nuevaX, nuevaY)) {
             int antiguaY = getY();
             int antiguaX = getX();
 
+            setChanged();
+            notifyObservers(new Object[] {4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
-            notifyObservers(new Object[]{12, nuevaX, nuevaY});
+            notifyObservers(new Object[]{11, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
+            
         }
     }
 
@@ -63,15 +70,18 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = getY();
         int nuevaX = getX() - 1;
 
-        if (t.puedoMoverme(nuevaY, nuevaX)) {
+        if (t.puedoMovermeE(nuevaX, nuevaY)) {
             int antiguaY = getY();
             int antiguaX = getX();
 
-            setX(nuevaX);
+            setChanged();
+            notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
+            setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
-            notifyObservers(new Object[]{13, nuevaX, nuevaY});
+            notifyObservers(new Object[]{11, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
+            
         }
     }
 
@@ -80,15 +90,18 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = getY();
         int nuevaX = getX() + 1;
 
-        if (t.puedoMoverme(nuevaY, nuevaX)) {
+        if (t.puedoMovermeE(nuevaX, nuevaY)) {
             int antiguaY = getY();
             int antiguaX = getX();
 
-            setX(nuevaX);
+            setChanged();
+            notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
+            setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
-            notifyObservers(new Object[]{14, nuevaX, nuevaY});
+            notifyObservers(new Object[]{11, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
+            
         }
     }
 }

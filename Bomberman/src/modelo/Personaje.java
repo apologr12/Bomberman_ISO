@@ -38,7 +38,7 @@ public abstract class Personaje extends Observable {
 	
 	
 	public void movimientoL() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x-1, y)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(x-1, y)) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} 
@@ -52,7 +52,7 @@ public abstract class Personaje extends Observable {
 	}
 	
 	public void movimientoR() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x+1, y)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(x+1, y)) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
@@ -67,7 +67,7 @@ public abstract class Personaje extends Observable {
 	
 	public void movimientoU() {
 		
-		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x, y-1)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(x, y-1)) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
@@ -81,7 +81,7 @@ public abstract class Personaje extends Observable {
 	}
 	
 	public void movimientoD() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMoverme(x, y+1)) {
+		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(x, y+1)) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
