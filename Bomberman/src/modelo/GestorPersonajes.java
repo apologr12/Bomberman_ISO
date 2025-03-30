@@ -15,7 +15,7 @@ public class GestorPersonajes {
 		return this.bomberman;
 	}
 	
-	public void crearPersonaje(int num) {
+	public void crearInstanciaPersonaje(int num) {
 		if (num == 1) {
 			this.bomberman = new PersonajeBlanco();  //El personaje se crea aqui temporalmente, es decir, esto en el futuro se quitara
 														//y la creacion del personaje se hara con un metodo cuando detecte el boton que ha seleccionado al personaje

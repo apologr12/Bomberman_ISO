@@ -4,6 +4,7 @@ public class GenBloques {
 	private static GenBloques miGenBombas=new GenBloques();
 	private GenBloques() {}
 	public static GenBloques getGenBloques(){return miGenBombas;}
+	
 	public Bloque generar(String pTipo,int pY,int pX) {
 		if (pTipo.equals("Vacio")) {
 			BloqueVacio nuevo=new BloqueVacio(pY,pX);

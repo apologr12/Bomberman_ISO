@@ -35,7 +35,7 @@ public class TableroClasico extends Tablero {
 				}
 				else if (numero == 2) {
 					int probabilidadEnemigo = random.nextInt(101);
-					if (probabilidadEnemigo < 10) {
+					if (probabilidadEnemigo < 2) {
 						super.ponerEnemigo("EnemigoClassic",i, j);
 					} 
 					else {

@@ -27,16 +27,16 @@ public class EnemigoClassic extends BloqueEnemigo {
 
 	private void moverArriba() {
         Tablero t = GestorTableros.getGestorTableros().getTablero();
-        int nuevaY = getY() - 1;
-        int nuevaX = getX();
+        int nuevaY = super.getY() - 1;
+        int nuevaX = super.getX();
 
         if (t.puedoMovermeE(nuevaX, nuevaY)) {
-            int antiguaY = getY();
-            int antiguaX = getX();
+            int antiguaY = super.getY();
+            int antiguaX = super.getX();
 
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
-            setY(nuevaY);
+            super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
@@ -47,16 +47,16 @@ public class EnemigoClassic extends BloqueEnemigo {
 
     private void moverAbajo() {
         Tablero t = GestorTableros.getGestorTableros().getTablero();
-        int nuevaY = getY() + 1;
-        int nuevaX = getX();
+        int nuevaY = super.getY() + 1;
+        int nuevaX = super.getX();
 
         if (t.puedoMovermeE(nuevaX, nuevaY)) {
-            int antiguaY = getY();
-            int antiguaX = getX();
+            int antiguaY = super.getY();
+            int antiguaX = super.getX();
 
             setChanged();
             notifyObservers(new Object[] {4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
-            setY(nuevaY);
+            super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
@@ -67,16 +67,16 @@ public class EnemigoClassic extends BloqueEnemigo {
 
     private void moverIzquierda() {
         Tablero t = GestorTableros.getGestorTableros().getTablero();
-        int nuevaY = getY();
-        int nuevaX = getX() - 1;
+        int nuevaY = super.getY();
+        int nuevaX = super.getX() - 1;
 
         if (t.puedoMovermeE(nuevaX, nuevaY)) {
-            int antiguaY = getY();
-            int antiguaX = getX();
+            int antiguaY = super.getY();
+            int antiguaX = super.getX();
 
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
-            setY(nuevaY);
+            super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();
@@ -87,16 +87,16 @@ public class EnemigoClassic extends BloqueEnemigo {
 
     private void moverDerecha() {
         Tablero t = GestorTableros.getGestorTableros().getTablero();
-        int nuevaY = getY();
-        int nuevaX = getX() + 1;
+        int nuevaY = super.getY();
+        int nuevaX = super.getX() + 1;
 
         if (t.puedoMovermeE(nuevaX, nuevaY)) {
-            int antiguaY = getY();
-            int antiguaX = getX();
+            int antiguaY = super.getY();
+            int antiguaX = super.getX();
 
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
-            setY(nuevaY);
+            super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();

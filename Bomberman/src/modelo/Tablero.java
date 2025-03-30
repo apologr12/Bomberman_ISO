@@ -143,13 +143,12 @@ public abstract class Tablero extends Observable {
 		}
 		
 	}
-
+	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {
 		this.tablero[antiguaY][antiguaX] = GenBloques.getGenBloques().generar("Vacio", antiguaY, antiguaX);
 		this.tablero[nuevaY][nuevaX] = enemigo; //Este objeto que pasas con this no seria mas adecuado que el propio tablero pase la posicion de un sitio a otro
 												//y luego en la posicion antigua se ponga como vacio, en vez de pasarlo como parametro?
 		System.out.println("Moviendo " + nuevaY + " " + nuevaX);
 	}
-
 
 }
