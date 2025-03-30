@@ -88,7 +88,7 @@ public abstract class Tablero extends Observable {
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
-		if(this.tablero[pY][pX].eresExplosion()) {
+		if(this.tablero[pY][pX].eresExplosion() || this.tablero[pY][pX].esEnemigo()) {
 			this.tablero[pY][pX].pararTimer();
 		}
 	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
