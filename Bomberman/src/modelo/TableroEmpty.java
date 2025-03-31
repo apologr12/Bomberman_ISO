@@ -6,7 +6,7 @@ public class TableroEmpty extends Tablero {
 	
 	
 	public TableroEmpty() {
-		super(17, 11);
+		super(11, 17);
 	}
 	
 	

@@ -11,7 +11,7 @@ public class BloqueBombaSimple extends BloqueBomba {
     
     @Override
     protected void explotarBomba() {
-    	GestorPersonajes.getGestorPersonajes().getPersonaje().explosionBomba(super.getX(), super.getY());
+    	GestorPersonajes.getGestorPersonajes().getPersonaje().explosionBomba(super.getY(), super.getX());
     }
 	
 }

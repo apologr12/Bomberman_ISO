@@ -10,7 +10,7 @@ public abstract class Tablero extends Observable {
 	public abstract void crearTablero();
 
 
-	protected Tablero(int tamanoX, int tamanoY) {
+	protected Tablero(int tamanoY, int tamanoX) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) {
@@ -22,10 +22,10 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	protected boolean puedoMovermeP(int x, int y) {
+	protected boolean puedoMovermeP(int y, int x) {
 
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
-			if (this.tablero[y][x].eresExplosion()) { //Futura muerte
+			if (this.tablero[y][x].eresExplosion()||this.tablero[y][x].esEnemigo()) { //Futura muerte
 				System.exit(1);
 				return false;
 			}
@@ -41,7 +41,7 @@ public abstract class Tablero extends Observable {
 		}
 	}
 	
-	protected boolean puedoMovermeE(int x, int y) { //Este metodo solo se llama desde los enemigos y les dice si pueden moverse o no
+	protected boolean puedoMovermeE(int y, int x) { //Este metodo solo se llama desde los enemigos y les dice si pueden moverse o no
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
 			if (this.tablero[y][x].eresExplosion()) {//Aqui se llama a eresExplosion y no solo a puedoMoverme porque el enemigo con su "IA" no puede
 													//moverse a un bloque explosion
@@ -64,7 +64,7 @@ public abstract class Tablero extends Observable {
 	    return (this.tablero[fila][col].eresBomba());
 	}
 
-	protected void compExplosionSimple(int pX, int pY) {
+	protected void compExplosionSimple(int pY, int pX) {
 			// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
 
 		//Se explota la casilla donde estaba la bomba

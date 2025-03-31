@@ -7,7 +7,7 @@ public class PersonajeBlanco extends Personaje {
 		super(0, 0, 10);
 	}
 	
-	public void explosionBomba(int pX, int pY) {
+	public void explosionBomba(int pY, int pX) {
 		super.sumarBomba();
 		if (super.coincideX(pX) && super.coincideY(pY)) {
 			System.exit(1);
@@ -27,9 +27,10 @@ public class PersonajeBlanco extends Personaje {
 			}
 		}
 
-		GestorTableros.getGestorTableros().getTablero().compExplosionSimple(pX, pY);
+		GestorTableros.getGestorTableros().getTablero().compExplosionSimple(pY, pX);
 		
 	}
+	
 	
 	@Override
 	public void mostrarPersonaje() {

@@ -40,9 +40,8 @@ public class PersonajeNegro extends Personaje {
 	}
 
 	@Override
-	public void explosionBomba(int pX, int pY) {
+	public void explosionBomba(int pY, int pX) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

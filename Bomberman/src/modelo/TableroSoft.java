@@ -6,7 +6,7 @@ public class TableroSoft extends Tablero {
 	
 	
 	public TableroSoft() {
-		super(17, 11);
+		super(11, 17);
 	}
 	
 	

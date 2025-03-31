@@ -30,10 +30,10 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = super.getY() - 1;
         int nuevaX = super.getX();
 
-        if (t.puedoMovermeE(nuevaX, nuevaY)) {
+        if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
-
+            GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX); //Revisar si el personaje esta en las nuevas coordenadas
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             super.setY(nuevaY);
@@ -50,10 +50,10 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = super.getY() + 1;
         int nuevaX = super.getX();
 
-        if (t.puedoMovermeE(nuevaX, nuevaY)) {
+        if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
-
+            GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX); //Revisar si el personaje esta en las nuevas coordenadas
             setChanged();
             notifyObservers(new Object[] {4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             super.setY(nuevaY);
@@ -70,10 +70,10 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = super.getY();
         int nuevaX = super.getX() - 1;
 
-        if (t.puedoMovermeE(nuevaX, nuevaY)) {
+        if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
-
+            GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX); //Revisar si el personaje esta en las nuevas coordenadas
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             super.setX(nuevaX);
@@ -90,10 +90,10 @@ public class EnemigoClassic extends BloqueEnemigo {
         int nuevaY = super.getY();
         int nuevaX = super.getX() + 1;
 
-        if (t.puedoMovermeE(nuevaX, nuevaY)) {
+        if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
-
+            GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX); //Revisar si el personaje esta en las nuevas coordenadas
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             super.setX(nuevaX);
