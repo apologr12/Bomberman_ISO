@@ -22,7 +22,11 @@ public class TableroEmpty extends Tablero {
 				System.out.println("Prueba");																//en la interfaz
 			}
 			System.out.println("");
-		}													
+		}
+		
+		setChanged();
+		notifyObservers(new Object[] {15}); //Notifica a la vista para que se anada como observer en todos los enemigos y estrategias
+		//super.iniciarTimersEnemigos(); //TODO Hay que meter los enemigos
 	}
 	
 	

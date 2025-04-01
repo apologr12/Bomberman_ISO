@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class TableroClasico extends Tablero {
 	
+	public static final int probAparicion = 10;
 	
 	public TableroClasico(int pTipoPersonaje) {
 		super(11, 17, pTipoPersonaje);
@@ -35,7 +36,7 @@ public class TableroClasico extends Tablero {
 				}
 				else if (numero == 2) {
 					int probabilidadEnemigo = random.nextInt(101);
-					if (probabilidadEnemigo < 20) {
+					if (probabilidadEnemigo < probAparicion) {
 						super.ponerEnemigo("EnemigoClassic",i, j);
 					} 
 					else {
@@ -55,7 +56,7 @@ public class TableroClasico extends Tablero {
 			System.out.println("");
 		}
 		setChanged();
-		notifyObservers(new Object[] {15}); //Notifica a la vista para que se anada como observer en todos los enemigos
+		notifyObservers(new Object[] {15}); //Notifica a la vista para que se anada como observer en todos los enemigos y estrategias
 		super.iniciarTimersEnemigos();
 	}
 	

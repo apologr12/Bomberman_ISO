@@ -27,7 +27,7 @@ public class PersonajeBlanco extends Personaje {
 			}
 		}
 
-		GestorTableros.getGestorTableros().getTablero().compExplosionSimple(pY, pX);
+		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
 		
 	}
 	

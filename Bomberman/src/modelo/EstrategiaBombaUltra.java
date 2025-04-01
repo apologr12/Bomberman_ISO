@@ -1,7 +1,7 @@
 package modelo;
 
 @SuppressWarnings("deprecation")
-public class EstrategiaBombaUltra extends EstrategiaBombas { //TODO ESTE EXTENDS DE OBSERVABLE ES CORRECTO?
+public class EstrategiaBombaUltra extends EstrategiaBombas {
 	public EstrategiaBombaUltra() {
 	}
 	
@@ -20,7 +20,13 @@ public class EstrategiaBombaUltra extends EstrategiaBombas { //TODO ESTE EXTENDS
 	}
 
 	@Override
-	public void explotarCelda() {
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void compExplosion(int pY, int pX, Bloque[][] tablero) {
 		// TODO Auto-generated method stub
 		
 	}

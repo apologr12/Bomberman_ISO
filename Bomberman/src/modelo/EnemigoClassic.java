@@ -45,6 +45,7 @@ public class EnemigoClassic extends BloqueEnemigo {
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
             super.setX(nuevaX);
+            super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             setChanged();

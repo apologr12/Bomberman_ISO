@@ -25,7 +25,7 @@ public class Empty extends VistaJuego {
 		    @Override
 		    protected void paintComponent(java.awt.Graphics g) {
 		        super.paintComponent(g);
-		        ImageIcon background = new ImageIcon(getClass().getResource("imagenes/stageBack2.png"));
+		        ImageIcon background = new ImageIcon(getClass().getResource("imagenes/fondos/stageBack2.png"));
 		        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
 		    }
 		};

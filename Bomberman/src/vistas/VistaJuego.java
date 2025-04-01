@@ -113,11 +113,8 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.moverEnemigoClassic(array);
 		}
 		else if (quienLlama == 15) {
-			//TODO REVISAR NOTA DE DUDAS PARA PREGUNTARLE A ANDER SI ROMPE MVC O NO
-			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this); //Se anade aqui como observer para cada enemigo porque primero se tiene
-																					//que generar la vista del tablero, luego generar el tablero con los enemigos
-																					//y luego notificarle a la vista que ya estan los enemigos y que se pueden anadir
-																					//como observers
+			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this);
+			GestorTableros.getGestorTableros().getTablero().addObserverEstrategia(this);
 		}
 
 	}

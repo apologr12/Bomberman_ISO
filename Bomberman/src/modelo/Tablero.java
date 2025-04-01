@@ -71,27 +71,9 @@ public abstract class Tablero extends Observable {
 	    return (this.tablero[fila][col].eresBomba());
 	}
 
-	protected void compExplosionSimple(int pY, int pX) {
-			// Si no es BloqueDuro, es o blando, vacio o enemigo en un futuro
-
-		//Se explota la casilla donde estaba la bomba
-	        explotarCelda(pY, pX);
-
-	        if (pX < 16 && this.tablero[pY][pX + 1].esDestructible()) {
-	        	explotarCelda(pY, pX + 1);
-	        	}
-
-	        if (pX > 0 && this.tablero[pY][pX - 1].esDestructible()) {
-	        	explotarCelda(pY, pX - 1);
-	        	}
-
-	        if (pY < 10 && this.tablero[pY + 1][pX].esDestructible()) {
-	        	explotarCelda(pY + 1, pX);
-	            }
-
-	        if (pY > 0 && this.tablero[pY - 1][pX].esDestructible()) {
-	        	explotarCelda(pY-1,  pX);
-	            }
+	protected void compExplosion(int pY, int pX) {
+			this.estrategiaBombas.compExplosion(pY, pX, tablero);
+	        
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
@@ -133,7 +115,11 @@ public abstract class Tablero extends Observable {
 			}
 		}
 		
-		this.estrategiaBombas.addObserver(o); //TODO TEMPORALMENTE SE ANADE AQUI COMO OBSERVER, ESTO HAY QUE CAMBIARLO
+	}
+	
+	public void addObserverEstrategia(Observer o) {
+		this.estrategiaBombas.addObserver(o);
+
 	}
 	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {

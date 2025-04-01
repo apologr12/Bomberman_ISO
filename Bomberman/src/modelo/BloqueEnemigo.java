@@ -19,7 +19,7 @@ public abstract class BloqueEnemigo extends Bloque {
             }
         };
         timer = new Timer();
-        timer.scheduleAtFixedRate(moverTask, 0, 2000);
+        timer.scheduleAtFixedRate(moverTask, 0, 500);
     }
     @Override
     public boolean puedoMoverme() {

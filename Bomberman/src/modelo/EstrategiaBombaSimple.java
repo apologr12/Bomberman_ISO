@@ -21,15 +21,36 @@ public class EstrategiaBombaSimple extends EstrategiaBombas {
 	}
 
 	@Override
-	public void explotarCelda(int pY, int pX, Bloque[][] tablero) {
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) {
 		if (tablero[pY][pX].eresExplosion() || tablero[pY][pX].esEnemigo()) {
 			tablero[pY][pX].pararTimer();
 		}
 	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
 	    // Notificar a la vista que muestre explosi�n
 	    setChanged();
-	    notifyObservers(new Object[] {6, pX, pY});
-		
+	    notifyObservers(new Object[] {6, pX, pY});		
+	}
+
+
+	@Override
+	public void compExplosion(int pY, int pX, Bloque[][] tablero) {
+		explotarCelda(pY, pX, tablero);
+
+        if (pX < 16 && tablero[pY][pX + 1].esDestructible()) {
+        	explotarCelda(pY, pX + 1, tablero);
+        }
+
+        if (pX > 0 && tablero[pY][pX - 1].esDestructible()) {
+        	explotarCelda(pY, pX - 1, tablero);
+       	}
+
+        if (pY < 10 && tablero[pY + 1][pX].esDestructible()) {
+        	explotarCelda(pY + 1, pX, tablero);
+        }
+
+        if (pY > 0 && tablero[pY - 1][pX].esDestructible()) {
+        	explotarCelda(pY-1,  pX, tablero);
+        }
 	}
 
 }
