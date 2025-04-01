@@ -36,10 +36,12 @@ public abstract class Personaje extends Observable {
 	
 	public abstract void explosionBomba(int pY, int pX); //Este metodo se llama desde el BloqueBombaSimple o Ultra y es para indicarle al personaje que ha explotado
 	
-	public void choqueEnemigo(int pY, int pX) { //Este metodo se llama desde el enemigo, revisa si el personaje esta en la posicion a donde el enemigo se va a mover,
-		if (coincideX(pX) && coincideY(pY)) {   // y si esta ahi, lo mata
-			System.out.println("Enemigo tocado.");
-			System.exit(1);
+	public boolean choqueEnemigo(int pY, int pX) { //Este metodo se llama desde el enemigo, revisa si el personaje esta en la posicion a donde el enemigo se va a mover,
+		if (this.coincideX(pX) && this.coincideY(pY)) {   // y si esta ahi, lo mata
+			return true;
+		}
+		else {
+			return false;
 		}
 		
 	} 

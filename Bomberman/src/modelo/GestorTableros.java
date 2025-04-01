@@ -21,16 +21,16 @@ public class GestorTableros {
 	public void crearTablero() {
 	    this.tablero.crearTablero();
 	}
-	public Tablero crearInstanciaTablero(int pTipoTablero) {
+	public Tablero crearInstanciaTablero(int pTipoTablero, int pTipoPersonaje) {
 	    //TODO
 		if (pTipoTablero == 1) {
-			this.tablero = new TableroClasico();
+			this.tablero = new TableroClasico(pTipoPersonaje);
 		}
 		else if(pTipoTablero == 2) {
-			this.tablero = new TableroSoft();
+			this.tablero = new TableroSoft(pTipoPersonaje);
 		}
 		else if(pTipoTablero == 3) {
-			this.tablero=new TableroEmpty();
+			this.tablero=new TableroEmpty(pTipoPersonaje);
 		}
 		else{
 			System.out.println("No hay mas tableros");

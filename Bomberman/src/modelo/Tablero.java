@@ -6,12 +6,19 @@ import java.util.Observer;
 @SuppressWarnings("deprecation")
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
+	private EstrategiaBombas estrategiaBombas;
 
 	public abstract void crearTablero();
 
 
-	protected Tablero(int tamanoY, int tamanoX) {
+	protected Tablero(int tamanoY, int tamanoX, int pTipoPersonaje) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
+		if (pTipoPersonaje == 1) {
+			this.estrategiaBombas = new EstrategiaBombaSimple();
+		}
+		else {
+			this.estrategiaBombas = new EstrategiaBombaUltra();
+		}
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) {
 		this.tablero[pY][pX] = GenBloques.getGenBloques().generar(pTipo, pY, pX);
@@ -88,13 +95,7 @@ public abstract class Tablero extends Observable {
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
-		if(this.tablero[pY][pX].eresExplosion() || this.tablero[pY][pX].esEnemigo()) {
-			this.tablero[pY][pX].pararTimer();
-		}
-	    this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
-	    // Notificar a la vista que muestre explosi�n
-	    setChanged();
-	    notifyObservers(new Object[] {6, pX, pY});
+		this.estrategiaBombas.explotarCelda(pY, pX, this.tablero);
 	}
 
 	protected void postExplosion(int pY,int pX) {
@@ -105,18 +106,8 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	@SuppressWarnings("deprecation")
 	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
-	    if (!this.tablero[fila][col].eresBomba()) {						//Se pone una bomba si no hay ya una bomba puesta
-	        ponerBloque("BombaSimple",fila, col);
-	        System.out.println("Bomba");
-	        setChanged();
-	        notifyObservers(new Object[] { 1, col, fila });
-	        return true;
-	    }
-	    else {
-	    	return false;
-	    }
+	    return this.estrategiaBombas.ponerBomba(fila, col, this.tablero);
 	}
 
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
@@ -142,6 +133,7 @@ public abstract class Tablero extends Observable {
 			}
 		}
 		
+		this.estrategiaBombas.addObserver(o); //TODO TEMPORALMENTE SE ANADE AQUI COMO OBSERVER, ESTO HAY QUE CAMBIARLO
 	}
 	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {

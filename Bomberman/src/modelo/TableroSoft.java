@@ -5,8 +5,8 @@ import java.util.Random;
 public class TableroSoft extends Tablero {
 	
 	
-	public TableroSoft() {
-		super(11, 17);
+	public TableroSoft(int pTipoPersonaje) {
+		super(11, 17, pTipoPersonaje);
 	}
 	
 	

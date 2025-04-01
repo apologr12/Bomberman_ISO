@@ -72,7 +72,7 @@ public class MenuModelo extends Observable {
 		 //El orden de que primero se cree el personaje, luego se notifique y luego se cree el tablero es importante, por como manejamos la creacion del tablero
 		//y el mostrado del personaje
 		 GestorPersonajes.getGestorPersonajes().crearInstanciaPersonaje(this.tipoPersonajeSelec);
-		 GestorTableros.getGestorTableros().crearInstanciaTablero(this.tipoMapaSelec);
+		 GestorTableros.getGestorTableros().crearInstanciaTablero(this.tipoMapaSelec, this.tipoPersonajeSelec);
 		 setChanged();
 		 notifyObservers(new Object[] {2,this.tipoPersonajeSelec,this.tipoMapaSelec});
 		 GestorTableros.getGestorTableros().crearTablero();

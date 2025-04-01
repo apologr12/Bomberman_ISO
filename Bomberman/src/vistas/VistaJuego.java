@@ -223,7 +223,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void ponerBombaPersonaje(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitewithbomb1.png")));
 		this.labels[y][x].setBackground(Color.WHITE);
 	}

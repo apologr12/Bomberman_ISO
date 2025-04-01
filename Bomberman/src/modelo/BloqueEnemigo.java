@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,7 +31,25 @@ public abstract class BloqueEnemigo extends Bloque {
         return true;
     }
 
-    public abstract void mover(); // Cada tipo de enemigo implementa su propio movimiento
+    protected abstract void moverArriba();
+    protected abstract void moverAbajo();
+    protected abstract void moverIzquierda();
+    protected abstract void moverDerecha();
+    
+    public void mover() {
+        Random rand = new Random();
+        int direccion = rand.nextInt(4); // 0: arriba, 1: abajo, 2: izquierda, 3: derecha
+
+        if (direccion == 0) {
+            moverArriba();
+        } else if (direccion == 1) {
+            moverAbajo();
+        } else if (direccion == 2) {
+            moverIzquierda();
+        } else if (direccion == 3) {
+            moverDerecha();
+        }
+    }
 
     @Override
     public void pararTimer() {

@@ -5,8 +5,8 @@ import java.util.Random;
 public class TableroClasico extends Tablero {
 	
 	
-	public TableroClasico() {
-		super(11, 17);
+	public TableroClasico(int pTipoPersonaje) {
+		super(11, 17, pTipoPersonaje);
 	}
 	
 	
