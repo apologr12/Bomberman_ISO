@@ -12,7 +12,7 @@ public class EstrategiaBombaSimple extends EstrategiaBombas {
 	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaSimple", fila, col);
 	        System.out.println("Bomba"); //Debugging
 	        setChanged();
-	        notifyObservers(new Object[] { 1, col, fila });
+	        notifyObservers(new Object[] { 1, col, fila, 1});
 	        return true;
 	    }
 	    else {
@@ -28,7 +28,7 @@ public class EstrategiaBombaSimple extends EstrategiaBombas {
 	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX);
 	    // Notificar a la vista que muestre explosi�n
 	    setChanged();
-	    notifyObservers(new Object[] {6, pX, pY});		
+	    notifyObservers(new Object[] {6, pX, pY, 1});		
 	}
 
 

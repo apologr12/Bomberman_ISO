@@ -191,14 +191,17 @@ public class Menu extends JFrame implements Observer {
 			System.out.println("1");
 			this.pFondo = "imagenes/fondos/stageBack1.png";
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
+			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
 		} else if (tablero == 2) {
 			System.out.println("2");
 			this.pFondo = "imagenes/fondos/stageBack3.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
+			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
 		}else if (tablero == 3) {
 			System.out.println("3");
 			this.pFondo = "imagenes/fondos/stageBack2.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
+			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
 		}
 		this.repaint();
 	}

@@ -62,14 +62,14 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (numeroEntrada == 1) {						//Bloque blando
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/soft4.png")));
 		}
-		else if (numeroEntrada == 2) {
+		else if (numeroEntrada == 2) {						//Enemigo globo
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/baloon1.png")));
 		}
-		else if (numeroEntrada == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+		else if (numeroEntrada == 3) {						//Enemigo azul
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/doria2.png")));
 		}
-		else if (numeroEntrada == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss3.png")));
+		else if (numeroEntrada == 4) {						//Enemigo morado
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/pass2.png")));
 		}
 		else if (numeroEntrada == 5) {						//Bloque duro
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
@@ -130,6 +130,9 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this);
 			GestorTableros.getGestorTableros().getTablero().addObserverEstrategia(this);
 		}
+		else if (quienLlama == 16) {
+			this.jugadorMuerto(array);
+		}
 
 	}
 	
@@ -137,90 +140,165 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void moverPersonaje(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
+		int personaje = (int) array[3];
 
 			//Pintamos el jugador
 		Random random = new Random();
 		int numAleat = random.nextInt(4) + 1;
-		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown1.png")));
-		}
-		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown2.png")));
-		}
-		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown3.png")));
-		}
-		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown4.png")));
+		if(personaje == 1) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown4.png")));
+			}
+		} else if(personaje == 2) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdown1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdown2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdown3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdown4.png")));
+			}	
 		}
 	}
 	
 	private void moverPersonajeUp(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
+		int personaje = (int) array[3];
 
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
-		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup1.png")));
+
+		if(personaje == 1) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup5.png")));
+			}
+		} else if(personaje == 2) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup5.png")));
+			}	
 		}
-		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup2.png")));
-		}
-		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup3.png")));
-		}
-		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup4.png")));
-		}
-		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup5.png")));
-		}
-		
 		
 	}
 	private void moverPersonajeLeft(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
+		int personaje = (int) array[3];
 
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
-		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft1.png")));
-		}
-		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft2.png")));
-		}
-		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft3.png")));
-		}
-		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft4.png")));
-		}
-		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft5.png")));
+
+		if(personaje == 1) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft5.png")));
+			}
+		} else if(personaje == 2) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft5.png")));
+			}	
 		}
 	}
 	private void moverPersonajeRight(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
+		int personaje = (int) array[3];
 
 		Random random = new Random();
 		int numAleat = random.nextInt(5) + 1;
-		if (numAleat == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright1.png")));
-		}
-		else if (numAleat == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright2.png")));
-		}
-		else if (numAleat == 3) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright3.png")));
-		}
-		else if (numAleat == 4) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright4.png")));
-		}
-		else if (numAleat == 5) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright5.png")));
+
+		if(personaje == 1) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright5.png")));
+			}
+		} else if(personaje == 2) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright5.png")));
+			}	
 		}
 		
 	}
@@ -229,19 +307,37 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
+//		int bomba = (int) array[3];
+//		
+//		if(bomba == 1) {
+//			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
+//		} else if(bomba == 2) {
+//			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb2.png")));
+//		}
 	} 
 	
 	private void ponerBombaPersonaje(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitewithbomb1.png")));
-		this.labels[y][x].setBackground(Color.WHITE);
+		int personaje = (int) array[3];
+		
+		if(personaje == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitewithbomb1.png")));
+		} else if(personaje == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackwithbomb1.png")));
+		}
 	}
 	
 	private void ponerPanelBomba(Object[] array) { //Despues de que se mueva el personaje aparezca la bomba
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb1.png")));
+		int bomba = (int) array[3];
+		
+		if(bomba == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb1.png")));
+		} else if(bomba == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb2.png")));
+		}
 	}
 	
 	protected void crearTablero() {
@@ -263,13 +359,24 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void moverEnemigoSoft(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/doria2.png")));
 	}
 
 	private void moverEnemigoEmpty(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss3.png")));
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/pass2.png")));
+	}
+	private void jugadorMuerto(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		int personaje = (int) array[3];
+		
+		if(personaje == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png")));
+		} else if(personaje == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/onFire4.png")));
+		}
 	}
 
 

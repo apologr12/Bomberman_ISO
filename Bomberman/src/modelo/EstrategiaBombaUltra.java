@@ -11,7 +11,7 @@ public class EstrategiaBombaUltra extends EstrategiaBombas {
 	        GenBloques.getGenBloques().generar("BombaSimple", fila, col);
 	        System.out.println("Bomba");
 	        setChanged();
-	        notifyObservers(new Object[] { 1, col, fila });
+	        notifyObservers(new Object[] { 1, col, fila, 2});
 	        return true;
 	    }
 	    else {
@@ -20,7 +20,7 @@ public class EstrategiaBombaUltra extends EstrategiaBombas {
 	}
 
 	@Override
-	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) {
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) { //en el notify agrega un 2 que va a ser la manera para que sepa la vista que tipo de explosion
 		// TODO Auto-generated method stub
 		
 	}

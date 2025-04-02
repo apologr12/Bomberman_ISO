@@ -35,33 +35,33 @@ public class PersonajeBlanco extends Personaje {
 	@Override
 	public void mostrarPersonaje() {
 		setChanged();
-		notifyObservers(new Object[] {3, getX(), getY()});	
+		notifyObservers(new Object[] {3, getX(), getY(),1});	
 	}
 	
 	@Override
 	public void dejarDeMostrarPersonaje() {
 		setChanged();
-		notifyObservers(new Object[] {4, getX(), getY()});
+		notifyObservers(new Object[] {4, getX(), getY(), 1});
 	}
 	@Override
 	public void mostrarBomba() {
 		setChanged();
-		notifyObservers(new Object[] {7, getX(), getY()});
+		notifyObservers(new Object[] {7, getX(), getY(), 1});
 	}
 	@Override
 	public void mostrarPersonajeUp() {						
 		setChanged();
-		notifyObservers(new Object[] {8, getX(), getY()});	
+		notifyObservers(new Object[] {8, getX(), getY(), 1});	
 	}
 	@Override
 	public void mostrarPersonajeLeft() {
 		setChanged();
-		notifyObservers(new Object[] {9, getX(), getY()});	
+		notifyObservers(new Object[] {9, getX(), getY(), 1});	
 	}
 	@Override
 	public void mostrarPersonajeRight() {
 		setChanged();
-		notifyObservers(new Object[] {10, getX(), getY()});	
+		notifyObservers(new Object[] {10, getX(), getY(), 1});	
 	}
 
 }
