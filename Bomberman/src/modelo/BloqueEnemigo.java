@@ -18,8 +18,12 @@ public abstract class BloqueEnemigo extends Bloque {
                 mover();
             }
         };
+        Random rand = new Random();
+        int retardoInicial = rand.nextInt(301);
+        int periodo = 500 + rand.nextInt(201);
+
         timer = new Timer();
-        timer.scheduleAtFixedRate(moverTask, 0, 500);
+        timer.scheduleAtFixedRate(moverTask,  retardoInicial, periodo);
     }
     @Override
     public boolean puedoMoverme() {
