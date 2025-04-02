@@ -31,10 +31,29 @@ public abstract class BloqueEnemigo extends Bloque {
         return true;
     }
 
-    protected abstract void moverArriba();
-    protected abstract void moverAbajo();
-    protected abstract void moverIzquierda();
-    protected abstract void moverDerecha();
+    public void moverArriba() {
+        int nuevaY = super.getY() - 1;
+        int nuevaX = super.getX();
+        this.movimientoGeneral(nuevaY, nuevaX);
+    }
+
+    public void moverAbajo() {
+        int nuevaY = super.getY() + 1;
+        int nuevaX = super.getX();
+        this.movimientoGeneral(nuevaY, nuevaX);
+    }
+
+    public void moverIzquierda() {
+        int nuevaY = super.getY();
+        int nuevaX = super.getX() - 1;
+        this.movimientoGeneral(nuevaY, nuevaX);
+    }
+
+    public void moverDerecha() {
+        int nuevaY = super.getY();
+        int nuevaX = super.getX() + 1;
+        this.movimientoGeneral(nuevaY, nuevaX);
+    }
     
     public void mover() {
         Random rand = new Random();
@@ -63,4 +82,25 @@ public abstract class BloqueEnemigo extends Bloque {
         return true;
     }
 
+    private void movimientoGeneral(int nuevaY, int nuevaX) {
+        Tablero t = GestorTableros.getGestorTableros().getTablero();
+        if (t.puedoMovermeE(nuevaY, nuevaX)) {
+            int antiguaY = super.getY();
+            int antiguaX = super.getX();
+            if (GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX)) { //Revisar si el personaje esta en las nuevas coordenadas
+                System.out.println("Enemigo tocado.");
+                System.exit(1);
+            }
+            setChanged();
+            notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
+            super.setX(nuevaX);
+            super.setY(nuevaY);
+            t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
+
+            pintarEnemigo(nuevaY, nuevaX);
+
+        }
+    }
+
+    protected abstract void pintarEnemigo(int nuevaY, int nuevaX);
 }

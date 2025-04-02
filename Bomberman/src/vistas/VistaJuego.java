@@ -65,6 +65,12 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (numeroEntrada == 2) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/baloon1.png")));
 		}
+		else if (numeroEntrada == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+		}
+		else if (numeroEntrada == 4) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss3.png")));
+		}
 		else if (numeroEntrada == 5) {						//Bloque duro
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
@@ -111,6 +117,14 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 11) {
 			System.out.println("movimientoenemigo");
 			this.moverEnemigoClassic(array);
+		}
+		else if (quienLlama == 12) {
+			System.out.println("movimientoenemigo");
+			this.moverEnemigoSoft(array);
+		}
+		else if (quienLlama == 13) {
+			System.out.println("movimientoenemigo");
+			this.moverEnemigoEmpty(array);
 		}
 		else if (quienLlama == 15) {
 			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this);
@@ -244,6 +258,18 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/baloon1.png")));
+	}
+
+	private void moverEnemigoSoft(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss2.png")));
+	}
+
+	private void moverEnemigoEmpty(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss3.png")));
 	}
 
 
