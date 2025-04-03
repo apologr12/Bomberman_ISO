@@ -143,5 +143,8 @@ public abstract class Tablero extends Observable {
 												//y luego en la posicion antigua se ponga como vacio, en vez de pasarlo como parametro?
 		System.out.println("Moviendo " + nuevaY + " " + nuevaX);
 	}
+	public void changeStrategy(EstrategiaBombas pSB) {
+		this.estrategiaBombas = pSB;
+	}
 
 }

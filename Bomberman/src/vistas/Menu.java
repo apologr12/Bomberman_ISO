@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import modelo.MenuModelo;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 
 @SuppressWarnings("deprecation")
@@ -24,6 +27,7 @@ public class Menu extends JFrame implements Observer {
 	private JPanel panelMenu;
 	private JPanel fondo;
 	private JLabel titulo;
+	private JLabel subTitulo;
 	private JLabel bombermanBlanco;
 	private JLabel bombermanNegro;
 	private JLabel boss2;
@@ -46,6 +50,7 @@ public class Menu extends JFrame implements Observer {
 		panelMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelMenu.setLayout(null);
 		panelMenu.add(getTitulo());
+		panelMenu.add(getSubTitulo());
 		
 		
 		panelMenu.add(getBombermanBlanco());
@@ -55,6 +60,7 @@ public class Menu extends JFrame implements Observer {
 		panelMenu.add(getBoss3());
 		panelMenu.add(getTextoMenu());
 		this.ponerFondo();
+		this.startMultiColorText(); //Cambia el color del texto
 		
 		MenuModelo.getMenu().addObserver(this);
 		this.addKeyListener(ControladorMenu.getControlador());
@@ -83,6 +89,15 @@ public class Menu extends JFrame implements Observer {
 			
 		}
 		return titulo;
+	}
+	private JLabel getSubTitulo() {
+		if (subTitulo == null) {
+			subTitulo = new JLabel("");
+			subTitulo.setBounds(443, 43, 202, 140);
+			this.subTitulo.setIcon(new ImageIcon(this.getClass().getResource("imagenes/classic1.png")));
+			
+		}
+		return subTitulo;
 	}
 	private JLabel getBombermanBlanco() {
 		if (bombermanBlanco == null) {
@@ -134,6 +149,22 @@ public class Menu extends JFrame implements Observer {
 		}
 		return textoMenu;
 	}
+	private void startMultiColorText() { //Solo cambia el color del texto
+	    Timer timer = new Timer();
+	    Color[] colors = {Color.RED, Color.BLUE, Color.BLACK};
+	    final int[] index = {0}; // Usamos un array para modificar la variable dentro del Timer
+
+	    timer.scheduleAtFixedRate(new TimerTask() {
+	        @Override
+	        public void run() {
+	            SwingUtilities.invokeLater(() -> {
+	                textoMenu.setForeground(colors[index[0]]);
+	                index[0] = (index[0] + 1) % colors.length; // Cicla entre los colores
+	            });
+	        }
+	    }, 0, 500); // Cambia de color cada 500ms
+	}
+
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -191,17 +222,17 @@ public class Menu extends JFrame implements Observer {
 			System.out.println("1");
 			this.pFondo = "imagenes/fondos/stageBack1.png";
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
-			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
+			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/classic1.png"))); //cambio de titulo indicando el tablero
 		} else if (tablero == 2) {
 			System.out.println("2");
 			this.pFondo = "imagenes/fondos/stageBack3.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
-			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
+			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/soft1.png"))); //cambio de titulo indicando el tablero
 		}else if (tablero == 3) {
 			System.out.println("3");
 			this.pFondo = "imagenes/fondos/stageBack2.png"; //En orden del enunciado de egela
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
-			this.getTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/title.png"))); //cambio de titulo indicando el tablero
+			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/empty1.png"))); //cambio de titulo indicando el tablero
 		}
 		this.repaint();
 	}
