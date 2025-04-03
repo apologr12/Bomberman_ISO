@@ -91,7 +91,7 @@ public abstract class BloqueEnemigo extends Bloque {
         if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
-            if (GestorPersonajes.getGestorPersonajes().getPersonaje().choqueEnemigo(nuevaY, nuevaX)) { //Revisar si el personaje esta en las nuevas coordenadas
+            if (GestorPersonajes.getGestorPersonajes().getPersonaje().choque(nuevaY, nuevaX)) { //Revisar si el personaje esta en las nuevas coordenadas
                 System.out.println("Enemigo tocado.");
                 System.exit(1);
             }

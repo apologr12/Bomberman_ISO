@@ -306,14 +306,13 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void mostrarExplosion(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
-//		int bomba = (int) array[3];
-//		
-//		if(bomba == 1) {
-//			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
-//		} else if(bomba == 2) {
-//			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb2.png")));
-//		}
+		int bomba = (int) array[3];
+		
+		if(bomba == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
+		} else if(bomba == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast3.gif")));
+		}
 	} 
 	
 	private void ponerBombaPersonaje(Object[] array) {
@@ -324,7 +323,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		if(personaje == 1) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitewithbomb1.png")));
 		} else if(personaje == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackwithbomb1.png")));
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackwithbomb2.png")));
 		}
 	}
 	
@@ -335,7 +334,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		
 		if(bomba == 1) {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb1.png")));
-		} else if(bomba == 2) {
+		} else {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/bomb2.png")));
 		}
 	}

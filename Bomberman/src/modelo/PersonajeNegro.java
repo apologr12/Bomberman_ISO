@@ -41,7 +41,10 @@ public class PersonajeNegro extends Personaje {
 
 	@Override
 	public void explosionBomba(int pY, int pX) {
-		// TODO Auto-generated method stub
-		
+		super.sumarBomba();	
+		if (super.coincideX(pX) && super.coincideY(pY)) { //Esto hay que revisarlo ya que de momento el que revisa si el personaje coincide con la explosion es la estrategia
+			System.exit(1);
+		}
+		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
 	}
 }

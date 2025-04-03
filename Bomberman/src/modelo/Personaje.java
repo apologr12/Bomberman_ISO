@@ -36,7 +36,7 @@ public abstract class Personaje extends Observable {
 	
 	public abstract void explosionBomba(int pY, int pX); //Este metodo se llama desde el BloqueBombaSimple o Ultra y es para indicarle al personaje que ha explotado
 	
-	public boolean choqueEnemigo(int pY, int pX) { //Este metodo se llama desde el enemigo, revisa si el personaje esta en la posicion a donde el enemigo se va a mover,
+	public boolean choque(int pY, int pX) { //Este metodo revisa si el personaje esta en la posicion a donde el enemigo se va a mover o si coincide con una explosion,
 		if (this.coincideX(pX) && this.coincideY(pY)) {   // y si esta ahi, lo mata
 			return true;
 		}
@@ -45,6 +45,7 @@ public abstract class Personaje extends Observable {
 		}
 		
 	} 
+	
 	
 	public void movimientoL() {
 		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y, x-1)) {
@@ -144,4 +145,5 @@ public abstract class Personaje extends Observable {
 	protected void restarBomba() {
 		this.numBombas--;
 	}
+	
 }

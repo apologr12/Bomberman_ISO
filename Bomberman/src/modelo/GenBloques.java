@@ -23,6 +23,10 @@ public class GenBloques {
 			BloqueBombaSimple nuevo=new BloqueBombaSimple(pY,pX);
 			return nuevo;
 		}
+		else if (pTipo.equals("BombaUltra")) {
+			BloqueBombaUltra nuevo=new BloqueBombaUltra(pY,pX);
+			return nuevo;
+		}
 		else if (pTipo.equals("Explosion")) {
 			BloqueExplosion nuevo=new BloqueExplosion(pY,pX);
 			return nuevo;
