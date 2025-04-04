@@ -53,7 +53,14 @@ public class TableroSoft extends Tablero {
 		super.iniciarTimersEnemigos(); //TODO Hay que meter los enemigos
 	}
 
-
+	@Override
+	public boolean comprobarFila(int pX, int bombaY, int bombaX) { //Comprueba si el personaje esta en el rango de la BombaUltra estando en la misma fila
+		return true; //Como no hay BloqueDuros la explosion siempre alcanza el Personaje
+	}
 	
+	@Override
+	public boolean comprobarColumna(int pY, int bombaY, int bombaX) { //Comprueba si el personaje esta en el rango de la BombaUltra estando en la misma columna
+		return true; //Como no hay BloqueDuros la explosion siempre alcanza el Personaje
+	}
 
 }

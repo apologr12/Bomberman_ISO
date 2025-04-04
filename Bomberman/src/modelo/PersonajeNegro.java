@@ -42,8 +42,18 @@ public class PersonajeNegro extends Personaje {
 	@Override
 	public void explosionBomba(int pY, int pX) {
 		super.sumarBomba();	
-		if (super.coincideX(pX) && super.coincideY(pY)) { //Esto hay que revisarlo ya que de momento el que revisa si el personaje coincide con la explosion es la estrategia
+		if (super.coincideX(pX) && super.coincideY(pY)) { //Si el personaje esta sobre la bomba
 			System.exit(1);
+		}
+		else if (super.coincideX(pX)) { //Si esta en la misma columna pero no en la misma fila que la bomba
+			if (GestorTableros.getGestorTableros().getTablero().comprobarColumna(super.getY(), pY, pX)) { //Comprobar si la explosion llega hasta el personaje en la columna
+				System.exit(1);
+			}
+		}
+		else if (super.coincideY(pY)) { //Si esta en la misma fila pero no en la misma columna
+			if (GestorTableros.getGestorTableros().getTablero().comprobarFila(super.getX(), pY, pX)) { //Comprobar si la explosion llega hasta el personaje en la fila
+				System.exit(1);
+			}
 		}
 		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
 	}

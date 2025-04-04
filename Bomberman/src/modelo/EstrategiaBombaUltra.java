@@ -31,42 +31,30 @@ public class EstrategiaBombaUltra extends EstrategiaBombas {
 	}
 
 	@Override
-	public void compExplosion(int pY, int pX, Bloque[][] tablero) {
+	public void compExplosion(int pY, int pX, Bloque[][] tablero) { //Explota las celdas alcanzadas por la explosion de la BombaUltra
 		explotarCelda(pY, pX, tablero);
 		
 		int actX=pX+1;
 		while (actX <= 16 && tablero[pY][actX].esDestructible()) {
         	explotarCelda(pY, actX, tablero);
-        	if(GestorPersonajes.getGestorPersonajes().getPersonaje().choque(pY, actX)) { //Revisar si esta el personaje
-        		System.exit(1); //Ahora mismo si no se le llama desde aqui no se como hacer que el personaje sepa si coincide con la explosion
-        	}
         	actX++;
         }
 		
 		actX=pX-1;
         while (actX >= 0 && tablero[pY][actX].esDestructible()) {
         	explotarCelda(pY, actX, tablero);
-        	if(GestorPersonajes.getGestorPersonajes().getPersonaje().choque(pY, actX)) { //Revisar si esta el personaje
-        		System.exit(1); //Ahora mismo si no se le llama desde aqui no se como hacer que el personaje sepa si coincide con la explosion
-        	}
         	actX--;
        	}
         
         int actY=pY+1;
         while (actY <= 10 && tablero[actY][pX].esDestructible()) {
         	explotarCelda(actY, pX, tablero);
-        	if(GestorPersonajes.getGestorPersonajes().getPersonaje().choque(actY, pX)) { //Revisar si esta el personaje
-        		System.exit(1); //Ahora mismo si no se le llama desde aqui no se como hacer que el personaje sepa si coincide con la explosion
-        	}
         	actY++;
         }
         
         actY=pY-1;
         while (actY >= 0 && tablero[actY][pX].esDestructible()) {
         	explotarCelda(actY,  pX, tablero);
-        	if(GestorPersonajes.getGestorPersonajes().getPersonaje().choque(actY, pX)) { //Revisar si esta el personaje
-        		System.exit(1); //Ahora mismo si no se le llama desde aqui no se como hacer que el personaje sepa si coincide con la explosion
-        	}
         	actY--;
         }
 	}

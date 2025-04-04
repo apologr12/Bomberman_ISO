@@ -85,6 +85,11 @@ public abstract class Tablero extends Observable {
 	    // comprobar si en la matriz hay un BloqueBomba
 	    return (this.tablero[fila][col].eresBomba());
 	}
+	
+	protected boolean puedeExplotarse(int fila, int col) {
+	    // comprobar si en la matriz hay un Bloque explotable
+	    return (this.tablero[fila][col].esDestructible());
+	}
 
 	protected void compExplosion(int pY, int pX) {
 			this.estrategiaBombas.compExplosion(pY, pX, tablero);
@@ -146,5 +151,8 @@ public abstract class Tablero extends Observable {
 	public void changeStrategy(EstrategiaBombas pSB) {
 		this.estrategiaBombas = pSB;
 	}
+	
+	public abstract boolean comprobarFila(int pX, int bombaY, int bombaX);
+	public abstract boolean comprobarColumna(int pY, int bombaY, int bombaX);
 
 }

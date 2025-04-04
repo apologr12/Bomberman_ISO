@@ -60,6 +60,44 @@ public class TableroClasico extends Tablero {
 		super.iniciarTimersEnemigos();
 	}
 	
+	@Override
+	public boolean comprobarFila(int pX, int bombaY, int bombaX) { //Comprueba si el personaje esta en el rango de la BombaUltra estando en la misma fila
+		boolean explotado=true;
+		if (pX>bombaX) {
+			int actX=bombaX+1;
+			while(pX>actX && actX<=16 && explotado) { //La explosion tiene que llegar del BloqueBomba al Personaje
+				explotado=super.puedeExplotarse(bombaY, actX); //Si no hay BloqueDuro la explosion puede progresar
+				actX++;
+			}
+		}
+		else if(pX<bombaX){
+			int actX=bombaX-1;
+			while(pX<actX && actX>=0 && explotado) { //La explosion tiene que llegar del BloqueBomba al Personaje
+				explotado=super.puedeExplotarse(bombaY, actX); //Si no hay BloqueDuro la explosion puede progresar
+				actX--;
+			}
+		}
+		return explotado;
+	}
 	
+	@Override
+	public boolean comprobarColumna(int pY, int bombaY, int bombaX) { //Comprueba si el personaje esta en el rango de la BombaUltra estando en la misma columna
+		boolean explotado=true;
+		if (pY>bombaY) {
+			int actY=bombaY+1;
+			while(pY>actY && actY<=10 && explotado) { //La explosion tiene que llegar del BloqueBomba al Personaje
+				explotado=super.puedeExplotarse(actY, bombaX); //Si no hay BloqueDuro la explosion puede progresar
+				actY++;
+			}
+		}
+		else if(pY<bombaY){
+			int actY=bombaY-1;
+			while(pY<actY && actY>=0 && explotado) { //La explosion tiene que llegar del BloqueBomba al Personaje
+				explotado=super.puedeExplotarse(actY, bombaX); //Si no hay BloqueDuro la explosion puede progresar
+				actY--;
+			}
+		}
+		return explotado;
+	}
 
 }
