@@ -42,19 +42,38 @@ public class PersonajeNegro extends Personaje {
 	@Override
 	public void explosionBomba(int pY, int pX) {
 		super.sumarBomba();	
+		boolean heMuerto = false;
 		if (super.coincideX(pX) && super.coincideY(pY)) { //Si el personaje esta sobre la bomba
-			System.exit(1);
+			heMuerto = true;
 		}
 		else if (super.coincideX(pX)) { //Si esta en la misma columna pero no en la misma fila que la bomba
 			if (GestorTableros.getGestorTableros().getTablero().comprobarColumna(super.getY(), pY, pX)) { //Comprobar si la explosion llega hasta el personaje en la columna
-				System.exit(1);
+				heMuerto = true;
 			}
 		}
 		else if (super.coincideY(pY)) { //Si esta en la misma fila pero no en la misma columna
 			if (GestorTableros.getGestorTableros().getTablero().comprobarFila(super.getX(), pY, pX)) { //Comprobar si la explosion llega hasta el personaje en la fila
-				System.exit(1);
+				heMuerto = true;
 			}
 		}
 		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
+		
+		if (heMuerto) {
+			this.meHeMuerto(2);
+		}
+	}
+
+	@Override
+	protected void meHeMuerto(int motivo) { //Si le llega como parametro 1 quiere decir que se ha muerto por enemigo, si le llega un 2, por bomba
+		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
+		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
+		setChanged();
+		notifyObservers(new Object[] {16, getX(), getY(), 2, motivo}); //Notificamos a la vista que hemos muerto
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.exit(1);
 	}
 }

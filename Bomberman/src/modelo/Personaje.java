@@ -48,7 +48,8 @@ public abstract class Personaje extends Observable {
 	
 	
 	public void movimientoL() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y, x-1)) {
+		int puedoMoverme;
+		if ((puedoMoverme = GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y, x-1)) == 1) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} 
@@ -59,10 +60,17 @@ public abstract class Personaje extends Observable {
 			mostrarPersonajeLeft();
 			System.out.println("Izquierda");
 		}
+		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
+			dejarDeMostrarPersonaje();
+			x--;
+			mostrarPersonajeLeft();
+			this.meHeMuerto(1);
+		}
 	}
 	
 	public void movimientoR() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y, x+1)) {
+		int puedoMoverme;
+		if ((puedoMoverme = GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y, x+1)) == 1) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
@@ -73,11 +81,17 @@ public abstract class Personaje extends Observable {
 			mostrarPersonajeRight();
 			System.out.println("Derecha");
 		}
+		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
+			dejarDeMostrarPersonaje();
+			x++;
+			mostrarPersonajeRight();
+			this.meHeMuerto(1);
+		}
 	}
 	
 	public void movimientoU() {
-		
-		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y-1, x)) {
+		int puedoMoverme;
+		if ((puedoMoverme = GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y-1, x)) == 1) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			}
@@ -88,10 +102,17 @@ public abstract class Personaje extends Observable {
 			mostrarPersonajeUp();							//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
 			System.out.println("Arriba");
 		}
+		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
+			dejarDeMostrarPersonaje();
+			y--;											//para que luego se pinte la nueva.
+			mostrarPersonajeUp();
+			this.meHeMuerto(1);
+		}
 	}
 	
 	public void movimientoD() {
-		if (GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y+1, x)) {
+		int puedoMoverme;
+		if ((puedoMoverme = GestorTableros.getGestorTableros().getTablero().puedoMovermeP(y+1, x)) == 1) {
 			if (!GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
 				dejarDeMostrarPersonaje();
 			} else if(GestorTableros.getGestorTableros().getTablero().hayBombaEn(y, x)) {
@@ -101,7 +122,15 @@ public abstract class Personaje extends Observable {
 			mostrarPersonaje();
 			System.out.println("Abajo");
 		}
+		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
+			dejarDeMostrarPersonaje();
+			y++;
+			mostrarPersonaje();
+			this.meHeMuerto(1);
+		}
 	}
+	
+	protected abstract void meHeMuerto(int motivo);
 	
 	protected int getX() {
 		return this.x;

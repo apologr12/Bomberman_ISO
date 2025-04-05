@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("deprecation")
 public abstract class BloqueEnemigo extends Bloque {
 
     private Timer timer;
@@ -86,14 +87,14 @@ public abstract class BloqueEnemigo extends Bloque {
         return true;
     }
 
-    private void movimientoGeneral(int nuevaY, int nuevaX) {
+	private void movimientoGeneral(int nuevaY, int nuevaX) {
+		boolean heMatado = false;
         Tablero t = GestorTableros.getGestorTableros().getTablero();
         if (t.puedoMovermeE(nuevaY, nuevaX)) {
             int antiguaY = super.getY();
             int antiguaX = super.getX();
             if (GestorPersonajes.getGestorPersonajes().getPersonaje().choque(nuevaY, nuevaX)) { //Revisar si el personaje esta en las nuevas coordenadas
-                System.out.println("Enemigo tocado.");
-                System.exit(1);
+                heMatado = true;
             }
             setChanged();
             notifyObservers(new Object[]{4, antiguaX, antiguaY}); //Despintar enemigo en posicion antigua
@@ -102,6 +103,12 @@ public abstract class BloqueEnemigo extends Bloque {
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
             pintarEnemigo(nuevaY, nuevaX);
+            
+            if (heMatado) {
+            	System.out.println("Enemigo tocado.");
+                GestorPersonajes.getGestorPersonajes().getPersonaje().meHeMuerto(1); //Se le indica al personaje que se ha muerto porque lo ha matado un enemigo
+            }
+            
 
         }
     }

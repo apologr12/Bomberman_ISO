@@ -26,6 +26,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	    this.addKeyListener(ControladorJuego.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel
 		GestorTableros.getGestorTableros().getTablero().addObserver(this);
 		GestorPersonajes.getGestorPersonajes().getPersonaje().addObserver(this);
+		setResizable(false);
 	}
 	
 	protected JLabel[][] getLabels() {
@@ -367,15 +368,27 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/pass2.png")));
 	}
 	private void jugadorMuerto(Object[] array) {
+		this.removeKeyListener(ControladorJuego.getControlador()); //Eliminamos al jugador la posibilidad de moverse (no rompe MVC, no?)
 		int y = (int) array[2];
 		int x = (int) array[1];
 		int personaje = (int) array[3];
+		int motivo = (int) array[4]; //Motivo por el que se muere el personaje
 		
-		if(personaje == 1) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png")));
-		} else if(personaje == 2) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/onFire4.png")));
+		if (motivo == 2) { //Se ha muerto por explosion de bomba
+			if (personaje == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png")));
+			} else if (personaje == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/onFire4.png")));
+			}
 		}
+		else if (motivo == 1) { //Se ha muerto por enemigo
+			if (personaje == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitehappy1.png")));
+			} else if (personaje == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackhappy1.png")));
+			}
+		}
+		
 	}
 
 

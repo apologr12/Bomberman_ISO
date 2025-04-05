@@ -31,7 +31,7 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	protected boolean puedoMovermeP(int y, int x) {
+	protected int puedoMovermeP(int y, int x) {
 
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
 			if (this.tablero[y][x].eresExplosion()||this.tablero[y][x].esEnemigo()) { //Intento de futura muerte
@@ -48,18 +48,17 @@ public abstract class Tablero extends Observable {
 //		            }
 //		            System.exit(1); // Luego cierra el programa
 //		        });
-				System.exit(1);
-				return false;
+				return -1; //Devuelve -1 si se ha muerto
 			}
 			else if (this.tablero[y][x].puedoMoverme()) {
-				return true;
+				return 1; //Devuelve 1 si puede moverse
 			}
 			else { 																//Bloque solido no se puede traspasar
-				return false;
+				return 0; //Devuelve 0 si no puede moverse
 			}
 		}
 		else {
-			return false;
+			return 0;
 		}
 	}
 	
@@ -117,8 +116,17 @@ public abstract class Tablero extends Observable {
 			for (int j = 0; j < this.tablero[0].length; j++) {
 				Bloque bloque = this.tablero[i][j];
 				if (bloque != null && bloque.esEnemigo()) { //Si es enemigo entonces se enciende su timer con "iniciarMovimiento" para que empiecen a moverse
-					
 					((BloqueEnemigo) bloque).iniciarMovimiento();
+				}
+			}
+		}
+	}
+	public void detenerTimersEnemigosYExplosiones() {
+		for (int i = 0; i < this.tablero.length; i++) {
+			for (int j = 0; j < this.tablero[0].length; j++) {
+				Bloque bloque = this.tablero[i][j];
+				if (bloque != null && (bloque.esEnemigo() || bloque.eresExplosion())) {
+					bloque.pararTimer();
 				}
 			}
 		}

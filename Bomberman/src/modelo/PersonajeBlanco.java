@@ -8,27 +8,31 @@ public class PersonajeBlanco extends Personaje {
 	}
 	
 	public void explosionBomba(int pY, int pX) {
+		boolean heMuerto = false;
 		super.sumarBomba();
 		if (super.coincideX(pX) && super.coincideY(pY)) {
-			System.exit(1);
+			heMuerto = true;
 		}
 		else {
 			if (super.coincideX(pX + 1) && super.coincideY(pY)) {
-				System.exit(1);
+				heMuerto = true;
 			}
 			else if (super.coincideX(pX - 1) && super.coincideY(pY)) {
-				System.exit(1);
+				heMuerto = true;
 			}
 			else if (super.coincideX(pX) && super.coincideY(pY + 1)) {
-				System.exit(1);														//Los SYSTEM.EXIT() son temporales hasta hacer la pantalla de muerte
+				heMuerto = true;
 			}
 			else if (super.coincideX(pX) && super.coincideY(pY - 1)) {
-				System.exit(1);
+				heMuerto = true;
 			}
 		}
 
-		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
+		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX); //Si no se ha muerto se tienen que eliminar todos los bloques que destruya la bomba
 		
+		if (heMuerto) {
+			this.meHeMuerto(2);
+		}
 	}
 	
 	
@@ -64,4 +68,17 @@ public class PersonajeBlanco extends Personaje {
 		notifyObservers(new Object[] {10, getX(), getY(), 1});	
 	}
 
+	@Override
+	protected void meHeMuerto(int motivo) { //Si le llega como parametro 1 quiere decir que se ha muerto por enemigo, si le llega un 2, por bomba
+		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
+		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
+		setChanged();
+		notifyObservers(new Object[] {16, getX(), getY(), 1, motivo});
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.exit(1);
+	}
 }

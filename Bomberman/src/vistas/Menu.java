@@ -64,6 +64,7 @@ public class Menu extends JFrame implements Observer {
 		
 		MenuModelo.getMenu().addObserver(this);
 		this.addKeyListener(ControladorMenu.getControlador());
+		setResizable(false);
 		
 	}
 	
