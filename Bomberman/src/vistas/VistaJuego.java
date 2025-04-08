@@ -374,14 +374,15 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int personaje = (int) array[3];
 		int motivo = (int) array[4]; //Motivo por el que se muere el personaje
 		
-		if (motivo == 2) { //Se ha muerto por explosion de bomba
+		System.out.println(motivo); //Debugging
+		if (motivo == 1) { //Se ha muerto por explosion de bomba
 			if (personaje == 1) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png")));
 			} else if (personaje == 2) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/onFire4.png")));
 			}
 		}
-		else if (motivo == 1) { //Se ha muerto por enemigo
+		else if (motivo == 2) { //Se ha muerto por enemigo
 			if (personaje == 1) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitehappy1.png")));
 			} else if (personaje == 2) {

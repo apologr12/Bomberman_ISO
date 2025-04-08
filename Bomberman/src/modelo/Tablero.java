@@ -34,21 +34,11 @@ public abstract class Tablero extends Observable {
 	protected int puedoMovermeP(int y, int x) {
 
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
-			if (this.tablero[y][x].eresExplosion()||this.tablero[y][x].esEnemigo()) { //Intento de futura muerte
-				
-//				GestorPersonajes.getGestorPersonajes().getPersonaje().dejarDeMostrarPersonaje();
-//				setChanged();
-//				notifyObservers(new Object[] {16, x, y, 1});	
-//		        // Asegura que la interfaz gráfica se actualiza antes de congelarla
-//		        SwingUtilities.invokeLater(() -> {
-//		            try {
-//		                Thread.sleep(4000); // Espera 1 segundo después de la actualización
-//		            } catch (InterruptedException e) {
-//		                e.printStackTrace();
-//		            }
-//		            System.exit(1); // Luego cierra el programa
-//		        });
-				return -1; //Devuelve -1 si se ha muerto
+			if (this.tablero[y][x].eresExplosion()) {
+				return -1; //Devuelve -1 si se ha muerto porque ha tocado una explosion
+			}
+			else if (this.tablero[y][x].esEnemigo()) {
+				return -2; //Devuelve -2 si se ha muerto porque ha tocado un enemigo
 			}
 			else if (this.tablero[y][x].puedoMoverme()) {
 				return 1; //Devuelve 1 si puede moverse

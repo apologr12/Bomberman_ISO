@@ -66,6 +66,12 @@ public abstract class Personaje extends Observable {
 			mostrarPersonajeLeft();
 			this.meHeMuerto(1);
 		}
+		else if (puedoMoverme == -2) { //Si le ha devuelto -2 es que se ha muerto por tocar un enemigo
+			dejarDeMostrarPersonaje();
+			x--;
+			mostrarPersonaje();
+			this.meHeMuerto(2);
+		}
 	}
 	
 	public void movimientoR() {
@@ -86,6 +92,12 @@ public abstract class Personaje extends Observable {
 			x++;
 			mostrarPersonajeRight();
 			this.meHeMuerto(1);
+		}
+		else if (puedoMoverme == -2) { //Si le ha devuelto -2 es que se ha muerto por tocar un enemigo
+			dejarDeMostrarPersonaje();
+			x++;
+			mostrarPersonaje();
+			this.meHeMuerto(2);
 		}
 	}
 	
@@ -108,6 +120,12 @@ public abstract class Personaje extends Observable {
 			mostrarPersonajeUp();
 			this.meHeMuerto(1);
 		}
+		else if (puedoMoverme == -2) { //Si le ha devuelto -2 es que se ha muerto por tocar un enemigo
+			dejarDeMostrarPersonaje();
+			y--;
+			mostrarPersonaje();
+			this.meHeMuerto(2);
+		}
 	}
 	
 	public void movimientoD() {
@@ -122,11 +140,17 @@ public abstract class Personaje extends Observable {
 			mostrarPersonaje();
 			System.out.println("Abajo");
 		}
-		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
+		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto por tocar una explosion
 			dejarDeMostrarPersonaje();
 			y++;
 			mostrarPersonaje();
 			this.meHeMuerto(1);
+		}
+		else if (puedoMoverme == -2) { //Si le ha devuelto -2 es que se ha muerto por tocar un enemigo
+			dejarDeMostrarPersonaje();
+			y++;
+			mostrarPersonaje();
+			this.meHeMuerto(2);
 		}
 	}
 	

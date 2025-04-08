@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @SuppressWarnings("deprecation")
 public class PersonajeBlanco extends Personaje {
 	
@@ -73,12 +76,17 @@ public class PersonajeBlanco extends Personaje {
 		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
 		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
 		setChanged();
-		notifyObservers(new Object[] {16, getX(), getY(), 1, motivo});
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.exit(1);
+		notifyObservers(new Object[] {16, getX(), getY(), 1, motivo}); //El 1 indica que es el personaje 1
+		
+		
+		TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.slee() porque nos daba problemas
+			@Override
+			public void run() {
+				System.exit(1);
+			}		
+		};
+		
+		Timer timer = new Timer(); 
+		timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 	}
 }

@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @SuppressWarnings("deprecation")
 public class PersonajeNegro extends Personaje {
 
@@ -69,11 +72,14 @@ public class PersonajeNegro extends Personaje {
 		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
 		setChanged();
 		notifyObservers(new Object[] {16, getX(), getY(), 2, motivo}); //Notificamos a la vista que hemos muerto
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.exit(1);
+		TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.slee() porque nos daba problemas
+			@Override
+			public void run() {
+				System.exit(1);
+			}		
+		};
+		
+		Timer timer = new Timer(); 
+		timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 	}
 }
