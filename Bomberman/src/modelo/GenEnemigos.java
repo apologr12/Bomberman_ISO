@@ -10,7 +10,7 @@ public class GenEnemigos {
         return miGenEnemigos;
     }
 
-    public Bloque generar(String tipo, int y, int x) {
+    public BloqueEnemigo generar(String tipo, int y, int x) {
         if (tipo.equals("EnemigoClassic")) {
             return new EnemigoClassic(y, x);
         }
