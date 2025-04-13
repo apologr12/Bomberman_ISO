@@ -34,7 +34,7 @@ public class PersonajeBlanco extends Personaje {
 		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX); //Si no se ha muerto se tienen que eliminar todos los bloques que destruya la bomba
 		
 		if (heMuerto) {
-			this.meHeMuerto(2);
+			this.meHeMuerto(1);
 		}
 	}
 	

@@ -106,7 +106,7 @@ public abstract class BloqueEnemigo extends Bloque {
             
             if (heMatado) {
             	System.out.println("Enemigo tocado.");
-                GestorPersonajes.getGestorPersonajes().getPersonaje().meHeMuerto(1); //Se le indica al personaje que se ha muerto porque lo ha matado un enemigo
+                GestorPersonajes.getGestorPersonajes().getPersonaje().meHeMuerto(2); //Se le indica al personaje que se ha muerto porque lo ha matado un enemigo
             }
             
 
