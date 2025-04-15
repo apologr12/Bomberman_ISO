@@ -6,8 +6,8 @@ import java.util.TimerTask;
 @SuppressWarnings("deprecation")
 public class PersonajeBlanco extends Personaje {
 	
-	public PersonajeBlanco() {
-		super(0, 0, 10);
+	public PersonajeBlanco(int mapaSelect) {
+		super(mapaSelect, 10);
 	}
 	
 	public void explosionBomba(int pY, int pX) {

@@ -32,7 +32,10 @@ public class GestorTableros {
 		else if(pTipoTablero == 3) {
 			this.tablero=new TableroEmpty(pTipoPersonaje);
 		}
-		else{
+		else if (pTipoTablero == 4){
+			this.tablero=new TableroArena(pTipoPersonaje);
+		}
+		else {
 			System.out.println("No hay mas tableros");
 		}
 		return this.tablero;

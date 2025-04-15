@@ -213,6 +213,11 @@ public class Menu extends JFrame implements Observer {
 			frame.setVisible(true);
 			this.setVisible(false);
 		}
+		else if (tablero == 4) {
+			Arena frame = new Arena();
+			frame.setVisible(true);
+			this.setVisible(false);
+		}
 		
 
 	}
@@ -232,6 +237,12 @@ public class Menu extends JFrame implements Observer {
 		}else if (tablero == 3) {
 			System.out.println("3");
 			this.pFondo = "imagenes/fondos/stageBack2.png"; //En orden del enunciado de egela
+			fondo.repaint(); // Redibujar el panel con la nueva imagen
+			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/empty1.png"))); //cambio de titulo indicando el tablero
+		}
+		else if (tablero == 4) {
+			System.out.println("4");
+			this.pFondo = "imagenes/fondos/arenaBack.png";
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
 			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/empty1.png"))); //cambio de titulo indicando el tablero
 		}

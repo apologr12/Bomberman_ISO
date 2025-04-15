@@ -15,13 +15,12 @@ public class GestorPersonajes {
 		return this.bomberman;
 	}
 	
-	public void crearInstanciaPersonaje(int num) {
-		if (num == 1) {
-			this.bomberman = new PersonajeBlanco();  //El personaje se crea aqui temporalmente, es decir, esto en el futuro se quitara
-														//y la creacion del personaje se hara con un metodo cuando detecte el boton que ha seleccionado al personaje
+	public void crearInstanciaPersonaje(int mapaSelect, int personajeSelect) {
+		if (personajeSelect == 1) {
+			this.bomberman = new PersonajeBlanco(mapaSelect);
 		}
 		else { //Si no es 1, por ahora solo puede ser 2
-			this.bomberman = new PersonajeNegro();
+			this.bomberman = new PersonajeNegro(mapaSelect);
 		}
 		
 													  

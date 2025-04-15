@@ -7,9 +7,15 @@ public abstract class Personaje extends Observable {
 	private int x, y;
 	private int numBombas;
 	
-	protected Personaje(int pY, int pX, int pBombas) {
-		this.x = pX;
-		this.y = pY;
+	protected Personaje(int mapaSelect, int pBombas) {
+		if (mapaSelect == 4) { //Se ha elegido el mapa
+			this.x = 1;
+			this.y = 5;
+		}
+		else {
+			this.x = 0;
+			this.y = 0;	
+		}
 		this.numBombas = pBombas;
 	}
 	

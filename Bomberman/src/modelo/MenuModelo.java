@@ -8,7 +8,7 @@ public class MenuModelo extends Observable {
 	private static MenuModelo miMenu = new MenuModelo();
 	private int tipoPersonajeSelec = 1;
 	private static final int maxPersonajes = 2;
-	private static final int maxTableros = 3;
+	private static final int maxTableros = 4;
 	private int tipoMapaSelec = 1;
 	
 	private MenuModelo() {
@@ -71,7 +71,7 @@ public class MenuModelo extends Observable {
 	public void iniciarJuego() {
 		 //El orden de que primero se cree el personaje, luego se notifique y luego se cree el tablero es importante, por como manejamos la creacion del tablero
 		//y el mostrado del personaje
-		 GestorPersonajes.getGestorPersonajes().crearInstanciaPersonaje(this.tipoPersonajeSelec);
+		 GestorPersonajes.getGestorPersonajes().crearInstanciaPersonaje(this.tipoMapaSelec, this.tipoPersonajeSelec);
 		 GestorTableros.getGestorTableros().crearInstanciaTablero(this.tipoMapaSelec, this.tipoPersonajeSelec);
 		 setChanged();
 		 notifyObservers(new Object[] {2,this.tipoPersonajeSelec,this.tipoMapaSelec});
