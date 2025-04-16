@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,11 +13,17 @@ public abstract class BloqueEnemigo extends Bloque {
     public BloqueEnemigo(int y, int x) {
         super(y, x);
     }
-    public void iniciarMovimiento() { //Inicia el timer de los enemigos a movimiento cada dos segundos
+    public void iniciarMovimiento()  { //Inicia el timer de los enemigos a movimiento cada dos segundos
         TimerTask moverTask = new TimerTask() {
             @Override
-            public void run() {
-                mover();
+            public void run()  {
+                try {
+					mover();
+					System.out.println("Empezando movimiento"); //Debugging
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         };
         Random rand = new Random();
@@ -60,7 +67,7 @@ public abstract class BloqueEnemigo extends Bloque {
         this.movimientoGeneral(nuevaY, nuevaX);
     }
     
-    public void mover() {
+    public void mover()  throws IOException  {
         Random rand = new Random();
         int direccion = rand.nextInt(4); // 0: arriba, 1: abajo, 2: izquierda, 3: derecha
 

@@ -55,7 +55,7 @@ public class TableroEmpty extends Tablero {
 		}
 
 		setChanged();
-		notifyObservers(new Object[] {15}); // Se añade la vista como observer de enemigos/estrategias
+		notifyObservers(new Object[] {15}); // Se anade la vista como observer de enemigos/estrategias
 		super.iniciarTimersEnemigos();
 	}
 	

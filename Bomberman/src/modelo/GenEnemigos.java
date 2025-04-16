@@ -14,11 +14,14 @@ public class GenEnemigos {
         if (tipo.equals("EnemigoClassic")) {
             return new EnemigoClassic(y, x);
         }
-        if (tipo.equals("EnemigoSoft")) {
+        else if (tipo.equals("EnemigoSoft")) {
             return new EnemigoSoft(y, x);
         }
-        if (tipo.equals("EnemigoEmpty")) {
+        else if (tipo.equals("EnemigoEmpty")) {
             return new EnemigoEmpty(y, x);
+        }
+        else if (tipo.equals("EnemigoBoss")) {
+        	return new EnemigoBoss(y, x);
         }
         else {
             return null;

@@ -42,8 +42,13 @@ public class TableroArena extends Tablero {
 			notifyObservers(new Object[] {2, 5, 10, j});
 		}
 		
+		super.ponerEnemigo("EnemigoBoss", 5, 15);
 		setChanged();
-		notifyObservers(new Object[] {15}); // Se añade la vista como observer de enemigos/estrategias
+		notifyObservers(new Object[] {2, 6, 5, 15}); //El 6 indica que es el boss. El 5 y 15 las coordenadas
+		
+		setChanged();
+		notifyObservers(new Object[] {15}); // Se anade la vista como observer de enemigos/estrategias
+		super.iniciarTimersEnemigos();
 	}
 
 	@Override

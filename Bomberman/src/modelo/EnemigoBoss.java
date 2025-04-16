@@ -1,0 +1,43 @@
+package modelo;
+
+import java.io.IOException;
+
+public class EnemigoBoss extends BloqueEnemigo {
+
+	public EnemigoBoss(int pY, int pX) {
+		super(pY, pX);
+	}
+
+	@Override
+	protected void pintarEnemigo(int nuevaY, int nuevaX) {
+		setChanged();
+        notifyObservers(new Object[]{14, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
+		
+	}
+	
+	@Override
+	public void mover() throws IOException {
+		String respuesta = null;
+		int persX = GestorPersonajes.getGestorPersonajes().getPersonaje().getX();
+		int persY = 10 - GestorPersonajes.getGestorPersonajes().getPersonaje().getY(); //Esto se hace para invertir el hecho de que la y= 0 es arriba, y para el prompt
+																						// y=0 es abajo
+	
+		do { //Si a la IA le da por responder otra cosa, pues que se lo vuelva a pedir
+			respuesta = LlamadasIA.getLlamadasIA().movimientoIA(persY, persX, 10 - super.getY(), super.getX()); //Lo mismo que el comentario de arriba
+			System.out.println(respuesta); //Debugging
+		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease"));
+			
+		if (respuesta.equals("x-axis increase")) {
+			super.moverDerecha();
+		}
+		else if (respuesta.equals("x-axis decrease")) {
+			super.moverIzquierda();
+		}
+		else if (respuesta.equals("y-axis increase")) {
+			super.moverArriba();
+		}
+		else if (respuesta.equals("y-axis decrease")) { //Decrementar y para el prompt es como moverse hacia abajo, lo contrario de nuestro sistema de referencia
+			super.moverAbajo();
+		}
+	}
+}

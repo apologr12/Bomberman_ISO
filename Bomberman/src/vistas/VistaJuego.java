@@ -75,6 +75,9 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (numeroEntrada == 5) {						//Bloque duro
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
+		else if (numeroEntrada == 6) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bossRight.png"))); //Esto habra que cambiarlo por el que mira a la izquierda
+		}
 
 	}
 	
@@ -126,6 +129,10 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 13) {
 			System.out.println("movimientoenemigo");
 			this.moverEnemigoEmpty(array);
+		}
+		else if (quienLlama == 14) {
+			System.out.println("movimientoboss");
+			this.moverEnemigoBoss(array);
 		}
 		else if (quienLlama == 15) {
 			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this);
@@ -366,6 +373,12 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/pass2.png")));
+	}
+	
+	private void moverEnemigoBoss(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bossRight.png")));
 	}
 	private void jugadorMuerto(Object[] array) {
 		this.removeKeyListener(ControladorJuego.getControlador()); //Eliminamos al jugador la posibilidad de moverse (no rompe MVC, no?)
