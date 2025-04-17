@@ -1,6 +1,8 @@
 package modelo;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class EnemigoBoss extends BloqueEnemigo {
 
@@ -13,6 +15,24 @@ public class EnemigoBoss extends BloqueEnemigo {
 		setChanged();
         notifyObservers(new Object[]{14, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
 		
+	}
+	
+	@Override
+	public void iniciarMovimiento() {
+		TimerTask moverTask = new TimerTask() {
+            @Override
+            public void run()  {
+                try {
+					mover();
+					System.out.println("Empezando movimiento"); //Debugging
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        };
+        
+        super.setTarea(moverTask, 1000);
 	}
 	
 	@Override

@@ -42,6 +42,11 @@ public abstract class BloqueEnemigo extends Bloque {
     public boolean esDestructible() {
         return true;
     }
+    
+    protected void setTarea(TimerTask moverTask, int tiempo) {
+    	timer = new Timer();
+        timer.scheduleAtFixedRate(moverTask,  0, tiempo);
+    }
 
     public void moverArriba() {
         int nuevaY = super.getY() - 1;

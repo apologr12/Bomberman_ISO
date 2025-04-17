@@ -63,7 +63,7 @@ public class LlamadasIA {
 		}
 		in.close();
 		
-		//System.out.println("Cuerpo de respuesta: " + response.toString()); Debugging
+		//System.out.println("Cuerpo de respuesta: " + response.toString()); //Debugging
 		
 		JSONObject jsonResponse = new JSONObject(response.toString());
 		String responseText = jsonResponse.getString("response");
