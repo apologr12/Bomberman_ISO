@@ -36,7 +36,7 @@ public class LlamadasIA {
 				+ "'y-axis decrease' -> decrease y by 1"
 				+ "Your goal is to get as close as possible to the player, measured by Manhattan distance (shortest Manhattan distance)."
 				+ "Now, based on your current position ("+bossX+", "+bossY+"), what is the correct move?"
-				+ "Only reply with the increase text ('x-axis increase', 'x-axis decrease', 'y-axis increase', or 'y-axis decrease'). ONLY THAT, no other text";
+				+ "Only reply with the increase text ('x-axis increase', 'x-axis decrease', 'y-axis increase', or 'y-axis decrease'). ONLY THAT, no other text, nor single quote nor numbers";
 		
 		URL url = new URL("http://localhost:11434/api/generate");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
