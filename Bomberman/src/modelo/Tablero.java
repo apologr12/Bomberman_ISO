@@ -23,7 +23,7 @@ public abstract class Tablero extends Observable {
 		}
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) {
-		this.tablero[pY][pX] = GenBloques.getGenBloques().generar(pTipo, pY, pX);
+		this.tablero[pY][pX] = GenBloques.getGenBloques().generar(pTipo, pY, pX, "");
 	}
 
 	protected void ponerEnemigo(String pTipo, int pY, int pX) {
@@ -90,7 +90,7 @@ public abstract class Tablero extends Observable {
 	}
 
 	protected void postExplosion(int pY,int pX) {
-		this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX);
+		this.tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX, ""); //El cuarto parametro es solo para el disparo
 
 	    setChanged();
 	    notifyObservers(new Object[] {4, pX, pY});
@@ -99,6 +99,28 @@ public abstract class Tablero extends Observable {
 
 	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
 	    return this.estrategiaBombas.ponerBomba(fila, col, this.tablero);
+	}
+	
+	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien
+																								//puede disparar en esa direccion
+		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {
+			tablero[y-1][x] = GenBloques.getGenBloques().generar("Disparo", y-1, x, orientacion);
+		}
+		else if (orientacion.equals("Abajo") && !tablero[y+1][x].eresDisparo() && tablero[y+1][x].puedoMoverme()) {
+			tablero[y+1][x] = GenBloques.getGenBloques().generar("Disparo", y+1, x, orientacion);
+		}
+		else if (orientacion.equals("Izquierda") && !tablero[y][x-1].eresDisparo() && tablero[y][x-1].puedoMoverme()) {
+			tablero[y][x-1] = GenBloques.getGenBloques().generar("Disparo", y, x-1, orientacion);
+		}
+		else if (orientacion.equals("Derecha") && !tablero[y][x+1].eresDisparo() && tablero[y][x+1].puedoMoverme()) {
+			tablero[y][x+1] = GenBloques.getGenBloques().generar("Disparo", y, x+1, orientacion);
+		}
+		
+		//TODO A partir de aqui esta sin hacer (el metodo tambien esta sin acabar)
+		System.out.println("Disparo"); //Debugging
+		setChanged();
+		notifyObservers(new Object[] { 1, x, y, 1});
+		return true;
 	}
 
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
@@ -141,7 +163,7 @@ public abstract class Tablero extends Observable {
 	}
 	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {
-		this.tablero[antiguaY][antiguaX] = GenBloques.getGenBloques().generar("Vacio", antiguaY, antiguaX);
+		this.tablero[antiguaY][antiguaX] = GenBloques.getGenBloques().generar("Vacio", antiguaY, antiguaX, ""); //El cuarto parametro es solo para el disparo
 		this.tablero[nuevaY][nuevaX] = enemigo; //Este objeto que pasas con this no seria mas adecuado que el propio tablero pase la posicion de un sitio a otro
 												//y luego en la posicion antigua se ponga como vacio, en vez de pasarlo como parametro?
 		System.out.println("Moviendo " + nuevaY + " " + nuevaX);

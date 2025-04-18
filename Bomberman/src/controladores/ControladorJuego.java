@@ -35,6 +35,18 @@ public class ControladorJuego implements KeyListener {
 		else if(keyCode == KeyEvent.VK_X) {
 			GestorPersonajes.getGestorPersonajes().getPersonaje().plantarBomba();
 		}
+		else if (keyCode == KeyEvent.VK_A) {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("izquierda");
+		}
+		else if (keyCode == KeyEvent.VK_W) {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("Arriba");
+		}
+		else if (keyCode == KeyEvent.VK_S) {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("Abajo");
+		}
+		else if (keyCode == KeyEvent.VK_D) {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("Derecha");
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {

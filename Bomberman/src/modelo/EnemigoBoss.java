@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class EnemigoBoss extends BloqueEnemigo {
-
+	
 	public EnemigoBoss(int pY, int pX) {
 		super(pY, pX);
 	}

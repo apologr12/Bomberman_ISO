@@ -180,6 +180,20 @@ public abstract class VistaJuego extends JFrame implements Observer {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdown4.png")));
 			}	
 		}
+		else if (personaje == 3) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedown4.png")));
+			}
+		}
 	}
 	
 	private void moverPersonajeUp(Object[] array) {
@@ -222,6 +236,23 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			else if (numAleat == 5) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackup5.png")));
 			}	
+		}
+		else if (personaje == 3) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup1.png"))); //POR AHORA ESTA EL BLANCO. HAY QUE CAMBIARLO
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteup5.png")));
+			}
 		}
 		
 	}
@@ -266,6 +297,23 @@ public abstract class VistaJuego extends JFrame implements Observer {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackleft5.png")));
 			}	
 		}
+		else if (personaje == 3) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteleft5.png")));
+			}
+		}
 	}
 	private void moverPersonajeRight(Object[] array) {
 		int y = (int) array[2];
@@ -307,6 +355,23 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			else if (numAleat == 5) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackright5.png")));
 			}	
+		}
+		else if (personaje == 3) {
+			if (numAleat == 1) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright1.png")));
+			}
+			else if (numAleat == 2) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright2.png")));
+			}
+			else if (numAleat == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright3.png")));
+			}
+			else if (numAleat == 4) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright4.png")));
+			}
+			else if (numAleat == 5) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whiteright5.png")));
+			}
 		}
 		
 	}
@@ -394,12 +459,18 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			} else if (personaje == 2) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/onFire4.png")));
 			}
+			else if (personaje == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png"))); //HAY QUE CAMBIARLO POR EL SPRITE CORRESPONDIENTE
+			}
 		}
 		else if (motivo == 2) { //Se ha muerto por enemigo
 			if (personaje == 1) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitehappy1.png")));
 			} else if (personaje == 2) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackhappy1.png")));
+			}
+			else if (personaje == 3) {
+				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitehappy1.png")));
 			}
 		}
 		

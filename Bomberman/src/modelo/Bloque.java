@@ -29,6 +29,10 @@ public abstract class Bloque extends Observable {
 		return false;
 	}
 	
+	public boolean eresDisparo() {
+		return false;
+	}
+	
 	public boolean puedoMoverme() {
 		return true;
 	}

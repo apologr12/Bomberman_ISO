@@ -31,6 +31,9 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void mostrarPersonaje();
 	
+	public void disparar(String orientacion) { //Si quisieramos que cada personaje dispare de una forma distintas
+	}
+	
 	public void plantarBomba() {
 	    if (this.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
 	        boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().ponerBomba(this.y, this.x);
