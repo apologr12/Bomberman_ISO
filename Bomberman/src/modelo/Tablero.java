@@ -22,7 +22,7 @@ public abstract class Tablero extends Observable {
 			this.estrategiaBombas = new EstrategiaBombaUltra();
 		}
 	}
-	protected void ponerBloque(String pTipo, int pY, int pX) {
+	protected void ponerBloque(String pTipo, int pY, int pX) { //Solo se usa al generar el tablero
 		this.tablero[pY][pX] = GenBloques.getGenBloques().generar(pTipo, pY, pX, "");
 	}
 
@@ -102,25 +102,71 @@ public abstract class Tablero extends Observable {
 	}
 	
 	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien
-																								//puede disparar en esa direccion
+																				//puede disparar en esa direccion
 		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {
 			tablero[y-1][x] = GenBloques.getGenBloques().generar("Disparo", y-1, x, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x, y-1, 0});
+			return true;
 		}
 		else if (orientacion.equals("Abajo") && !tablero[y+1][x].eresDisparo() && tablero[y+1][x].puedoMoverme()) {
 			tablero[y+1][x] = GenBloques.getGenBloques().generar("Disparo", y+1, x, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x, y+1, 0});
+			return true;
 		}
 		else if (orientacion.equals("Izquierda") && !tablero[y][x-1].eresDisparo() && tablero[y][x-1].puedoMoverme()) {
 			tablero[y][x-1] = GenBloques.getGenBloques().generar("Disparo", y, x-1, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x-1, y, 0});
+			return true;
 		}
 		else if (orientacion.equals("Derecha") && !tablero[y][x+1].eresDisparo() && tablero[y][x+1].puedoMoverme()) {
 			tablero[y][x+1] = GenBloques.getGenBloques().generar("Disparo", y, x+1, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x+1, y, 0});
+			return true;
 		}
-		
-		//TODO A partir de aqui esta sin hacer (el metodo tambien esta sin acabar)
-		System.out.println("Disparo"); //Debugging
+		return false;
+	}
+	
+	public void moverDisparo(int y, int x, String orientacion) {
+		this.ponerBloque("Vacio", y, x); //Quitamos el bloque del disparo de su posicion y ponemos el vacio
 		setChanged();
-		notifyObservers(new Object[] { 1, x, y, 1});
-		return true;
+		notifyObservers(new Object[] {4, x, y, 0}); //Notificamos a la vista de que quite el bloque que habia en las coordenadas (el disparo)
+		
+		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
+			tablero[y-1][x] = GenBloques.getGenBloques().generar("Disparo", y-1, x, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x, y-1, 0});
+		}
+		else if (orientacion.equals("Abajo") && !tablero[y+1][x].eresDisparo() && tablero[y+1][x].puedoMoverme()) {
+			tablero[y+1][x] = GenBloques.getGenBloques().generar("Disparo", y+1, x, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x, y+1, 0});
+		}
+		else if (orientacion.equals("Izquierda") && !tablero[y][x-1].eresDisparo() && tablero[y][x-1].puedoMoverme()) {
+			tablero[y][x-1] = GenBloques.getGenBloques().generar("Disparo", y, x-1, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x-1, y, 0});
+		}
+		else if (orientacion.equals("Derecha") && !tablero[y][x+1].eresDisparo() && tablero[y][x+1].puedoMoverme()) {
+			tablero[y][x+1] = GenBloques.getGenBloques().generar("Disparo", y, x+1, orientacion);
+			System.out.println("Disparo"); //Debugging
+			setChanged();
+			notifyObservers(new Object[] {17, x+1, y, 0});
+		}
+		else {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+		}
+		//Si no se puede mover al sitio correspondiente se le notifica al personaje para que vuelva a tener otro disparo disponible
 	}
 
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado

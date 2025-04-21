@@ -16,11 +16,14 @@ public class GestorPersonajes {
 	}
 	
 	public void crearInstanciaPersonaje(int mapaSelect, int personajeSelect) {
-		if (personajeSelect == 1) {
+		if (personajeSelect == 1) { //Blanco
 			this.bomberman = new PersonajeBlanco(mapaSelect);
 		}
-		else { //Si no es 1, por ahora solo puede ser 2
+		else if (personajeSelect == 2) { //Negro
 			this.bomberman = new PersonajeNegro(mapaSelect);
+		}
+		else { //Si no es ni blanco ni negro por ahora solo puede ser azul
+			this.bomberman = new PersonajeArena(mapaSelect);
 		}
 		
 													  

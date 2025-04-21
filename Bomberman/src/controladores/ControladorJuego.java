@@ -36,7 +36,7 @@ public class ControladorJuego implements KeyListener {
 			GestorPersonajes.getGestorPersonajes().getPersonaje().plantarBomba();
 		}
 		else if (keyCode == KeyEvent.VK_A) {
-			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("izquierda");
+			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("Izquierda");
 		}
 		else if (keyCode == KeyEvent.VK_W) {
 			GestorPersonajes.getGestorPersonajes().getPersonaje().disparar("Arriba");

@@ -96,7 +96,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 3) {
 			this.moverPersonaje(array);
 		}
-		else if (quienLlama == 4) {
+		else if (quienLlama == 4) { //Ahora mismo no se cual de los 2 se usa, por si acaso no quitar ninguno de los 2
 			this.quitarIcono(array);
 			System.out.println("Bien"); //Debugging
 		}
@@ -140,6 +140,9 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		}
 		else if (quienLlama == 16) {
 			this.jugadorMuerto(array);
+		}
+		else if (quienLlama == 17) {
+			this.pintarDisparo(array);
 		}
 
 	}
@@ -474,6 +477,12 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			}
 		}
 		
+	}
+	
+	private void pintarDisparo(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
 	}
 
 

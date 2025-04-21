@@ -17,8 +17,14 @@ public class PersonajeArena extends Personaje {
 	public void disparar(String orientacion) {
 		if (this.disparos > 0) { //Quedan disparos
 			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().disparar(super.getY(), super.getX(), orientacion);
-			
+			if (seHaPodido) {
+				this.disparos--;
+			}
 		}
+	}
+	
+	public void disparoFinalizado() {
+		this.disparos++;
 	}
 	
 	@Override
@@ -56,7 +62,7 @@ public class PersonajeArena extends Personaje {
 
 	@Override
 	public void explosionBomba(int pY, int pX) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub //Como no pone bombas no hace nada
 		
 	}
 
@@ -65,7 +71,7 @@ public class PersonajeArena extends Personaje {
 		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
 		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
 		setChanged();
-		notifyObservers(new Object[] {16, getX(), getY(), 3, motivo}); //El 1 indica que es el personaje 3
+		notifyObservers(new Object[] {16, getX(), getY(), 3, motivo}); //El 3 indica que es el personaje 3
 		
 		
 		TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.slee() porque nos daba problemas

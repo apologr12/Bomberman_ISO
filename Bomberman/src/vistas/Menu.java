@@ -30,11 +30,13 @@ public class Menu extends JFrame implements Observer {
 	private JLabel subTitulo;
 	private JLabel bombermanBlanco;
 	private JLabel bombermanNegro;
+	private JLabel bombermanAzul;
 	private JLabel boss2;
 	private JLabel boss4;
 	private JLabel boss3;
 	private JLabel textoMenu;
 	private String pFondo = "imagenes/fondos/stageBack1.png";
+
 
 	/**
 	 * Create the frame.
@@ -55,6 +57,7 @@ public class Menu extends JFrame implements Observer {
 		
 		panelMenu.add(getBombermanBlanco());
 		panelMenu.add(getBombermanNegro());
+		panelMenu.add(getBombermanAzul());
 		panelMenu.add(getBoss2());
 		panelMenu.add(getBoss4());
 		panelMenu.add(getBoss3());
@@ -117,6 +120,15 @@ public class Menu extends JFrame implements Observer {
 		}
 		return bombermanNegro;
 	}
+	private JLabel getBombermanAzul() {
+		if (bombermanAzul == null) {
+			bombermanAzul = new JLabel("");
+			bombermanAzul.setIcon(new ImageIcon(Menu.class.getResource("/vistas/imagenes/bomber3.png")));
+			bombermanAzul.setBounds(61, 43, 50, 106);
+			this.bombermanAzul.enable(false);
+		}
+		return bombermanAzul;
+	}
 	private JLabel getBoss2() {
 		if (boss2 == null) {
 			boss2 = new JLabel("");
@@ -143,10 +155,10 @@ public class Menu extends JFrame implements Observer {
 	}
 	private JLabel getTextoMenu() {
 		if (textoMenu == null) {
-			textoMenu = new JLabel("<html><div style='text-align: center;'>Choose your map and character!<br>Press spacebar to start!</div></html>");
+			textoMenu = new JLabel("<html><div style='text-align: center;'>Choose your map and character with the arrow keys!<br>Press spacebar to start!</div></html>");
 			textoMenu.setFont(new Font("Consolas", Font.BOLD, 25));
 			textoMenu.setHorizontalAlignment(SwingConstants.CENTER);
-			textoMenu.setBounds(27, 353, 667, 60);
+			textoMenu.setBounds(48, 353, 677, 87);
 		}
 		return textoMenu;
 	}
@@ -188,10 +200,17 @@ public class Menu extends JFrame implements Observer {
 			System.out.println("1");
 			this.bombermanBlanco.enable(true);
 			this.bombermanNegro.enable(false);
+			this.bombermanAzul.enable(false);
 		} else if (personaje == 2) {
 			System.out.println("2");
 			this.bombermanBlanco.enable(false);
+			this.bombermanAzul.enable(false);
 			this.bombermanNegro.enable(true);
+		}
+		else if (personaje == 3) {
+			this.bombermanBlanco.enable(false);
+			this.bombermanAzul.enable(true);
+			this.bombermanNegro.enable(false);
 		}
 		this.repaint();
 	}

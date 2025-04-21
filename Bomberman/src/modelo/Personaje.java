@@ -43,6 +43,9 @@ public abstract class Personaje extends Observable {
 	    }
 	}
 	
+	public void disparoFinalizado() {
+	}
+	
 	public abstract void explosionBomba(int pY, int pX); //Este metodo se llama desde el BloqueBombaSimple o Ultra y es para indicarle al personaje que ha explotado
 	
 	public boolean choque(int pY, int pX) { //Este metodo revisa si el personaje esta en la posicion a donde el enemigo se va a mover o si coincide con una explosion,

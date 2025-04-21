@@ -7,7 +7,7 @@ public class MenuModelo extends Observable {
 	
 	private static MenuModelo miMenu = new MenuModelo();
 	private int tipoPersonajeSelec = 1;
-	private static final int maxPersonajes = 2;
+	private static final int maxPersonajes = 3;
 	private static final int maxTableros = 4;
 	private int tipoMapaSelec = 1;
 	
