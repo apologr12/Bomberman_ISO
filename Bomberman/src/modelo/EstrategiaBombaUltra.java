@@ -21,6 +21,15 @@ public class EstrategiaBombaUltra extends EstrategiaBombas {
 
 	@Override
 	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) { //en el notify agrega un 2 que va a ser la manera para que sepa la vista que tipo de explosion
+		/* 1.  Si la celda es un Boss, aplicamos daño */
+		if (tablero[pY][pX].esBoss()) {
+			EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
+			boss.recibirDanio();       // quita un punto de vida
+			return;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
+			// mas abajo por una explosion donde esta el boss
+		}
+
+		/* 2.  Si es un enemigo lo matamos directamente */
 		if (tablero[pY][pX].eresExplosion() || tablero[pY][pX].esEnemigo()) {
 			tablero[pY][pX].pararTimer();
 		}

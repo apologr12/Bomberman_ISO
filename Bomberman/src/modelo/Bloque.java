@@ -45,6 +45,9 @@ public abstract class Bloque extends Observable {
 		return false;
 	}
 
+	public boolean esBoss() {
+		return false;
+	}
 
 	public void pararTimer() {}
 }

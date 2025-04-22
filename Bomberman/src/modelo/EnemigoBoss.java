@@ -90,5 +90,8 @@ public class EnemigoBoss extends BloqueEnemigo {
 		}
 	}
 
+	public boolean esBoss() {
+		return true;
+	}
 
 }
