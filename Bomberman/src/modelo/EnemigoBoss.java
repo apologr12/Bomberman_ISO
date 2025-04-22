@@ -5,7 +5,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class EnemigoBoss extends BloqueEnemigo {
-	
+
+
+	private int spriteActual = 14;
+	private int vida         = 3;
+	private boolean muerto   = false;
+
 	public EnemigoBoss(int pY, int pX) {
 		super(pY, pX);
 	}
@@ -13,8 +18,13 @@ public class EnemigoBoss extends BloqueEnemigo {
 	@Override
 	protected void pintarEnemigo(int nuevaY, int nuevaX) {
 		setChanged();
-        notifyObservers(new Object[]{14, nuevaX, nuevaY}); //Pintar enemigo en posicion nueva
-		
+		notifyObservers(new Object[] { spriteActual, nuevaX, nuevaY });
+		//14  bossRight.png
+		//18  bossLeft.png
+		//19  bossUp.png
+		//20  bossDown.png
+		//21  bossHit.png
+		//22  bossDead.png
 	}
 	
 	@Override
@@ -50,16 +60,35 @@ public class EnemigoBoss extends BloqueEnemigo {
 		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease"));
 			
 		if (respuesta.equals("x-axis increase")) {
+			spriteActual = 18;
 			super.moverDerecha();
 		}
 		else if (respuesta.equals("x-axis decrease")) {
+			spriteActual = 14;
 			super.moverIzquierda();
 		}
 		else if (respuesta.equals("y-axis increase")) {
+			spriteActual = 19;
 			super.moverArriba();
 		}
 		else if (respuesta.equals("y-axis decrease")) { //Decrementar y para el prompt es como moverse hacia abajo, lo contrario de nuestro sistema de referencia
+			spriteActual = 20;
 			super.moverAbajo();
 		}
 	}
+
+	public void recibirDanio() {
+		vida--;
+		if (vida > 0) {
+			spriteActual = 21;                        // sprite herido
+			pintarEnemigo(super.getY(), super.getX());
+		} else {
+			muerto = true;
+			spriteActual = 22;                      // sprite muerte
+			pararTimer();                           // deja de moverse
+			pintarEnemigo(super.getY(), super.getX());
+		}
+	}
+
+
 }

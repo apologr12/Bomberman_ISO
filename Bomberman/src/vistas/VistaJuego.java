@@ -76,7 +76,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
 		else if (numeroEntrada == 6) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bossRight.png"))); //Esto habra que cambiarlo por el que mira a la izquierda
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png"))); //Esto habra que cambiarlo por el que mira a la izquierda
 		}
 
 	}
@@ -98,7 +98,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		}
 		else if (quienLlama == 4) { //Ahora mismo no se cual de los 2 se usa, por si acaso no quitar ninguno de los 2
 			this.quitarIcono(array);
-			System.out.println("Bien"); //Debugging
+			//System.out.println("Bien"); //Debugging
 		}
 		else if (quienLlama == 5) {
 			this.quitarIcono(array);
@@ -119,20 +119,20 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.moverPersonajeRight(array);
 		}
 		else if (quienLlama == 11) {
-			System.out.println("movimientoenemigo");
+			//System.out.println("movimientoenemigo");
 			this.moverEnemigoClassic(array);
 		}
 		else if (quienLlama == 12) {
-			System.out.println("movimientoenemigo");
+			//System.out.println("movimientoenemigo");
 			this.moverEnemigoSoft(array);
 		}
 		else if (quienLlama == 13) {
-			System.out.println("movimientoenemigo");
+			//System.out.println("movimientoenemigo");
 			this.moverEnemigoEmpty(array);
 		}
 		else if (quienLlama == 14) {
-			System.out.println("movimientoboss");
-			this.moverEnemigoBoss(array);
+			//System.out.println("movimientoboss");
+			this.moverEnemigoBossRight(array);
 		}
 		else if (quienLlama == 15) {
 			GestorTableros.getGestorTableros().getTablero().addObserverEnemigos(this);
@@ -144,6 +144,22 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		else if (quienLlama == 17) {
 			this.pintarDisparo(array);
 		}
+		else if (quienLlama == 18) {      // boss Left
+			this.moverEnemigoBossLeft(array);
+		}
+		else if (quienLlama == 19) {      // boss Up
+			this.moverEnemigoBossUp(array);
+		}
+		else if (quienLlama == 20) {      // boss Down
+			this.moverEnemigoBossDown(array);
+		}
+		else if (quienLlama == 21) {      // boss Hit
+			this.mostrarBossHit(array);
+		}
+		else if (quienLlama == 22) {      // boss Dead
+			this.mostrarBossDead(array);
+		}
+
 
 	}
 	
@@ -442,12 +458,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/pass2.png")));
 	}
-	
-	private void moverEnemigoBoss(Object[] array) {
-		int y = (int) array[2];
-		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bossRight.png")));
-	}
+
 	private void jugadorMuerto(Object[] array) {
 		this.removeKeyListener(ControladorJuego.getControlador()); //Eliminamos al jugador la posibilidad de moverse (no rompe MVC, no?)
 		int y = (int) array[2];
@@ -455,7 +466,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int personaje = (int) array[3];
 		int motivo = (int) array[4]; //Motivo por el que se muere el personaje
 		
-		System.out.println(motivo); //Debugging
+		//System.out.println(motivo); //Debugging
 		if (motivo == 1) { //Se ha muerto por explosion de bomba
 			if (personaje == 1) {
 				this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/onFire2.png")));
@@ -485,5 +496,39 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
 	}
 
+	private void moverEnemigoBossLeft(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossLeft.png")));
+	}
 
+	private void moverEnemigoBossUp(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossUp.png")));
+	}
+
+	private void moverEnemigoBossDown(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDown.png")));
+	}
+
+	private void moverEnemigoBossRight(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png")));
+	}
+
+	private void mostrarBossDead(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDead.png")));
+	}
+
+	private void mostrarBossHit(Object[] array) {
+		int y = (int) array[2];
+		int x = (int) array[1];
+		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png")));
+	}
 }

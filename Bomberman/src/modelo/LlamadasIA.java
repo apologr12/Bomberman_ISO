@@ -22,7 +22,7 @@ public class LlamadasIA {
 	
 	public String movimientoIA(int persY, int persX, int bossY, int bossX) {
 		try {
-		String modelName = "llama3.1"; //Definimos el modelo que queremos usar
+		String modelName = "llama3.1";
 		String promptText = "You are playing as a boss character on a 2D grid (board size: 16 tiles wide and 10 tiles tall)."
 				+ "The coordinate origin (0,0) is at the bottom-left corner."
 				+ "The x-axis increases to the right (0 to 15)."
@@ -36,10 +36,9 @@ public class LlamadasIA {
 				+ "'y-axis decrease' -> decrease y by 1"
 				+ "Your goal is to get as close as possible to the player, measured by Manhattan distance (shortest Manhattan distance)."
 				+ "Now, based on your current position ("+bossX+", "+bossY+"), what is the correct move?"
-				+ "Only reply with the increase text ('x-axis increase', 'x-axis decrease', 'y-axis increase', or 'y-axis decrease'). ONLY THAT, no other text, nor single quote nor numbers";
-		//Definimos el prompt que le vamos a dar
+				+ "Only reply with the increase text ('x-axis increase', 'x-axis decrease', 'y-axis increase', or 'y-axis decrease'). ONLY THAT, no other text";
 		
-		URL url = new URL("http://localhost:11434/api/generate"); //Definimos la petición HTTP que vamos a realizar con el localhost
+		URL url = new URL("http://localhost:11434/api/generate");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -53,28 +52,28 @@ public class LlamadasIA {
 			os.write(input, 0, input.length);
 		}
 			
-		int code = conn.getResponseCode(); //Obtenemos el codigo de respuesta por si queremos ver si ha ido bien o mal la peticion HTTP
+		int code = conn.getResponseCode();
 		//System.out.println("Codigo de respuesta: " + code);
 		
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
-		StringBuilder response = new StringBuilder(); //Obtenemos la respuesta que ha generado el modelo
+		StringBuilder response = new StringBuilder();
 		String line;
 		while ((line = in.readLine()) != null) {
 			response.append(line);
 		}
 		in.close();
 		
-		//System.out.println("Cuerpo de respuesta: " + response.toString()); //Debugging
+		//System.out.println("Cuerpo de respuesta: " + response.toString()); Debugging
 		
 		JSONObject jsonResponse = new JSONObject(response.toString());
-		String responseText = jsonResponse.getString("response"); //Nos quedamos unicamente con el texto de la respuesta (sin sus detalles)
+		String responseText = jsonResponse.getString("response");
 		//System.out.println("Respuesta: " + responseText); //Debugging
 		
-		conn.disconnect(); //Cerramos la conexion HTTP
+		conn.disconnect();
 		
 		return responseText;
 		}
-		catch (IOException e) { //En caso de que haya dado error la peticion, salta la exception y se devuelve nada (caso extrano)
+		catch (IOException e) {
 			return "";
 		}
 		

@@ -70,7 +70,7 @@ public abstract class Personaje extends Observable {
 			}
 			x--;
 			mostrarPersonajeLeft();
-			System.out.println("Izquierda");
+			//System.out.println("Izquierda");
 		}
 		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
 			dejarDeMostrarPersonaje();
@@ -97,7 +97,7 @@ public abstract class Personaje extends Observable {
 			}
 			x++;
 			mostrarPersonajeRight();
-			System.out.println("Derecha");
+			//System.out.println("Derecha");
 		}
 		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
 			dejarDeMostrarPersonaje();
@@ -124,7 +124,7 @@ public abstract class Personaje extends Observable {
 			}												//Esta llamada a mostrar personaje se hace para despintar la posicion actual
 			y--;											//para que luego se pinte la nueva.
 			mostrarPersonajeUp();							//Esto lo he hecho porque he cambiado un poco la logica de como se pinta el personaje en la vista.
-			System.out.println("Arriba");
+			//System.out.println("Arriba");
 		}
 		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto
 			dejarDeMostrarPersonaje();
@@ -150,7 +150,7 @@ public abstract class Personaje extends Observable {
 			}
 			y++;
 			mostrarPersonaje();
-			System.out.println("Abajo");
+			//System.out.println("Abajo");
 		}
 		else if (puedoMoverme == -1) { //Si le ha devuelto -1 es que se ha muerto por tocar una explosion
 			dejarDeMostrarPersonaje();

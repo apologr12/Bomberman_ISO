@@ -8,7 +8,7 @@ public class GenBloques {
 	public Bloque generar(String pTipo,int pY,int pX, String orientacion) {
 		if (pTipo.equals("Vacio")) {
 			BloqueVacio nuevo=new BloqueVacio(pY,pX);
-			System.out.print("Vacio generado");
+			//System.out.print("Vacio generado");
 			return nuevo;
 		}
 		else if (pTipo.equals("Blando")) {
