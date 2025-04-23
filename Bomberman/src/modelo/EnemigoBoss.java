@@ -34,7 +34,8 @@ public class EnemigoBoss extends BloqueEnemigo {
             public void run()  {
                 try {
 					mover();
-					System.out.println("Empezando movimiento"); //Debugging
+					atacarJugador();
+					//System.out.println("Empezando movimiento"); //Debugging
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -47,6 +48,12 @@ public class EnemigoBoss extends BloqueEnemigo {
 	
 	@Override
 	public void mover() throws IOException {
+
+		// Debugging porque como no puedo ejecutar la IA no dispara el boss
+
+
+
+		/*
 		String respuesta = null;
 		int persX = GestorPersonajes.getGestorPersonajes().getPersonaje().getX();
 		int persY = 10 - GestorPersonajes.getGestorPersonajes().getPersonaje().getY(); //Esto se hace para invertir el hecho de que la y= 0 es arriba, y para el prompt
@@ -75,6 +82,8 @@ public class EnemigoBoss extends BloqueEnemigo {
 			spriteActual = 20;
 			super.moverAbajo();
 		}
+
+		 */
 	}
 
 	public void recibirDanio() {
@@ -99,4 +108,34 @@ public class EnemigoBoss extends BloqueEnemigo {
 	public boolean puedoMoverme() { // para que pueda recibir daño
 		return true;
 	}
+
+	public void atacarJugador() {
+		Personaje jugador = GestorPersonajes.getGestorPersonajes().getPersonaje();
+		int jugadorX = jugador.getX();
+		int jugadorY = jugador.getY();
+		int bossX = super.getX();
+		int bossY = super.getY();
+		System.out.println(jugadorX + " " + jugadorY + " " + bossX + " " + bossY);
+		// El disparo solo se realiza si el jugador está alineado en recta
+		if (jugadorX == bossX) {
+			if (jugadorY < bossY) {
+				this.atacarPersonaje("Arriba"); // disparar hacia arriba
+			} else if (jugadorY > bossY) {
+				this.atacarPersonaje("Abajo"); // disparar hacia abajo
+			}
+		} else if (jugadorY == bossY) {
+			if (jugadorX < bossX) {
+				this.atacarPersonaje("Izquierda"); // disparar hacia la izquierda
+			} else if (jugadorX > bossX) {
+				this.atacarPersonaje("Derecha"); // disparar hacia la derecha
+			}
+		}
+		// Si no están alineados, no se dispara (se podría añadir lógica futura aquí)
+	}
+
+	public void atacarPersonaje(String orientacion) {
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
+			System.out.println(seHaPodido); // debugging
+	}
+
 }

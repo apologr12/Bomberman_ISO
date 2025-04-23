@@ -8,32 +8,41 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
 
     @Override
     public boolean atacar(int pY, int pX, Bloque[][] tablero, String orientacion) {
+        /* //DEBUGGING
         System.out.println("Atacando personaje");
         System.out.println(orientacion);
+        System.out.println("Disparo: "+ !tablero[pY][pX-1].eresDisparo());
+        System.out.println("Moverme: "+ tablero[pY][pX-1].puedoMoverme());
+        System.out.println("Direccion:"+ orientacion.equals("izquierda"));
+        System.out.println("Direccion2:"+ orientacion.equals("Izquierda"));
+         */
+
+
         if (orientacion.equals("Arriba") && !tablero[pY-1][pX].eresDisparo() && tablero[pY-1][pX].puedoMoverme()) {
             tablero[pY-1][pX] = GenBloques.getGenBloques().generar("Disparo", pY-1, pX, orientacion);
-            System.out.println("Disparo"); //Debugging
+            //System.out.println("Disparo"); //Debugging
             setChanged();
             notifyObservers(new Object[] {17, pX, pY-1, 0});
             return true;
         }
         else if (orientacion.equals("Abajo") && !tablero[pY+1][pX].eresDisparo() && tablero[pY+1][pX].puedoMoverme()) {
             tablero[pY+1][pX] = GenBloques.getGenBloques().generar("Disparo", pY+1, pX, orientacion);
-            System.out.println("Disparo"); //Debugging
+            //System.out.println("Disparo"); //Debugging
             setChanged();
             notifyObservers(new Object[] {17, pX, pY+1, 0});
             return true;
         }
         else if (orientacion.equals("Izquierda") && !tablero[pY][pX-1].eresDisparo() && tablero[pY][pX-1].puedoMoverme()) {
+            // System.out.println("Entras?"); //Debugging
             tablero[pY][pX-1] = GenBloques.getGenBloques().generar("Disparo", pY, pX-1, orientacion);
-            System.out.println("Disparo"); //Debugging
+            //System.out.println("Disparo"); //Debugging
             setChanged();
             notifyObservers(new Object[] {17, pX-1, pY, 0});
             return true;
         }
         else if (orientacion.equals("Derecha") && !tablero[pY][pX+1].eresDisparo() && tablero[pY][pX+1].puedoMoverme()) {
             tablero[pY][pX+1] = GenBloques.getGenBloques().generar("Disparo", pY, pX+1, orientacion);
-            System.out.println("Disparo"); //Debugging
+            //System.out.println("Disparo"); //Debugging
             setChanged();
             notifyObservers(new Object[] {17, pX+1, pY, 0});
             return true;
@@ -44,7 +53,7 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
 
     @Override
     protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion) {
-        System.out.println("La orientacion es: " + orientacion);
+        //System.out.println("La orientacion es: " + orientacion);
         /* 1.  Si la celda es un Boss, aplicamos daño */
         if (tablero[pY][pX].esBoss()) {
             System.out.println("Boss");
