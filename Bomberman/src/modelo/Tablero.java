@@ -35,7 +35,7 @@ public abstract class Tablero extends Observable {
 	protected int puedoMovermeP(int y, int x) {
 
 		if (x >= 0 && x < 17 && y >= 0 && y < 11) {
-			if (this.tablero[y][x].eresExplosion()) {
+			if (this.tablero[y][x].eresExplosion() || this.tablero[y][x].eresDisparo()) {
 				return -1; //Devuelve -1 si se ha muerto porque ha tocado una explosion
 			}
 			else if (this.tablero[y][x].esEnemigo()) {
@@ -93,7 +93,7 @@ public abstract class Tablero extends Observable {
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
-		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero);
+		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero, "");
 	}
 
 	protected void postExplosion(int pY,int pX) {

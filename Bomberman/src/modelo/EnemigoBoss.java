@@ -88,6 +88,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 			spriteActual = 22;                      // sprite muerte
 			pararTimer();                           // deja de moverse
 			pintarEnemigo(super.getY(), super.getX());
+			// Sustituir por un bloque duro para que no se pueda entrar en el cadaver????
 		}
 	}
 
@@ -95,4 +96,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 		return true;
 	}
 
+	public boolean puedoMoverme() { // para que pueda recibir daño
+		return true;
+	}
 }

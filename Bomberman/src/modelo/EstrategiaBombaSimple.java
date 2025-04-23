@@ -21,7 +21,7 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 	}
 
 	@Override
-	protected void explotarCelda(int pY, int pX, Bloque[][] tablero) {
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion) {
 		/* 1.  Si la celda es un Boss, aplicamos daño */
 		if (tablero[pY][pX].esBoss()) {
 			EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
@@ -43,22 +43,22 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 
 	@Override
 	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) {
-		explotarCelda(pY, pX, tablero);
+		explotarCelda(pY, pX, tablero, orientacion);
 
         if (pX < 16 && tablero[pY][pX + 1].esDestructible()) {
-        	explotarCelda(pY, pX + 1, tablero);
+        	explotarCelda(pY, pX + 1, tablero, orientacion);
         }
 
         if (pX > 0 && tablero[pY][pX - 1].esDestructible()) {
-        	explotarCelda(pY, pX - 1, tablero);
+        	explotarCelda(pY, pX - 1, tablero, orientacion);
        	}
 
         if (pY < 10 && tablero[pY + 1][pX].esDestructible()) {
-        	explotarCelda(pY + 1, pX, tablero);
+        	explotarCelda(pY + 1, pX, tablero,orientacion);
         }
 
         if (pY > 0 && tablero[pY - 1][pX].esDestructible()) {
-        	explotarCelda(pY-1,  pX, tablero);
+        	explotarCelda(pY-1,  pX, tablero, orientacion);
         }
 	}
 
