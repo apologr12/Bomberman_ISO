@@ -25,11 +25,11 @@ public class BloqueDisparo extends Bloque {
 	private void actualizarCont() {
 		cont--;
 		if (cont == 0) {
-			System.out.println("Movimiento disparo"); //Cuando llega a cero se moveria y se tendria que cambiar a un bloque vacio
+			//System.out.println("Movimiento disparo"); //Cuando llega a cero se moveria y se tendria que cambiar a un bloque vacio
 			timer.cancel(); //Se apaga el timer
-			GestorTableros.getGestorTableros().getTablero().moverDisparo(super.getY(), super.getX(), orientacion);
+			GestorTableros.getGestorTableros().getTablero().compAtaque(super.getY(), super.getX(), orientacion);
 		}
-		System.out.println(cont);  //Muestra como va el contador
+		//System.out.println(cont);  //Muestra como va el contador
 		
 	}
 

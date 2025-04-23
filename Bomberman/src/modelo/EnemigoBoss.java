@@ -55,7 +55,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 			int cont = 0;
 			respuesta = LlamadasIA.getLlamadasIA().movimientoIA(persY, persX, 10 - super.getY(), super.getX()); //Lo mismo que el comentario de arriba
 			respuesta = respuesta.trim();
-			System.out.println(respuesta + cont); //Debugging
+			//System.out.println(respuesta + cont); //Debugging
 			cont++;
 		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease"));
 			
@@ -79,6 +79,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 
 	public void recibirDanio() {
 		vida--;
+		System.out.println(vida);
 		if (vida > 0) {
 			spriteActual = 21;                        // sprite herido
 			pintarEnemigo(super.getY(), super.getX());

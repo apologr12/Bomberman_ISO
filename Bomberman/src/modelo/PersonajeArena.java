@@ -14,9 +14,10 @@ public class PersonajeArena extends Personaje {
 	}
 
 	@Override
-	public void disparar(String orientacion) {
+	public void atacarPersonaje(String orientacion) {
+
 		if (this.disparos > 0) { //Quedan disparos
-			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().disparar(super.getY(), super.getX(), orientacion);
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
 			if (seHaPodido) {
 				this.disparos--;
 			}

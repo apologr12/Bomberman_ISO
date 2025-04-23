@@ -5254,7 +5254,7 @@
                                             </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
                                           </propertyDescriptors>
                                           <stereoType></stereoType>
-                                          <name>modelo.EstrategiaBombas</name>
+                                          <name>modelo.EstrategiaAtaque</name>
                                           <path>/Bomberman/src/modelo/EstrategiaBombas.java</path>
                                           <isAbstract>true</isAbstract>
                                         </target>

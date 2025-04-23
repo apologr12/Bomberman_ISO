@@ -19,7 +19,7 @@ public abstract class BloqueEnemigo extends Bloque {
             public void run()  {
                 try {
 					mover();
-					System.out.println("Empezando movimiento"); //Debugging
+					//System.out.println("Empezando movimiento"); //Debugging
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

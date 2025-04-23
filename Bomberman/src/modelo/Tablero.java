@@ -3,12 +3,10 @@ package modelo;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.SwingUtilities;
-
 @SuppressWarnings("deprecation")
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
-	private EstrategiaBombas estrategiaBombas;
+	private EstrategiaAtaque estrategiaAtaque;
 
 	public abstract void crearTablero();
 
@@ -16,10 +14,13 @@ public abstract class Tablero extends Observable {
 	protected Tablero(int tamanoY, int tamanoX, int pTipoPersonaje) {
 		this.tablero = new Bloque[tamanoY][tamanoX];
 		if (pTipoPersonaje == 1) {
-			this.estrategiaBombas = new EstrategiaBombaSimple();
+			this.estrategiaAtaque = new EstrategiaBombaSimple();
 		}
-		else {
-			this.estrategiaBombas = new EstrategiaBombaUltra();
+		else if (pTipoPersonaje == 2) {
+			this.estrategiaAtaque = new EstrategiaBombaUltra();
+		}
+		else if (pTipoPersonaje == 3) {
+			this.estrategiaAtaque = new EstrategiaDisparo();
 		}
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) { //Solo se usa al generar el tablero
@@ -80,13 +81,19 @@ public abstract class Tablero extends Observable {
 	    return (this.tablero[fila][col].esDestructible());
 	}
 
-	protected void compExplosion(int pY, int pX) {
-			this.estrategiaBombas.compExplosion(pY, pX, tablero);
+	protected void compAtaque(int pY, int pX, String orientacion) {
+		if (orientacion.equals("")){
+			this.estrategiaAtaque.compAtaque(pY, pX, tablero, "");
+		}
+		else {
+			this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);
+		}
+
 	        
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
-		this.estrategiaBombas.explotarCelda(pY, pX, this.tablero);
+		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero);
 	}
 
 	protected void postExplosion(int pY,int pX) {
@@ -97,10 +104,13 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	public boolean ponerBomba(int fila, int col) {  //Devuelve true si se ha podido poner una bomba, false si no
-	    return this.estrategiaBombas.ponerBomba(fila, col, this.tablero);
+	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba, false si no
+		if (orientacion.equals("")){
+			return this.estrategiaAtaque.atacar(fila, col, this.tablero, "");
+		}
+		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); // se pasa null como Orientacion
 	}
-	
+	/*
 	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien
 																				//puede disparar en esa direccion
 		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {
@@ -133,7 +143,8 @@ public abstract class Tablero extends Observable {
 		}
 		return false;
 	}
-	
+	*/
+	/*
 	public void moverDisparo(int y, int x, String orientacion) {
 		this.ponerBloque("Vacio", y, x); //Quitamos el bloque del disparo de su posicion y ponemos el vacio
 		setChanged();
@@ -168,7 +179,7 @@ public abstract class Tablero extends Observable {
 		}
 		//Si no se puede mover al sitio correspondiente se le notifica al personaje para que vuelva a tener otro disparo disponible
 	}
-
+	*/
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
 		for (int i = 0; i < this.tablero.length; i++) { //Se busca por todo el tablero que casillas son enemigos
 			for (int j = 0; j < this.tablero[0].length; j++) {
@@ -204,7 +215,7 @@ public abstract class Tablero extends Observable {
 	}
 	
 	public void addObserverEstrategia(Observer o) {
-		this.estrategiaBombas.addObserver(o);
+		this.estrategiaAtaque.addObserver(o);
 
 	}
 	
@@ -214,8 +225,8 @@ public abstract class Tablero extends Observable {
 												//y luego en la posicion antigua se ponga como vacio, en vez de pasarlo como parametro?
 		//System.out.println("Moviendo " + nuevaY + " " + nuevaX);
 	}
-	public void changeStrategy(EstrategiaBombas pSB) {
-		this.estrategiaBombas = pSB;
+	public void changeStrategy(EstrategiaAtaque pSB) {
+		this.estrategiaAtaque = pSB;
 	}
 	
 	public abstract boolean comprobarFila(int pX, int bombaY, int bombaX);

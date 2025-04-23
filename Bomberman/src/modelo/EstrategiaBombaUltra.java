@@ -1,12 +1,12 @@
 package modelo;
 
 @SuppressWarnings("deprecation")
-public class EstrategiaBombaUltra extends EstrategiaBombas {
+public class EstrategiaBombaUltra extends EstrategiaAtaque {
 	public EstrategiaBombaUltra() {
 	}
 	
 	@Override
-	public boolean ponerBomba(int fila, int col, Bloque[][] tablero) {
+	public boolean atacar(int fila, int col, Bloque[][] tablero, String orientacion) {
 		if (!tablero[fila][col].eresBomba()) {						//Se pone una bomba si no hay ya una bomba puesta
 	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaUltra", fila, col, "");
 	        System.out.println("Bomba");
@@ -40,7 +40,7 @@ public class EstrategiaBombaUltra extends EstrategiaBombas {
 	}
 
 	@Override
-	public void compExplosion(int pY, int pX, Bloque[][] tablero) { //Explota las celdas alcanzadas por la explosion de la BombaUltra
+	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) { //Explota las celdas alcanzadas por la explosion de la BombaUltra
 		explotarCelda(pY, pX, tablero);
 		
 		int actX=pX+1;

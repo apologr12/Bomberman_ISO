@@ -59,7 +59,7 @@ public class PersonajeNegro extends Personaje {
 				heMuerto = true;
 			}
 		}
-		GestorTableros.getGestorTableros().getTablero().compExplosion(pY, pX);
+		GestorTableros.getGestorTableros().getTablero().compAtaque(pY, pX, "");
 		
 		if (heMuerto) {
 			this.meHeMuerto(1);
