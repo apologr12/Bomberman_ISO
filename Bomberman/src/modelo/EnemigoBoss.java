@@ -8,11 +8,12 @@ public class EnemigoBoss extends BloqueEnemigo {
 
 
 	private int spriteActual = 14;
-	private int vida         = 3;
+	private int vida         = 4;
 	private boolean muerto   = false;
 
 	public EnemigoBoss(int pY, int pX) {
 		super(pY, pX);
+		this.bossBarEnemigo();
 	}
 
 	@Override
@@ -27,8 +28,13 @@ public class EnemigoBoss extends BloqueEnemigo {
 		//22  bossDead.png
 	}
 	
+	private void bossBarEnemigo() {
+		setChanged();
+		notifyObservers(new Object[] { 23, vida});
+	}
 	@Override
 	public void iniciarMovimiento() {
+		this.bossBarEnemigo();
 		TimerTask moverTask = new TimerTask() {
             @Override
             public void run()  {
@@ -89,6 +95,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 	public void recibirDanio() {
 		vida--;
 		System.out.println(vida);
+		this.bossBarEnemigo();
 		if (vida > 0) {
 			spriteActual = 21;                        // sprite herido
 			pintarEnemigo(super.getY(), super.getX());

@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Arena extends VistaJuego {
@@ -42,7 +43,7 @@ public class Arena extends VistaJuego {
 	    
 	    setFocusable(true); 										// Hacer que el JFrame reciba eventos de teclado
 	    requestFocus();
-		
+	    
 		super.crearTablero();
 	}
 

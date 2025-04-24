@@ -1,7 +1,9 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -21,6 +23,8 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private static final long serialVersionUID = -5000978209518964435L;
 	private JPanel contentPane;
 	private JLabel[][] labels;
+	private JPanel bossBar;
+	private String pBarra = "imagenes/boss/100.png";
 	
 	protected VistaJuego() {
 	    this.addKeyListener(ControladorJuego.getControlador());  		// Agregar el KeyListener al JFrame en lugar del JPanel
@@ -76,7 +80,7 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/hard5.png")));
 		}
 		else if (numeroEntrada == 6) {
-			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png"))); //Esto habra que cambiarlo por el que mira a la izquierda
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossLeft.png"))); //Esto habra que cambiarlo por el que mira a la izquierda
 		}
 
 	}
@@ -158,6 +162,9 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		}
 		else if (quienLlama == 22) {      // boss Dead
 			this.mostrarBossDead(array);
+		}
+		else if (quienLlama == 23) {      // boss Dead
+			this.mostrarBossBar(array);
 		}
 
 
@@ -547,4 +554,45 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossHit.png")));
 	}
+	private void mostrarBossBar(Object[] array) {
+		int vida = (int) array[1];
+		if (vida == 4) {
+			getBossBar();
+		} else if (vida == 3) {
+			pBarra = "imagenes/boss/75.png";
+			bossBar.repaint(); // Redibujar el panel con la nueva imagen
+		} else if (vida == 2) {
+			pBarra = "imagenes/boss/50.png";
+			bossBar.repaint(); // Redibujar el panel con la nueva imagen
+		} else if (vida == 1) {
+			pBarra = "imagenes/boss/25.png";
+			bossBar.repaint(); // Redibujar el panel con la nueva imagen
+		} else if (vida == 0) {
+			pBarra = "imagenes/boss/0.png";
+			bossBar.repaint(); // Redibujar el panel con la nueva imagen
+		}
+	}
+	private void getBossBar() {
+	    bossBar = new JPanel() {
+
+	        @Override
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            ImageIcon background =new ImageIcon(getClass().getResource(pBarra));
+	            g.drawImage(background.getImage(), 160, 50, 390, 40, this);
+	        }
+	    };
+
+	    bossBar.setOpaque(false);                    // Para que no tape todo
+	    bossBar.setLayout(null);
+	    bossBar.setBounds(0, 0, getWidth(), getHeight()); // Asegura tama�o completo
+
+	    getRootPane().setGlassPane(bossBar);         // Muy importante
+	    bossBar.setVisible(true);                    // Mostrarlo
+
+	    bossBar.revalidate();                        // Refresca layout
+	    bossBar.repaint();                           // Refresca dibujo
+	}
+
+
 }

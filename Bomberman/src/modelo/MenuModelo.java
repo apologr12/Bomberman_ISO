@@ -18,10 +18,14 @@ public class MenuModelo extends Observable {
 		return miMenu;
 	}
 	
-	public void seleccionarPersonaje(int pSeleccionPersonaje) {
+	public void seleccionarPersonaje(int pSeleccionPersonaje) { //Agregado para que no se pueda elegie el bommberman 3 en otros mapas
 		if (pSeleccionPersonaje == -1) {
 			if (this.tipoPersonajeSelec == 1) {
-				this.tipoPersonajeSelec = maxPersonajes;
+				if (tipoMapaSelec == 4) {
+					this.tipoPersonajeSelec = maxPersonajes;
+				} else if(tipoMapaSelec != 4) {
+					this.tipoPersonajeSelec = maxPersonajes - 1;
+				}
 			}
 			else {
 				this.tipoPersonajeSelec--;
@@ -33,7 +37,15 @@ public class MenuModelo extends Observable {
 				this.tipoPersonajeSelec = 1;
 			}
 			else {
-				this.tipoPersonajeSelec++;
+				if (tipoMapaSelec == 4) {
+					this.tipoPersonajeSelec++;
+				} else if(tipoMapaSelec != 4) {
+					if (this.tipoPersonajeSelec == maxPersonajes - 1) {
+						this.tipoPersonajeSelec = 1;
+					} else {
+						this.tipoPersonajeSelec++;
+					}
+				}
 			}
 		}
 		cambioPersonaje();
@@ -57,6 +69,10 @@ public class MenuModelo extends Observable {
 				this.tipoMapaSelec++;
 			}
 		}
+		if(this.tipoPersonajeSelec == 3 && this.tipoMapaSelec != 4) { // Condicion para que no se pueda elegir el bomberman 3
+			this.tipoPersonajeSelec = 1;
+		}
+		cambioPersonaje();
 		cambioTablero();
 	}
 	private void cambioPersonaje() {
