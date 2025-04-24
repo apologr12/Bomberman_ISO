@@ -81,15 +81,8 @@ public abstract class Tablero extends Observable {
 	    return (this.tablero[fila][col].esDestructible());
 	}
 
-	protected void compAtaque(int pY, int pX, String orientacion) {
-		if (orientacion.equals("")){
-			this.estrategiaAtaque.compAtaque(pY, pX, tablero, "");
-		}
-		else {
-			this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);
-		}
-
-	        
+	public void compAtaque(int pY, int pX, String orientacion) {
+		this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);    
 	 }
 
 	protected void explotarCelda(int pY, int pX) {
@@ -104,11 +97,8 @@ public abstract class Tablero extends Observable {
 	}
 
 
-	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba, false si no
-		if (orientacion.equals("")){
-			return this.estrategiaAtaque.atacar(fila, col, this.tablero, "");
-		}
-		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); // se pasa null como Orientacion
+	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
+		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
 	}
 	/*
 	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien

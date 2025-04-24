@@ -19,15 +19,15 @@ public class BloqueDisparo extends Bloque {
 			}		
 		};
 		timer = new Timer(); 
-		timer.scheduleAtFixedRate(timerTask, 0, 1000); //Empieza a contar el timer
+		timer.scheduleAtFixedRate(timerTask, 0, 700); //Empieza a contar el timer
 	}
 	
 	private void actualizarCont() {
 		cont--;
 		if (cont == 0) {
 			//System.out.println("Movimiento disparo"); //Cuando llega a cero se moveria y se tendria que cambiar a un bloque vacio
-			timer.cancel(); //Se apaga el timer
 			GestorTableros.getGestorTableros().getTablero().compAtaque(super.getY(), super.getX(), orientacion);
+			timer.cancel(); //Se apaga el timer
 		}
 		//System.out.println(cont);  //Muestra como va el contador
 		

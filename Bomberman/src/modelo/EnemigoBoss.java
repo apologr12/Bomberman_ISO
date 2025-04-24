@@ -53,7 +53,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 
 
 
-		/*
+		
 		String respuesta = null;
 		int persX = GestorPersonajes.getGestorPersonajes().getPersonaje().getX();
 		int persY = 10 - GestorPersonajes.getGestorPersonajes().getPersonaje().getY(); //Esto se hace para invertir el hecho de que la y= 0 es arriba, y para el prompt
@@ -67,11 +67,11 @@ public class EnemigoBoss extends BloqueEnemigo {
 		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease"));
 			
 		if (respuesta.equals("x-axis increase")) {
-			spriteActual = 18;
+			spriteActual = 14;
 			super.moverDerecha();
 		}
 		else if (respuesta.equals("x-axis decrease")) {
-			spriteActual = 14;
+			spriteActual = 18;
 			super.moverIzquierda();
 		}
 		else if (respuesta.equals("y-axis increase")) {
@@ -83,7 +83,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 			super.moverAbajo();
 		}
 
-		 */
+		 
 	}
 
 	public void recibirDanio() {
@@ -97,7 +97,16 @@ public class EnemigoBoss extends BloqueEnemigo {
 			spriteActual = 22;                      // sprite muerte
 			pararTimer();                           // deja de moverse
 			pintarEnemigo(super.getY(), super.getX());
-			// Sustituir por un bloque duro para que no se pueda entrar en el cadaver????
+			super.pararTimer();
+			TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.sleep() porque nos daba problemas
+				@Override
+				public void run() {
+					System.exit(1);
+				}		
+			};
+			
+			Timer timer = new Timer(); 
+			timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 		}
 	}
 

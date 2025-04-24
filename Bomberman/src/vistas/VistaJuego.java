@@ -511,16 +511,32 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void moverEnemigoBossDown(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDown.png")));
+		Random random = new Random();
+		int numAleat = random.nextInt(2) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDown.png")));
+		}
+		else if (numAleat == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDown2.png")));
+		}
 	}
 
 	private void moverEnemigoBossRight(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png")));
+		Random random = new Random();
+		int numAleat = random.nextInt(2) + 1;
+		if (numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight.png")));
+		}
+		else if (numAleat == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossRight2.png")));
+		}
+		
 	}
 
 	private void mostrarBossDead(Object[] array) {
+		this.removeKeyListener(ControladorJuego.getControlador()); //Le quitamos al jugador la posibilidad de moverse 
 		int y = (int) array[2];
 		int x = (int) array[1];
 		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDead.png")));

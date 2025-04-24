@@ -75,7 +75,7 @@ public class PersonajeArena extends Personaje {
 		notifyObservers(new Object[] {16, getX(), getY(), 3, motivo}); //El 3 indica que es el personaje 3
 		
 		
-		TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.slee() porque nos daba problemas
+		TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.sleep() porque nos daba problemas
 			@Override
 			public void run() {
 				System.exit(1);

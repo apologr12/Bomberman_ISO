@@ -114,14 +114,12 @@ public abstract class BloqueEnemigo extends Bloque {
             super.setY(nuevaY);
             t.moverEnemigo(this, antiguaY, antiguaX, nuevaY, nuevaX);
 
-            pintarEnemigo(nuevaY, nuevaX);
+            pintarEnemigo(nuevaY, nuevaX); //Pintar enemigo en posicion nueva
             
             if (heMatado) {
             	System.out.println("Enemigo tocado.");
                 GestorPersonajes.getGestorPersonajes().getPersonaje().meHeMuerto(2); //Se le indica al personaje que se ha muerto porque lo ha matado un enemigo
             }
-            
-
         }
     }
 
