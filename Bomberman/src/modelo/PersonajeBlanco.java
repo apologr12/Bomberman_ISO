@@ -89,4 +89,11 @@ public class PersonajeBlanco extends Personaje {
 		Timer timer = new Timer(); 
 		timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 	}
+
+	@Override
+	public void dab() {
+		setChanged();
+		notifyObservers(new Object[] {24, getX(), getY(), 1}); //El 1 indica el personaje
+		
+	}
 }

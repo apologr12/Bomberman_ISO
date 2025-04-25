@@ -149,7 +149,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 		// Si no están alineados, no se dispara (se podría añadir lógica futura aquí)
 	}
 
-	public void atacarPersonaje(String orientacion) {
+	private void atacarPersonaje(String orientacion) {
 			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacarBoss(super.getY(), super.getX(), orientacion);
 			System.out.println(seHaPodido); // debugging
 	}

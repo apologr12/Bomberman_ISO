@@ -82,4 +82,10 @@ public class PersonajeNegro extends Personaje {
 		Timer timer = new Timer(); 
 		timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 	}
+
+	@Override
+	public void dab() {
+		// TODO Auto-generated method stub
+		
+	}
 }

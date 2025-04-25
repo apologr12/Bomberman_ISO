@@ -86,5 +86,10 @@ public class PersonajeArena extends Personaje {
 		timer.scheduleAtFixedRate(timerTask, 3000, 5); //Empieza a contar el timer
 		
 	}
+
+	@Override
+	public void dab() {
+		
+	}
 	
 }

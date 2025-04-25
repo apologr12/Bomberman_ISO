@@ -31,6 +31,7 @@ public abstract class Personaje extends Observable {
 	
 	protected abstract void mostrarPersonaje();
 
+	public abstract void dab();
 	
 	public void atacarPersonaje(String orientacion) {
 

@@ -47,6 +47,9 @@ public class ControladorJuego implements KeyListener {
 		else if (keyCode == KeyEvent.VK_D) {
 			GestorPersonajes.getGestorPersonajes().getPersonaje().atacarPersonaje("Derecha");
 		}
+		else if (keyCode == KeyEvent.VK_B) {
+			GestorPersonajes.getGestorPersonajes().getPersonaje().dab();
+		}
 	}
 
 	public void keyTyped(KeyEvent e) {
