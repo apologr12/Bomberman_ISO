@@ -7,6 +7,7 @@ import java.util.Observer;
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
 	private EstrategiaAtaque estrategiaAtaque;
+	private EstrategiaAtaque estrategiaAtaqueBoss = new EstrategiaDisparo(); //El boss siempre tendra la estrategia de disparar
 
 	public abstract void crearTablero();
 
@@ -84,6 +85,9 @@ public abstract class Tablero extends Observable {
 	public void compAtaque(int pY, int pX, String orientacion) {
 		this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);    
 	 }
+	public void compAtaqueBoss(int pY, int pX, String orientacion) {
+		this.estrategiaAtaqueBoss.compAtaque(pY, pX, tablero, orientacion);    
+	 }
 
 	protected void explotarCelda(int pY, int pX) {
 		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero, "");
@@ -99,6 +103,9 @@ public abstract class Tablero extends Observable {
 
 	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
 		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
+	}
+	public boolean atacarBoss(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
+		return this.estrategiaAtaqueBoss.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
 	}
 	/*
 	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien
@@ -206,6 +213,7 @@ public abstract class Tablero extends Observable {
 	
 	public void addObserverEstrategia(Observer o) {
 		this.estrategiaAtaque.addObserver(o);
+		this.estrategiaAtaqueBoss.addObserver(o);
 
 	}
 	
@@ -217,6 +225,9 @@ public abstract class Tablero extends Observable {
 	}
 	public void changeStrategy(EstrategiaAtaque pSB) {
 		this.estrategiaAtaque = pSB;
+	}
+	public void changeStrategyBoss(EstrategiaAtaque pSB) {
+		this.estrategiaAtaqueBoss = pSB;
 	}
 	
 	public abstract boolean comprobarFila(int pX, int bombaY, int bombaX);

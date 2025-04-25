@@ -150,7 +150,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 	}
 
 	public void atacarPersonaje(String orientacion) {
-			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacarBoss(super.getY(), super.getX(), orientacion);
 			System.out.println(seHaPodido); // debugging
 	}
 
