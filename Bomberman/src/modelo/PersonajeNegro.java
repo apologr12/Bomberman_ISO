@@ -86,6 +86,7 @@ public class PersonajeNegro extends Personaje {
 	@Override
 	public void dab() {
 		// TODO Auto-generated method stub
-		
+		setChanged();
+		notifyObservers(new Object[] {24, getX(), getY(), 2}); //El 1 indica el personaje
 	}
 }

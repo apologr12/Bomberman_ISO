@@ -89,7 +89,8 @@ public class PersonajeArena extends Personaje {
 
 	@Override
 	public void dab() {
-		
+		setChanged();
+		notifyObservers(new Object[] {24, getX(), getY(), 3}); //El 3 indica el personaje
 	}
 	
 }

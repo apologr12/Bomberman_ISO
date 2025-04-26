@@ -181,8 +181,10 @@ public abstract class VistaJuego extends JFrame implements Observer {
 			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeBlanco/whitedab.png")));
 		}
 		else if (personaje == 2) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeNegro/blackdab.png")));
 		}
 		else if (personaje == 3) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/personajeAzul/bluedab.png")));
 		}
 	}
 	
@@ -508,7 +510,14 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		this.removeKeyListener(ControladorJuego.getControlador()); //Le quitamos al jugador la posibilidad de moverse 
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/bossDead.png")));
+		Random random = new Random();
+		int numAleat = random.nextInt(2) + 1;
+		
+		if(numAleat == 1) {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/dead1.png")));
+		} else {
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/boss/dead2.png")));
+		}
 	}
 
 	private void mostrarBossHit(Object[] array) {
