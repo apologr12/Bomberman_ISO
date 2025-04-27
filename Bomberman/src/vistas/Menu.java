@@ -263,7 +263,7 @@ public class Menu extends JFrame implements Observer {
 			System.out.println("4");
 			this.pFondo = "imagenes/fondos/arenaBack.png";
 			fondo.repaint(); // Redibujar el panel con la nueva imagen
-			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/empty1.png"))); //cambio de titulo indicando el tablero
+			this.getSubTitulo().setIcon(new ImageIcon(this.getClass().getResource("imagenes/arena1.png"))); //cambio de titulo indicando el tablero
 		}
 		this.repaint();
 	}
