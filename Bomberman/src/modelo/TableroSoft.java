@@ -3,7 +3,7 @@ package modelo;
 import java.util.Random;
 
 public class TableroSoft extends Tablero {
-	public static final int probAparicion = 10;
+	private static final int probAparicion = 10;
 	
 	public TableroSoft(int pTipoPersonaje) {
 		super(11, 17, pTipoPersonaje);

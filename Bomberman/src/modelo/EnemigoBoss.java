@@ -61,12 +61,9 @@ public class EnemigoBoss extends BloqueEnemigo {
 
 		
 		String respuesta = null;
-		int persX = GestorPersonajes.getGestorPersonajes().getPersonaje().getX();
-		int persY = 10 - GestorPersonajes.getGestorPersonajes().getPersonaje().getY(); //Esto se hace para invertir el hecho de que la y= 0 es arriba, y para el prompt
-																						// y=0 es abajo
 		do { //Si a la IA le da por responder otra cosa, pues que se lo vuelva a pedir
 			int cont = 0;
-			respuesta = LlamadasIA.getLlamadasIA().movimientoIA(persY, persX, 10 - super.getY(), super.getX()); //Lo mismo que el comentario de arriba
+			respuesta = LlamadasIA.getLlamadasIA().movimientoIA(10 - super.getY(), super.getX()); //Lo mismo que el comentario de arriba
 			respuesta = respuesta.trim();
 			//System.out.println(respuesta + cont); //Debugging
 			cont++;

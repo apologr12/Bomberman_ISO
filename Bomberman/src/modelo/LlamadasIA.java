@@ -20,8 +20,11 @@ public class LlamadasIA {
 		return miIA;
 	}
 	
-	public String movimientoIA(int persY, int persX, int bossY, int bossX) {
+	public String movimientoIA(int bossY, int bossX) {
 		try {
+		int persX = GestorPersonajes.getGestorPersonajes().getPersonaje().getX(); 
+		int persY = 10 -GestorPersonajes.getGestorPersonajes().getPersonaje().getY(); //Esto se hace para invertir el hecho de que la y= 0 es arriba, y para el prompt
+																						// y=0 es abajo
 		String modelName = "llama3.1";
 		String promptText = "You are playing as a boss character on a 2D grid (board size: 16 tiles wide and 10 tiles tall)."
 				+ "The coordinate origin (0,0) is at the bottom-left corner."

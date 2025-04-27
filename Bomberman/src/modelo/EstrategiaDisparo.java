@@ -134,16 +134,16 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
         setChanged();
         notifyObservers(new Object[] {4, pX, pY, 0}); //Notificamos a la vista de que quite el bloque que habia en las coordenadas (el disparo)
 
-        if (orientacion.equals("Arriba") && !tablero[pY-1][pX].eresDisparo() && tablero[pY-1][pX].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
+        if (orientacion.equals("Arriba") && tablero[pY-1][pX].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
             this.explotarCelda(pY-1,pX,tablero, orientacion);
         }
-        else if (orientacion.equals("Abajo") && !tablero[pY+1][pX].eresDisparo() && tablero[pY+1][pX].puedoMoverme()) {
+        else if (orientacion.equals("Abajo") && tablero[pY+1][pX].puedoMoverme()) {
             this.explotarCelda(pY+1,pX,tablero, orientacion);
         }
-        else if (orientacion.equals("Izquierda") && !tablero[pY][pX-1].eresDisparo() && tablero[pY][pX-1].puedoMoverme()) {
+        else if (orientacion.equals("Izquierda") && tablero[pY][pX-1].puedoMoverme()) {
             this.explotarCelda(pY,pX-1,tablero, orientacion);
         }
-        else if (orientacion.equals("Derecha") && !tablero[pY][pX+1].eresDisparo() && tablero[pY][pX+1].puedoMoverme()) {
+        else if (orientacion.equals("Derecha") && tablero[pY][pX+1].puedoMoverme()) {
             this.explotarCelda(pY,pX+1,tablero, orientacion);
         }
         else {
