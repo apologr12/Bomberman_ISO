@@ -67,9 +67,12 @@ public class EnemigoBoss extends BloqueEnemigo {
 			respuesta = respuesta.trim();
 			//System.out.println(respuesta + cont); //Debugging
 			cont++;
-		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease"));
-			
-		if (respuesta.equals("x-axis increase")) {
+		} while (!respuesta.equals("x-axis increase") && !respuesta.equals("x-axis decrease") && !respuesta.equals("y-axis increase") && !respuesta.equals("y-axis decrease") && !muerto);
+		
+		if (muerto) { //Por si acaso comprueba si esta muerto para que de ninguna manera se pueda mover
+			spriteActual = 22; 
+		}
+		else if (respuesta.equals("x-axis increase")) {
 			spriteActual = 14;
 			super.moverDerecha();
 		}
@@ -148,7 +151,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 	}
 
 	private void atacarPersonaje(String orientacion) {
-			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacarBoss(super.getY(), super.getX(), orientacion);
 			System.out.println(seHaPodido); // debugging
 	}
 

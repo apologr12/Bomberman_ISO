@@ -8,6 +8,7 @@ import java.util.Observer;
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
 	private EstrategiaAtaque estrategiaAtaque;
+	private EstrategiaAtaque estrategiaAtaqueBoss;
 
 	public abstract void crearTablero();
 
@@ -22,6 +23,7 @@ public abstract class Tablero extends Observable {
 		}
 		else if (pTipoPersonaje == 3) {
 			this.estrategiaAtaque = new EstrategiaDisparo();
+			this.estrategiaAtaqueBoss = new EstrategiaAtaqueBoss(); //Solo se crea con el personaje de arena
 		}
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) { //Solo se usa al generar el tablero
@@ -85,6 +87,10 @@ public abstract class Tablero extends Observable {
 	public void compAtaque(int pY, int pX, String orientacion) {
 		this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);    
 	 }
+	
+	public void compAtaqueBoss(int pY, int pX, String orientacion) {
+		this.estrategiaAtaqueBoss.compAtaque(pY, pX, tablero, orientacion);    
+	 }
 
 	protected void explotarCelda(int pY, int pX) {
 		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero, "");
@@ -100,6 +106,10 @@ public abstract class Tablero extends Observable {
 
 	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
 		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
+	}
+	
+	public boolean atacarBoss(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
+		return this.estrategiaAtaqueBoss.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
 	}
 
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
@@ -152,6 +162,7 @@ public abstract class Tablero extends Observable {
 	
 	public void addObserverEstrategia(Observer o) {
 		this.estrategiaAtaque.addObserver(o);
+		this.estrategiaAtaqueBoss.addObserver(o);
 	}
 	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {

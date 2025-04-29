@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -90,7 +91,6 @@ public abstract class VistaJuego extends JFrame implements Observer {
 		// TODO Auto-generated method stub
 		Object[] array = (Object[]) arg;
 		int quienLlama = (int) array[0];
-		
 		if (quienLlama == 1) {
 			this.ponerBombaPersonaje(array);
 		}
@@ -464,7 +464,13 @@ public abstract class VistaJuego extends JFrame implements Observer {
 	private void pintarDisparo(Object[] array) {
 		int y = (int) array[2];
 		int x = (int) array[1];
-		this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
+		int quienAtaca = (int) array[3];
+		if (quienAtaca == 0) { //Si ataca el personaje
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast4.gif")));
+		}
+		else if (quienAtaca == 1) { //Si ataca el boss
+			this.labels[y][x].setIcon(new ImageIcon(this.getClass().getResource("imagenes/bombas/miniBlast1.gif")));
+		}
 	}
 
 	private void moverEnemigoBossLeft(Object[] array) {

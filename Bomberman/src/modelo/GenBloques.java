@@ -35,6 +35,10 @@ public class GenBloques {
 			BloqueDisparo nuevo = new BloqueDisparo(pY, pX, orientacion);
 			return nuevo;
 		}
+		else if (pTipo.equals("DisparoBoss")) {
+			BloqueDisparoBoss nuevo = new BloqueDisparoBoss(pY, pX, orientacion);
+			return nuevo;
+		}
 		else return null;
 	}
 	
