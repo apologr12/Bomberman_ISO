@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -7,7 +8,6 @@ import java.util.Observer;
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
 	private EstrategiaAtaque estrategiaAtaque;
-	private EstrategiaAtaque estrategiaAtaqueBoss = new EstrategiaDisparo(); //El boss siempre tendra la estrategia de disparar
 
 	public abstract void crearTablero();
 
@@ -85,9 +85,6 @@ public abstract class Tablero extends Observable {
 	public void compAtaque(int pY, int pX, String orientacion) {
 		this.estrategiaAtaque.compAtaque(pY, pX, tablero, orientacion);    
 	 }
-	public void compAtaqueBoss(int pY, int pX, String orientacion) {
-		this.estrategiaAtaqueBoss.compAtaque(pY, pX, tablero, orientacion);    
-	 }
 
 	protected void explotarCelda(int pY, int pX) {
 		this.estrategiaAtaque.explotarCelda(pY, pX, this.tablero, "");
@@ -104,79 +101,7 @@ public abstract class Tablero extends Observable {
 	public boolean atacar(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
 		return this.estrategiaAtaque.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
 	}
-	public boolean atacarBoss(int fila, int col, String orientacion) {  //Devuelve true si se ha podido poner una bomba o disparar, false si no
-		return this.estrategiaAtaqueBoss.atacar(fila, col, this.tablero, orientacion); //Se pasa la orientacion para el caso concreto del disparo. Si es bomba se pasa ""
-	}
-	/*
-	public boolean disparar(int y, int x, String orientacion) {					//El puedo moverme es porque si se puede mover, entonces tambien
-																				//puede disparar en esa direccion
-		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {
-			tablero[y-1][x] = GenBloques.getGenBloques().generar("Disparo", y-1, x, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x, y-1, 0});
-			return true;
-		}
-		else if (orientacion.equals("Abajo") && !tablero[y+1][x].eresDisparo() && tablero[y+1][x].puedoMoverme()) {
-			tablero[y+1][x] = GenBloques.getGenBloques().generar("Disparo", y+1, x, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x, y+1, 0});
-			return true;
-		}
-		else if (orientacion.equals("Izquierda") && !tablero[y][x-1].eresDisparo() && tablero[y][x-1].puedoMoverme()) {
-			tablero[y][x-1] = GenBloques.getGenBloques().generar("Disparo", y, x-1, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x-1, y, 0});
-			return true;
-		}
-		else if (orientacion.equals("Derecha") && !tablero[y][x+1].eresDisparo() && tablero[y][x+1].puedoMoverme()) {
-			tablero[y][x+1] = GenBloques.getGenBloques().generar("Disparo", y, x+1, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x+1, y, 0});
-			return true;
-		}
-		return false;
-	}
-	*/
-	/*
-	public void moverDisparo(int y, int x, String orientacion) {
-		this.ponerBloque("Vacio", y, x); //Quitamos el bloque del disparo de su posicion y ponemos el vacio
-		setChanged();
-		notifyObservers(new Object[] {4, x, y, 0}); //Notificamos a la vista de que quite el bloque que habia en las coordenadas (el disparo)
-		
-		if (orientacion.equals("Arriba") && !tablero[y-1][x].eresDisparo() && tablero[y-1][x].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
-			tablero[y-1][x] = GenBloques.getGenBloques().generar("Disparo", y-1, x, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x, y-1, 0});
-		}
-		else if (orientacion.equals("Abajo") && !tablero[y+1][x].eresDisparo() && tablero[y+1][x].puedoMoverme()) {
-			tablero[y+1][x] = GenBloques.getGenBloques().generar("Disparo", y+1, x, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x, y+1, 0});
-		}
-		else if (orientacion.equals("Izquierda") && !tablero[y][x-1].eresDisparo() && tablero[y][x-1].puedoMoverme()) {
-			tablero[y][x-1] = GenBloques.getGenBloques().generar("Disparo", y, x-1, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x-1, y, 0});
-		}
-		else if (orientacion.equals("Derecha") && !tablero[y][x+1].eresDisparo() && tablero[y][x+1].puedoMoverme()) {
-			tablero[y][x+1] = GenBloques.getGenBloques().generar("Disparo", y, x+1, orientacion);
-			System.out.println("Disparo"); //Debugging
-			setChanged();
-			notifyObservers(new Object[] {17, x+1, y, 0});
-		}
-		else {
-			GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
-		}
-		//Si no se puede mover al sitio correspondiente se le notifica al personaje para que vuelva a tener otro disparo disponible
-	}
-	*/
+
 	protected void iniciarTimersEnemigos() { //Este metodo se llama una vez el tablero esta completamente generado
 		for (int i = 0; i < this.tablero.length; i++) { //Se busca por todo el tablero que casillas son enemigos
 			for (int j = 0; j < this.tablero[0].length; j++) {
@@ -187,6 +112,13 @@ public abstract class Tablero extends Observable {
 			}
 		}
 	}
+	
+	protected void iniciarTimersEnemigosJava8() { //Este metodo se llama una vez el tablero esta completamente generado
+		Arrays.stream(tablero).flatMap(Arrays::stream).
+		filter(bloque -> bloque != null && bloque.esEnemigo()).
+		forEach(bloque -> ((BloqueEnemigo) bloque).iniciarMovimiento());
+	}
+	
 	public void detenerTimersEnemigosYExplosiones() {
 		for (int i = 0; i < this.tablero.length; i++) {
 			for (int j = 0; j < this.tablero[0].length; j++) {
@@ -196,6 +128,13 @@ public abstract class Tablero extends Observable {
 				}
 			}
 		}
+	}
+	
+	public void detenerTimersEnemigosYExplosionesJava8() {
+		Arrays.stream(tablero).flatMap(Arrays::stream).
+		filter(bloque -> bloque != null && (bloque.esEnemigo() || bloque.eresExplosion())).
+		forEach(bloque -> bloque.pararTimer());
+		
 	}
 	
 	public void addObserverEnemigos(Observer o) { //El metodo es igual al de arriba, pero como hacen funciones distintas en momentos distintos no podemos juntarlos
@@ -213,8 +152,6 @@ public abstract class Tablero extends Observable {
 	
 	public void addObserverEstrategia(Observer o) {
 		this.estrategiaAtaque.addObserver(o);
-		this.estrategiaAtaqueBoss.addObserver(o);
-
 	}
 	
 	protected void moverEnemigo(BloqueEnemigo enemigo, int antiguaY, int antiguaX, int nuevaY, int nuevaX) {
@@ -226,10 +163,7 @@ public abstract class Tablero extends Observable {
 	public void changeStrategy(EstrategiaAtaque pSB) {
 		this.estrategiaAtaque = pSB;
 	}
-	public void changeStrategyBoss(EstrategiaAtaque pSB) {
-		this.estrategiaAtaqueBoss = pSB;
-	}
-	
+
 	public abstract boolean comprobarFila(int pX, int bombaY, int bombaX);
 	public abstract boolean comprobarColumna(int pY, int bombaY, int bombaX);
 

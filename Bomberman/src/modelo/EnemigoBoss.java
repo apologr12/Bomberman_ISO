@@ -101,6 +101,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 			spriteActual = 22;                      // sprite muerte
 			pararTimer();                           // deja de moverse
 			pintarEnemigo(super.getY(), super.getX());
+			
 			super.pararTimer();
 			TimerTask timerTask = new TimerTask() { //Se ha utilizado el timer en vez del Thread.sleep() porque nos daba problemas
 				@Override
@@ -147,7 +148,7 @@ public class EnemigoBoss extends BloqueEnemigo {
 	}
 
 	private void atacarPersonaje(String orientacion) {
-			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacarBoss(super.getY(), super.getX(), orientacion);
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
 			System.out.println(seHaPodido); // debugging
 	}
 

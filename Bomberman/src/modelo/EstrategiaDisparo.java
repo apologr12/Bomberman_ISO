@@ -131,8 +131,12 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
     @Override
     public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) {
         tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX, "");
-        setChanged();
-        notifyObservers(new Object[] {4, pX, pY, 0}); //Notificamos a la vista de que quite el bloque que habia en las coordenadas (el disparo)
+        
+        if (!GestorPersonajes.getGestorPersonajes().getPersonaje().choque(pY, pX)) {
+        	setChanged();
+            notifyObservers(new Object[] {4, pX, pY, 0}); //Notificamos a la vista de que quite el bloque que habia en las coordenadas (el disparo)
+        }
+        
 
         if (orientacion.equals("Arriba") && tablero[pY-1][pX].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
             this.explotarCelda(pY-1,pX,tablero, orientacion);

@@ -68,7 +68,7 @@ public class PersonajeNegro extends Personaje {
 
 	@Override
 	protected void meHeMuerto(int motivo) { //Si le llega como parametro 1 quiere decir que se ha muerto por enemigo, si le llega un 2, por bomba
-		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
+		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosionesJava8(); //Detenemos el movimiento de los enemigos
 		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
 		setChanged();
 		notifyObservers(new Object[] {16, getX(), getY(), 2, motivo}); //Notificamos a la vista que hemos muerto

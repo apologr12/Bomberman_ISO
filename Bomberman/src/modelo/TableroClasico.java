@@ -57,7 +57,7 @@ public class TableroClasico extends Tablero {
 		}
 		setChanged();
 		notifyObservers(new Object[] {15}); //Notifica a la vista para que se anada como observer en todos los enemigos y estrategias
-		super.iniciarTimersEnemigos();
+		super.iniciarTimersEnemigosJava8();
 	}
 	
 	@Override

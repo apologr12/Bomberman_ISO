@@ -27,7 +27,7 @@ public class BloqueDisparo extends Bloque {
 		cont--;
 		if (cont == 0) {
 			//System.out.println("Movimiento disparo"); //Cuando llega a cero se moveria y se tendria que cambiar a un bloque vacio
-			GestorTableros.getGestorTableros().getTablero().compAtaqueBoss(super.getY(), super.getX(), orientacion);
+			GestorTableros.getGestorTableros().getTablero().compAtaque(super.getY(), super.getX(), orientacion);
 			timer.cancel(); //Se apaga el timer
 		}
 		//System.out.println(cont);  //Muestra como va el contador

@@ -69,7 +69,7 @@ public class PersonajeArena extends Personaje {
 
 	@Override
 	protected void meHeMuerto(int motivo) {
-		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosiones(); //Detenemos el movimiento de los enemigos
+		GestorTableros.getGestorTableros().getTablero().detenerTimersEnemigosYExplosionesJava8(); //Detenemos el movimiento de los enemigos
 		dejarDeMostrarPersonaje(); //Dejamos de mostrar al personaje
 		setChanged();
 		notifyObservers(new Object[] {16, getX(), getY(), 3, motivo}); //El 3 indica que es el personaje 3
