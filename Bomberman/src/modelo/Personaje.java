@@ -36,7 +36,7 @@ public abstract class Personaje extends Observable {
 	public void atacarPersonaje(String orientacion) {
 
 		if (this.quedanBombas()) { // si tenemos bombas disponibles las colocamos en nuestra posicion.
-	        boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(this.y, this.x, "");
+	        boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(this.y, this.x, "", "");
 	        if (seHaPodido) {
 	        	this.restarBomba();
 	        }

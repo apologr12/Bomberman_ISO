@@ -6,9 +6,9 @@ public class EstrategiaBombaUltra extends EstrategiaAtaque {
 	}
 	
 	@Override
-	public boolean atacar(int fila, int col, Bloque[][] tablero, String orientacion) {
+	public boolean atacar(int fila, int col, Bloque[][] tablero, String orientacion, String quien) {
 		if (!tablero[fila][col].eresBomba()) {						//Se pone una bomba si no hay ya una bomba puesta
-	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaUltra", fila, col, "");
+	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaUltra", fila, col, "", "");
 	        System.out.println("Bomba");
 	        setChanged();
 	        notifyObservers(new Object[] { 1, col, fila, 2});
@@ -20,7 +20,7 @@ public class EstrategiaBombaUltra extends EstrategiaAtaque {
 	}
 
 	@Override
-	protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion) { //en el notify agrega un 2 que va a ser la manera para que sepa la vista que tipo de explosion
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) { //en el notify agrega un 2 que va a ser la manera para que sepa la vista que tipo de explosion
 		/* 1.  Si la celda es un Boss, aplicamos daño */
 		if (tablero[pY][pX].esBoss()) {
 			EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
@@ -33,37 +33,37 @@ public class EstrategiaBombaUltra extends EstrategiaAtaque {
 		if (tablero[pY][pX].eresExplosion() || tablero[pY][pX].esEnemigo()) {
 			tablero[pY][pX].pararTimer();
 		}
-	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX, "");
+	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX, "", "");
 	    // Notificar a la vista que muestre explosi�n
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY, 2});		
 	}
 
 	@Override
-	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) { //Explota las celdas alcanzadas por la explosion de la BombaUltra
-		explotarCelda(pY, pX, tablero, "");
+	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) { //Explota las celdas alcanzadas por la explosion de la BombaUltra
+		explotarCelda(pY, pX, tablero, orientacion, quien);
 		
 		int actX=pX+1;
 		while (actX <= 16 && tablero[pY][actX].esDestructible()) {
-        	explotarCelda(pY, actX, tablero, "");
+        	explotarCelda(pY, actX, tablero, orientacion, quien);
         	actX++;
         }
 		
 		actX=pX-1;
         while (actX >= 0 && tablero[pY][actX].esDestructible()) {
-        	explotarCelda(pY, actX, tablero, "");
+        	explotarCelda(pY, actX, tablero, orientacion, quien);
         	actX--;
        	}
         
         int actY=pY+1;
         while (actY <= 10 && tablero[actY][pX].esDestructible()) {
-        	explotarCelda(actY, pX, tablero, "");
+        	explotarCelda(actY, pX, tablero, orientacion, quien);
         	actY++;
         }
         
         actY=pY-1;
         while (actY >= 0 && tablero[actY][pX].esDestructible()) {
-        	explotarCelda(actY,  pX, tablero, "");
+        	explotarCelda(actY,  pX, tablero, orientacion, quien);
         	actY--;
         }
 	}

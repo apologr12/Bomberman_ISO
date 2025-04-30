@@ -59,7 +59,7 @@ public class PersonajeNegro extends Personaje {
 				heMuerto = true;
 			}
 		}
-		GestorTableros.getGestorTableros().getTablero().compAtaque(pY, pX, "");
+		GestorTableros.getGestorTableros().getTablero().compAtaque(pY, pX, "", ""); //Los 2 ultimos parametros son para el personajeArena y el boss
 		
 		if (heMuerto) {
 			this.meHeMuerto(1);

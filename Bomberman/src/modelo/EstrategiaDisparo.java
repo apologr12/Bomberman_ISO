@@ -7,7 +7,7 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
 
 
     @Override
-    public boolean atacar(int pY, int pX, Bloque[][] tablero, String orientacion) {
+    public boolean atacar(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) {
         /* //DEBUGGING
         System.out.println("Atacando personaje");
         System.out.println(orientacion);
@@ -26,10 +26,12 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY-1][pX];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                if (quien.equals("PersonajeArena")) {
+                	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                }
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
-            	tablero[pY-1][pX] = GenBloques.getGenBloques().generar("Disparo", pY-1, pX, orientacion);
+            	tablero[pY-1][pX] = GenBloques.getGenBloques().generar("Disparo", pY-1, pX, orientacion, quien);
             	//System.out.println("Disparo"); //Debugging
             	setChanged();
             	notifyObservers(new Object[] {17, pX, pY-1, 0});
@@ -44,10 +46,12 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY+1][pX];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                if (quien.equals("PersonajeArena")) {
+                	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                }
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
-            	tablero[pY+1][pX] = GenBloques.getGenBloques().generar("Disparo", pY+1, pX, orientacion);
+            	tablero[pY+1][pX] = GenBloques.getGenBloques().generar("Disparo", pY+1, pX, orientacion, quien);
             	//System.out.println("Disparo"); //Debugging
             	setChanged();
             	notifyObservers(new Object[] {17, pX, pY+1, 0});
@@ -62,10 +66,12 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX-1];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                if (quien.equals("PersonajeArena")) {
+                	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                }
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
-            	tablero[pY][pX-1] = GenBloques.getGenBloques().generar("Disparo", pY, pX-1, orientacion);
+            	tablero[pY][pX-1] = GenBloques.getGenBloques().generar("Disparo", pY, pX-1, orientacion, quien);
             	//System.out.println("Disparo"); //Debugging
             	setChanged();
             	notifyObservers(new Object[] {17, pX-1, pY, 0});
@@ -80,10 +86,12 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX+1];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                if (quien.equals("PersonajeArena")) {
+                	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+                }
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
-            	tablero[pY][pX+1] = GenBloques.getGenBloques().generar("Disparo", pY, pX+1, orientacion);
+            	tablero[pY][pX+1] = GenBloques.getGenBloques().generar("Disparo", pY, pX+1, orientacion, quien);
             	//System.out.println("Disparo"); //Debugging
             	setChanged();
             	notifyObservers(new Object[] {17, pX+1, pY, 0});
@@ -95,20 +103,24 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
     }
 
     @Override
-    protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion) {
+    protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) {
         //System.out.println("La orientacion es: " + orientacion);
         /* 1.  Si la celda es un Boss, aplicamos danio */
         if (tablero[pY][pX].esBoss()) {
             System.out.println("Boss");
             EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
             boss.recibirDanio();       // quita un punto de vida
-            GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+            if (quien.equals("PersonajeArena")) {
+            	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+            }
             return;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             // mas abajo por una explosion donde esta el boss
         }
         else if (tablero[pY][pX].eresDisparo()) { //Si es un disparo hay que parar el timer de ese disparo y que el actual no siga avanzando
         	tablero[pY][pX].pararTimer(); //Paramos el timer del disparo con el que ha colisionado
-        	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+        	if (quien.equals("PersonajeArena")) {
+            	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+            }
         	return;
         }
         /* 2.  Si es un enemigo lo matamos directamente */
@@ -120,7 +132,7 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
         	GestorPersonajes.getGestorPersonajes().getPersonaje().meHeMuerto(1);
         } 
         else {
-        	tablero[pY][pX] = GenBloques.getGenBloques().generar("Disparo", pY, pX, orientacion); //En caso de que el disparo pueda avanzar, se crea en la nueva posicion
+        	tablero[pY][pX] = GenBloques.getGenBloques().generar("Disparo", pY, pX, orientacion, quien); //En caso de que el disparo pueda avanzar, se crea en la nueva posicion
         	// Notificar a la vista que muestre explosi�n
         	setChanged();
         	notifyObservers(new Object[] {17, pX, pY, 0});
@@ -129,8 +141,8 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
 
 
     @Override
-    public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) {
-        tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX, "");
+    public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) {
+        tablero[pY][pX] = GenBloques.getGenBloques().generar("Vacio", pY, pX, "", "");
         
         if (!GestorPersonajes.getGestorPersonajes().getPersonaje().choque(pY, pX)) {
         	setChanged();
@@ -139,19 +151,21 @@ public class EstrategiaDisparo extends EstrategiaAtaque {
         
 
         if (orientacion.equals("Arriba") && tablero[pY-1][pX].puedoMoverme()) {		//En funcion de la orientacion se mueve a un sitio u otro
-            this.explotarCelda(pY-1,pX,tablero, orientacion);
+            this.explotarCelda(pY-1,pX,tablero, orientacion, quien);
         }
         else if (orientacion.equals("Abajo") && tablero[pY+1][pX].puedoMoverme()) {
-            this.explotarCelda(pY+1,pX,tablero, orientacion);
+            this.explotarCelda(pY+1,pX,tablero, orientacion, quien);
         }
         else if (orientacion.equals("Izquierda") && tablero[pY][pX-1].puedoMoverme()) {
-            this.explotarCelda(pY,pX-1,tablero, orientacion);
+            this.explotarCelda(pY,pX-1,tablero, orientacion, quien);
         }
         else if (orientacion.equals("Derecha") && tablero[pY][pX+1].puedoMoverme()) {
-            this.explotarCelda(pY,pX+1,tablero, orientacion);
+            this.explotarCelda(pY,pX+1,tablero, orientacion, quien);
         }
         else {
-            GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+        	if (quien.equals("PersonajeArena")) {
+                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
+        	}
         }
 
     }

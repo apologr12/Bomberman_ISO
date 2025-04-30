@@ -5,7 +5,7 @@ public class GenBloques {
 	private GenBloques() {}
 	public static GenBloques getGenBloques(){return miGenBombas;}
 	
-	public Bloque generar(String pTipo,int pY,int pX, String orientacion) {
+	public Bloque generar(String pTipo,int pY,int pX, String orientacion, String quien) {
 		if (pTipo.equals("Vacio")) {
 			BloqueVacio nuevo=new BloqueVacio(pY,pX);
 			//System.out.print("Vacio generado");
@@ -32,7 +32,7 @@ public class GenBloques {
 			return nuevo;
 		}
 		else if (pTipo.equals("Disparo")) {
-			BloqueDisparo nuevo = new BloqueDisparo(pY, pX, orientacion);
+			BloqueDisparo nuevo = new BloqueDisparo(pY, pX, orientacion, quien);
 			return nuevo;
 		}
 		else return null;

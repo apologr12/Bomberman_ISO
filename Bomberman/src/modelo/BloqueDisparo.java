@@ -9,9 +9,10 @@ public class BloqueDisparo extends Bloque {
 	private Timer timer = null;
 	private int cont = 2;
 	
-	protected BloqueDisparo(int pY, int pX, String orientacion) {
+	protected BloqueDisparo(int pY, int pX, String orientacion, String quien) {
 		super(pY, pX);
 		this.orientacion = orientacion;
+		this.quien = quien;
 		
 		TimerTask timerTask = new TimerTask() {
 			@Override
@@ -27,7 +28,7 @@ public class BloqueDisparo extends Bloque {
 		cont--;
 		if (cont == 0) {
 			//System.out.println("Movimiento disparo"); //Cuando llega a cero se moveria y se tendria que cambiar a un bloque vacio
-			GestorTableros.getGestorTableros().getTablero().compAtaque(super.getY(), super.getX(), orientacion);
+			GestorTableros.getGestorTableros().getTablero().compAtaque(super.getY(), super.getX(), orientacion, quien);
 			timer.cancel(); //Se apaga el timer
 		}
 		//System.out.println(cont);  //Muestra como va el contador

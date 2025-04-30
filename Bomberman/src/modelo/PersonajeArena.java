@@ -17,7 +17,7 @@ public class PersonajeArena extends Personaje {
 	public void atacarPersonaje(String orientacion) {
 
 		if (this.disparos > 0) { //Quedan disparos
-			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion);
+			boolean seHaPodido = GestorTableros.getGestorTableros().getTablero().atacar(super.getY(), super.getX(), orientacion, "PersonajeArena");
 			if (seHaPodido) {
 				this.disparos--;
 			}

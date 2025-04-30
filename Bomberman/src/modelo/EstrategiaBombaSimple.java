@@ -7,9 +7,9 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 
 
 	@Override
-	public boolean atacar(int fila, int col, Bloque[][] tablero, String orientacion) {
+	public boolean atacar(int fila, int col, Bloque[][] tablero, String orientacion, String quien) {
 		if (!tablero[fila][col].eresBomba()) {						//Se pone una bomba si no hay ya una bomba puesta
-	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaSimple", fila, col, "");
+	        tablero[fila][col] = GenBloques.getGenBloques().generar("BombaSimple", fila, col, "", "");
 	        System.out.println("Bomba"); //Debugging
 	        setChanged();
 	        notifyObservers(new Object[] { 1, col, fila, 1});
@@ -21,7 +21,7 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 	}
 
 	@Override
-	protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion) {
+	protected void explotarCelda(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) {
 		/* 1.  Si la celda es un Boss, aplicamos daño */
 		if (tablero[pY][pX].esBoss()) {
 			EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
@@ -34,7 +34,7 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 		if (tablero[pY][pX].eresExplosion() || tablero[pY][pX].esEnemigo()) {
 			tablero[pY][pX].pararTimer();
 		}
-	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX, "");
+	    tablero[pY][pX] = GenBloques.getGenBloques().generar("Explosion", pY, pX, "", "");
 	    // Notificar a la vista que muestre explosi�n
 	    setChanged();
 	    notifyObservers(new Object[] {6, pX, pY, 1});		
@@ -42,23 +42,23 @@ public class EstrategiaBombaSimple extends EstrategiaAtaque {
 
 
 	@Override
-	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion) {
-		explotarCelda(pY, pX, tablero, orientacion);
+	public void compAtaque(int pY, int pX, Bloque[][] tablero, String orientacion, String quien) {
+		explotarCelda(pY, pX, tablero, orientacion, quien);
 
         if (pX < 16 && tablero[pY][pX + 1].esDestructible()) {
-        	explotarCelda(pY, pX + 1, tablero, orientacion);
+        	explotarCelda(pY, pX + 1, tablero, orientacion, quien);
         }
 
         if (pX > 0 && tablero[pY][pX - 1].esDestructible()) {
-        	explotarCelda(pY, pX - 1, tablero, orientacion);
+        	explotarCelda(pY, pX - 1, tablero, orientacion, quien);
        	}
 
         if (pY < 10 && tablero[pY + 1][pX].esDestructible()) {
-        	explotarCelda(pY + 1, pX, tablero,orientacion);
+        	explotarCelda(pY + 1, pX, tablero,orientacion, quien);
         }
 
         if (pY > 0 && tablero[pY - 1][pX].esDestructible()) {
-        	explotarCelda(pY-1,  pX, tablero, orientacion);
+        	explotarCelda(pY-1,  pX, tablero, orientacion, quien);
         }
 	}
 
