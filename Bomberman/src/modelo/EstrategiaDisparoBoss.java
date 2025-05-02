@@ -1,7 +1,7 @@
 package modelo;
 
 @SuppressWarnings("deprecation")
-public class EstrategiaAtaqueBoss extends EstrategiaAtaque {
+public class EstrategiaDisparoBoss extends EstrategiaAtaque {
 	@Override
     public boolean atacar(int pY, int pX, Bloque[][] tablero, String orientacion) {
         /* //DEBUGGING

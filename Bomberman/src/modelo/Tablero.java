@@ -23,7 +23,7 @@ public abstract class Tablero extends Observable {
 		}
 		else if (pTipoPersonaje == 3) {
 			this.estrategiaAtaque = new EstrategiaDisparo();
-			this.estrategiaAtaqueBoss = new EstrategiaAtaqueBoss(); //Solo se crea con el personaje de arena
+			this.estrategiaAtaqueBoss = new EstrategiaDisparoBoss(); //Solo se crea con el personaje de arena
 		}
 	}
 	protected void ponerBloque(String pTipo, int pY, int pX) { //Solo se usa al generar el tablero
