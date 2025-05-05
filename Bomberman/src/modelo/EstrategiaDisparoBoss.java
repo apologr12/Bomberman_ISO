@@ -21,7 +21,6 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY-1][pX];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
             	tablero[pY-1][pX] = GenBloques.getGenBloques().generar("DisparoBoss", pY-1, pX, orientacion);
@@ -39,7 +38,6 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY+1][pX];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
             	tablero[pY+1][pX] = GenBloques.getGenBloques().generar("DisparoBoss", pY+1, pX, orientacion);
@@ -57,7 +55,6 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX-1];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
             	tablero[pY][pX-1] = GenBloques.getGenBloques().generar("DisparoBoss", pY, pX-1, orientacion);
@@ -75,7 +72,6 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
                 System.out.println("Boss");
                 EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX+1];
                 boss.recibirDanio();       // quita un punto de vida
-                GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
                 return true;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             } else {
             	tablero[pY][pX+1] = GenBloques.getGenBloques().generar("DisparoBoss", pY, pX+1, orientacion);
@@ -97,13 +93,11 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
             System.out.println("Boss");
             EnemigoBoss boss = (EnemigoBoss) tablero[pY][pX];
             boss.recibirDanio();       // quita un punto de vida
-            GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
             return;             // es para que no se siga ejecutando el codigo y se acabe sustituyendo
             // mas abajo por una explosion donde esta el boss
         }
         else if (tablero[pY][pX].eresDisparo()) { //Si es un disparo hay que parar el timer de ese disparo y que el actual no siga avanzando
         	tablero[pY][pX].pararTimer(); //Paramos el timer del disparo con el que ha colisionado
-        	GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
         	return;
         }
         /* 2.  Si es un enemigo lo matamos directamente */
@@ -144,9 +138,6 @@ public class EstrategiaDisparoBoss extends EstrategiaAtaque {
         }
         else if (orientacion.equals("Derecha") && tablero[pY][pX+1].puedoMoverme()) {
             this.explotarCelda(pY,pX+1,tablero, orientacion);
-        }
-        else {
-            GestorPersonajes.getGestorPersonajes().getPersonaje().disparoFinalizado();
         }
 
     }
