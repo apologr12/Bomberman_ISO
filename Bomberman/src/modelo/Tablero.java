@@ -8,7 +8,7 @@ import java.util.Observer;
 public abstract class Tablero extends Observable {
 	private Bloque[][] tablero;
 	private EstrategiaAtaque estrategiaAtaque;
-	private EstrategiaAtaque estrategiaAtaqueBoss;
+	private EstrategiaAtaque estrategiaAtaqueBoss = new EstrategiaDisparoBoss();
 
 	public abstract void crearTablero();
 

@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 public class BloqueDisparoBoss extends Bloque {
 	private String orientacion;
-	private String quien;
 	private Timer timer = null;
 	private int cont = 2;
 	
